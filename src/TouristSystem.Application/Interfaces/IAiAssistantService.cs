@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using TouristSystem.Application.Features.Assistant;
@@ -12,4 +13,5 @@ namespace TouristSystem.Application.Interfaces;
 public interface IAiAssistantService
 {
     Task<AiChatResponse> GetResponseAsync(AiChatRequest request, CancellationToken cancellationToken = default);
+    IAsyncEnumerable<string> GetResponseStreamAsync(AiChatRequest request, CancellationToken cancellationToken = default);
 }

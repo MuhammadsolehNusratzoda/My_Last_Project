@@ -17,3 +17,4 @@ C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Infrastructure\obj
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Infrastructure\obj\Debug\net9.0\TouristSystem.Infrastructure.pdb
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Infrastructure\obj\Debug\net9.0\TouristSystem.Infrastructure.genruntimeconfig.cache
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Infrastructure\obj\Debug\net9.0\ref\TouristSystem.Infrastructure.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Infrastructure\obj\Debug\net9.0\TouristSystem.Infrastructure.sourcelink.json

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -68,6 +70,112 @@ public class AiAssistantService : IAiAssistantService
         }
 
         return new AiChatResponse(reply, conversationId);
+    }
+
+    public async IAsyncEnumerable<string> GetResponseStreamAsync(
+        AiChatRequest request,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        // ── 1. Build database context ────────────────────────────────────────
+        var context = await BuildDatabaseContextAsync(request.Message, cancellationToken);
+
+        // ── 2. Build messages array for OpenAI ───────────────────────────────
+        var systemPrompt = BuildSystemPrompt(request.Language, context);
+        var messages     = BuildMessages(systemPrompt, request.History, request.Message);
+
+        // ── 3. Call OpenAI (or fallback if no key) ───────────────────────────
+        if (string.IsNullOrWhiteSpace(_options.ApiKey) ||
+            _options.ApiKey.StartsWith("YOUR_") ||
+            _options.ApiKey == "sk-placeholder")
+        {
+            var fallbackReply = BuildFallbackResponse(request.Message, request.Language, context);
+            var words = fallbackReply.Split(' ');
+            foreach (var word in words)
+            {
+                yield return word + " ";
+                await Task.Delay(20, cancellationToken); // simulated streaming delay
+            }
+        }
+        else
+        {
+            await foreach (var chunk in CallOpenAiStreamAsync(messages, cancellationToken))
+            {
+                yield return chunk;
+            }
+        }
+    }
+
+    private async IAsyncEnumerable<string> CallOpenAiStreamAsync(
+        List<object> messages,
+        [EnumeratorCancellation] CancellationToken ct)
+    {
+        var requestBody = new
+        {
+            model       = _options.Model,
+            messages    = messages,
+            max_tokens  = _options.MaxTokens,
+            temperature = _options.Temperature,
+            stream      = true
+        };
+
+        var json = JsonSerializer.Serialize(requestBody);
+        using var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        using var request = new HttpRequestMessage(HttpMethod.Post, "https://api.openai.com/v1/chat/completions")
+        {
+            Content = content
+        };
+
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _options.ApiKey);
+
+        using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = await response.Content.ReadAsStringAsync(ct);
+            _logger.LogWarning("OpenAI API stream error {Status}: {Error}", response.StatusCode, error);
+            yield return "⚠️ I'm having trouble connecting to the AI service right now. Please try again in a moment.";
+            yield break;
+        }
+
+        using var stream = await response.Content.ReadAsStreamAsync(ct);
+        using var reader = new StreamReader(stream);
+
+        while (!reader.EndOfStream)
+        {
+            var line = await reader.ReadLineAsync(ct);
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            if (line.StartsWith("data: "))
+            {
+                var data = line["data: ".Length..].Trim();
+                if (data == "[DONE]") break;
+
+                string? contentChunk = null;
+                try
+                {
+                    using var doc = JsonDocument.Parse(data);
+                    var choices = doc.RootElement.GetProperty("choices");
+                    if (choices.GetArrayLength() > 0)
+                    {
+                        var delta = choices[0].GetProperty("delta");
+                        if (delta.TryGetProperty("content", out var contentVal))
+                        {
+                            contentChunk = contentVal.GetString();
+                        }
+                    }
+                }
+                catch (JsonException)
+                {
+                    // Ignore malformed json lines
+                }
+
+                if (!string.IsNullOrEmpty(contentChunk))
+                {
+                    yield return contentChunk;
+                }
+            }
+        }
     }
 
     // ─────────────────────────────────────────────────────────────────────────

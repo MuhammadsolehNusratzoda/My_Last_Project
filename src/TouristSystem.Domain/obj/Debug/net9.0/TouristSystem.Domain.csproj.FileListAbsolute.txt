@@ -9,3 +9,4 @@ C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\n
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\refint\TouristSystem.Domain.dll
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\TouristSystem.Domain.pdb
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\ref\TouristSystem.Domain.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\TouristSystem.Domain.sourcelink.json

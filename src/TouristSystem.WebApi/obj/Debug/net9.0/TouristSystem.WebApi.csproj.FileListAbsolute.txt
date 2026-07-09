@@ -158,3 +158,4 @@ C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.WebApi\obj\Debug\n
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.WebApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.WebApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.WebApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.WebApi\obj\Debug\net9.0\TouristSystem.WebApi.sourcelink.json

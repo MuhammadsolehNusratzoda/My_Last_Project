@@ -5,6 +5,7 @@ import { useTranslation } from './hooks/useTranslation';
 import { Providers } from './app/providers';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import FloatingAssistant from './components/Assistant/FloatingAssistant';
 import PlacesPage from './pages/PlacesPage';
 import PlaceDetailPage from './pages/PlaceDetailPage';
 import HotelsPage from './pages/HotelsPage';
@@ -739,6 +740,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <FloatingAssistant />
         </div>
       </BrowserRouter>
     </Providers>

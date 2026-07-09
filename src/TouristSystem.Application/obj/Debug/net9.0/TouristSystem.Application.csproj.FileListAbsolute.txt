@@ -13,3 +13,4 @@ C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\De
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Debug\net9.0\refint\TouristSystem.Application.dll
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Debug\net9.0\TouristSystem.Application.pdb
 C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Debug\net9.0\ref\TouristSystem.Application.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Debug\net9.0\TouristSystem.Application.sourcelink.json
