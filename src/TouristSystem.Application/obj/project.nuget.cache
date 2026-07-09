@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "dgSpecHash": "BRjoptAWdhc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Сухайб\\Desktop\\TouristSystem\\src\\TouristSystem.Application\\TouristSystem.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Сухайб\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\Сухайб\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
+    "C:\\Users\\Сухайб\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "C:\\Users\\Сухайб\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\Сухайб\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\Сухайб\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Сухайб\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\Сухайб\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Сухайб\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "У пакета \"AutoMapper\" 13.0.1 есть известная уязвимость https://github.com/advisories/GHSA-rvv3-g6hj-g44x (уровень серьезности: высокий)",
+      "projectPath": "C:\\Users\\Сухайб\\Desktop\\TouristSystem\\src\\TouristSystem.Application\\TouristSystem.Application.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Сухайб\\Desktop\\TouristSystem\\src\\TouristSystem.Application\\TouristSystem.Application.csproj",
+      "libraryId": "AutoMapper",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
+}

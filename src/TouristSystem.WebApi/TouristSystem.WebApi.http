@@ -1,0 +1,6 @@
+@TouristSystem.WebApi_HostAddress = http://localhost:5010
+
+GET {{TouristSystem.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

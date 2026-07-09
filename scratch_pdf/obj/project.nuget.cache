@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "akPGgYhCRKY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Сухайб\\Desktop\\TouristSystem\\scratch_pdf\\scratch_pdf.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Сухайб\\.nuget\\packages\\pdfpig\\0.1.9\\pdfpig.0.1.9.nupkg.sha512"
+  ],
+  "logs": []
+}

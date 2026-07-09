@@ -1,0 +1,11 @@
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\bin\Debug\net9.0\TouristSystem.Domain.deps.json
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\bin\Debug\net9.0\TouristSystem.Domain.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\bin\Debug\net9.0\TouristSystem.Domain.pdb
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\TouristSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\TouristSystem.Domain.AssemblyInfoInputs.cache
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\TouristSystem.Domain.AssemblyInfo.cs
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\TouristSystem.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\TouristSystem.Domain.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\refint\TouristSystem.Domain.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\TouristSystem.Domain.pdb
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Domain\obj\Debug\net9.0\ref\TouristSystem.Domain.dll

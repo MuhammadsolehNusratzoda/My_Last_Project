@@ -1,0 +1,15 @@
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\bin\Release\net9.0\TouristSystem.Application.deps.json
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\bin\Release\net9.0\TouristSystem.Application.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\bin\Release\net9.0\TouristSystem.Application.pdb
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\bin\Release\net9.0\TouristSystem.Domain.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\bin\Release\net9.0\TouristSystem.Domain.pdb
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\TouristSystem.Application.csproj.AssemblyReference.cache
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\TouristSystem.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\TouristSystem.Application.AssemblyInfoInputs.cache
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\TouristSystem.Application.AssemblyInfo.cs
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\TouristSystem.Application.csproj.CoreCompileInputs.cache
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\TouristS.97139DB6.Up2Date
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\TouristSystem.Application.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\refint\TouristSystem.Application.dll
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\TouristSystem.Application.pdb
+C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.Application\obj\Release\net9.0\ref\TouristSystem.Application.dll
