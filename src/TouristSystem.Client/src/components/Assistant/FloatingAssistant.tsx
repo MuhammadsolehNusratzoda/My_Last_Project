@@ -104,7 +104,7 @@ export default function FloatingAssistant() {
   const [speakEnabled, setSpeakEnabled] = useState(false);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [selectedVoiceName, setSelectedVoiceName] = useState<string>('');
-  const [pitch, setPitch] = useState<number>(0.92); // default male young pitch
+  const [pitch, setPitch] = useState<number>(1.15); // default young female pitch (20-25 years old)
   const [rate, setRate] = useState<number>(1.0);     // default speed
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -125,7 +125,7 @@ export default function FloatingAssistant() {
     }
   }, []);
 
-  // Pre-select best male voice based on current language
+  // Pre-select best female voice based on current language
   useEffect(() => {
     if (voices.length === 0) return;
 
@@ -133,29 +133,35 @@ export default function FloatingAssistant() {
     if (lang === 'ru') {
       defaultVoice = voices.find(v => 
         v.lang.startsWith('ru') && 
-        (v.name.toLowerCase().includes('pavel') || 
-         v.name.toLowerCase().includes('dmitry') || 
-         v.name.toLowerCase().includes('male'))
+        (v.name.toLowerCase().includes('irina') || 
+         v.name.toLowerCase().includes('elena') || 
+         v.name.toLowerCase().includes('ekaterina') || 
+         v.name.toLowerCase().includes('female') ||
+         v.name.toLowerCase().includes('google русский'))
       );
     } else if (lang === 'tj') {
       defaultVoice = voices.find(v => v.lang.startsWith('tg') || v.lang.startsWith('tg-TG'));
     } else {
       defaultVoice = voices.find(v => 
         v.lang.startsWith('en') && 
-        (v.name.toLowerCase().includes('david') || 
-         v.name.toLowerCase().includes('male') || 
-         v.name.toLowerCase().includes('guy') || 
+        (v.name.toLowerCase().includes('zira') || 
+         v.name.toLowerCase().includes('samantha') || 
+         v.name.toLowerCase().includes('hazel') || 
+         v.name.toLowerCase().includes('susan') || 
+         v.name.toLowerCase().includes('female') || 
          v.name.toLowerCase().includes('google us english') || 
          v.name.toLowerCase().includes('natural'))
       );
     }
 
-    // Generic fallback if language male voice is not found
+    // Generic fallback if language female voice is not found
     if (!defaultVoice) {
       defaultVoice = voices.find(v => 
-        v.name.toLowerCase().includes('male') || 
-        v.name.toLowerCase().includes('david') || 
-        v.name.toLowerCase().includes('pavel')
+        v.name.toLowerCase().includes('female') || 
+        v.name.toLowerCase().includes('zira') || 
+        v.name.toLowerCase().includes('samantha') || 
+        v.name.toLowerCase().includes('irina') ||
+        v.name.toLowerCase().includes('elena')
       );
     }
 
@@ -333,7 +339,10 @@ export default function FloatingAssistant() {
                   const updated = [...prev];
                   const last = updated[updated.length - 1];
                   if (last && last.role === 'assistant') {
-                    last.content += contentChunk;
+                    updated[updated.length - 1] = {
+                      ...last,
+                      content: last.content + contentChunk
+                    };
                   }
                   return updated;
                 });
@@ -358,7 +367,10 @@ export default function FloatingAssistant() {
         const updated = [...prev];
         const last = updated[updated.length - 1];
         if (last && last.role === 'assistant') {
-          last.content = '⚠️ Sorry, an error occurred while streaming response. Please try again.';
+          updated[updated.length - 1] = {
+            ...last,
+            content: '⚠️ Sorry, an error occurred while streaming response. Please try again.'
+          };
         }
         return updated;
       });
