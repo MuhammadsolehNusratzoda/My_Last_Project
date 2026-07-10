@@ -1,7 +1,10 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../app/store';
 import { useTranslation, type Language } from '../../hooks/useTranslation';
-import { Compass, User, LogOut, Menu, X, Heart, Calendar, Sun, Moon, Globe, Map } from 'lucide-react';
+import { 
+  Compass, User, LogOut, Menu, X, Heart, Calendar, Sun, Moon, Globe, Map, 
+  MapPin, Hotel, Utensils, Car, Users 
+} from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -27,16 +30,18 @@ export default function Navbar() {
   const selectLanguage = (selectedLang: Language) => {
     setLang(selectedLang);
     setShowLangDropdown(false);
+    setIsOpen(false);
   };
 
   const navItems = [
-    { path: '/places', label: t('navbar.places') },
-    { path: '/hotels', label: t('navbar.hotels') },
-    { path: '/restaurants', label: t('navbar.restaurants') },
-    { path: '/transports', label: t('navbar.transports') },
-    { path: '/guides', label: t('navbar.guides') },
+    { path: '/places', label: t('navbar.places'), icon: MapPin },
+    { path: '/hotels', label: t('navbar.hotels'), icon: Hotel },
+    { path: '/restaurants', label: t('navbar.restaurants'), icon: Utensils },
+    { path: '/transports', label: t('navbar.transports'), icon: Car },
+    { path: '/guides', label: t('navbar.guides'), icon: Users },
     { path: '/map', label: t('navbar.map'), icon: Map },
   ];
+
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-gray-200/50 dark:border-slate-800/40 transition-colors duration-300">
@@ -226,65 +231,117 @@ export default function Navbar() {
 
           <div className="flex items-center md:hidden">
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-500 hover:text-gray-700 dark:text-slate-400 dark:hover:text-slate-200 focus:outline-none cursor-pointer"
+              onClick={() => setIsOpen(true)}
+              className="text-gray-500 hover:text-gray-700 dark:text-slate-400 dark:hover:text-slate-200 focus:outline-none cursor-pointer p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-900 transition-colors"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <Menu className="h-6 w-6" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Glassmorphic Drawer Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-gray-200/50 dark:border-slate-800/40 bg-white/95 dark:bg-slate-950/95 px-4 pt-2 pb-4 space-y-1"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+            className="fixed inset-0 z-50 md:hidden bg-slate-950/95 backdrop-blur-2xl flex flex-col justify-between p-6 overflow-y-auto"
           >
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
+            {/* Drawer Header */}
+            <div className="flex justify-between items-center pb-6 border-b border-slate-900/60">
+              <div className="flex items-center space-x-2 font-bold text-lg">
+                <Compass className="h-6 w-6 text-blue-500 dark:text-sky-400" />
+                <span className="bg-gradient-to-r from-blue-500 to-sky-400 bg-clip-text text-transparent">
+                  TajikistanTravel
+                </span>
+              </div>
+              <button
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-2.5 rounded-2xl text-base font-medium text-gray-700 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-900 transition-all"
+                className="p-2.5 bg-slate-900 hover:bg-slate-800 border-none rounded-full text-slate-400 hover:text-white cursor-pointer transition-colors"
               >
-                {item.label}
-              </Link>
-            ))}
-            
-            <div className="border-t border-gray-100 dark:border-slate-800/60 pt-4 pb-2 space-y-3">
-              {/* Language toggles for mobile */}
-              <div className="flex justify-around py-1">
-                <button onClick={() => selectLanguage('en')} className={`px-3 py-1 rounded-full text-xs font-semibold cursor-pointer ${lang === 'en' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-800'}`}>🇬🇧 EN</button>
-                <button onClick={() => selectLanguage('ru')} className={`px-3 py-1 rounded-full text-xs font-semibold cursor-pointer ${lang === 'ru' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-800'}`}>🇷🇺 RU</button>
-                <button onClick={() => selectLanguage('tj')} className={`px-3 py-1 rounded-full text-xs font-semibold cursor-pointer ${lang === 'tj' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-slate-800'}`}>🇹🇯 TJ</button>
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Links and Settings */}
+            <div className="flex-grow py-6 space-y-8 text-left">
+              {/* Main Links */}
+              <div className="space-y-3">
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Menu</span>
+                <div className="grid grid-cols-2 gap-3">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center space-x-3 p-4 bg-slate-900/40 hover:bg-slate-900/70 border border-slate-900 hover:border-slate-800/80 rounded-2xl text-slate-200 transition-all font-semibold"
+                    >
+                      {item.icon && <item.icon className="h-5 w-5 text-blue-400 shrink-0" />}
+                      <span className="text-xs">{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
               </div>
 
-              {/* Theme toggle for mobile */}
-              <button
-                onClick={toggleTheme}
-                className="flex items-center space-x-2 w-full px-4 py-2 rounded-2xl bg-gray-50 dark:bg-slate-900 text-gray-700 dark:text-slate-300 font-medium cursor-pointer"
-              >
-                {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-                <span>{theme === 'light' ? t('common.darkMode', 'Dark Mode') : t('common.lightMode', 'Light Mode')}</span>
-              </button>
+              {/* Language Selection */}
+              <div className="space-y-3">
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">{t('common.changeLanguage', 'Change Language')}</span>
+                <div className="grid grid-cols-3 gap-2">
+                  {(['en', 'ru', 'tj'] as Language[]).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => selectLanguage(l)}
+                      className={`py-3 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
+                        lang === l
+                          ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-600/10'
+                          : 'bg-slate-900 border-slate-900 text-slate-400'
+                      }`}
+                    >
+                      {l === 'en' ? '🇬🇧 EN' : l === 'ru' ? '🇷🇺 RU' : '🇹🇯 TJ'}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
+              {/* Theme Settings */}
+              <div className="space-y-3">
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Appearance</span>
+                <button
+                  onClick={toggleTheme}
+                  className="w-full flex items-center justify-between px-5 py-4 bg-slate-900/30 border border-slate-900 rounded-2xl text-slate-350 cursor-pointer hover:bg-slate-900/60 transition-colors"
+                >
+                  <div className="flex items-center space-x-3">
+                    {theme === 'light' ? <Moon className="h-5 w-5 text-indigo-400" /> : <Sun className="h-5 w-5 text-amber-400" />}
+                    <span className="text-sm font-medium text-slate-200">{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+                  </div>
+                  <span className="text-xs text-slate-500">Toggle</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Footer Profile Details / Sign In */}
+            <div className="pt-6 border-t border-slate-900/60">
               {user ? (
-                <div className="space-y-1 pt-2">
-                  <div className="px-4">
-                    <div className="text-base font-bold text-gray-800 dark:text-slate-200">{user.fullName}</div>
-                    <div className="text-xs text-gray-500">{t(`roles.${user.role}`, user.role)}</div>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-11 h-11 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
+                      <User className="h-5 w-5 text-blue-400" />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-sm font-bold text-white leading-tight">{user.fullName}</div>
+                      <div className="text-xs text-slate-500">{t(`roles.${user.role}`, user.role)}</div>
+                    </div>
                   </div>
                   
                   {user.role === 'Tourist' && (
-                    <>
+                    <div className="grid grid-cols-2 gap-2">
                       <Link
                         to="/my-bookings"
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center space-x-2 px-4 py-2.5 text-base text-gray-700 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-900"
+                        className="flex items-center justify-center space-x-2 py-3 bg-slate-900 border border-slate-800 rounded-xl text-xs font-semibold text-slate-300"
                       >
                         <Calendar className="h-4 w-4 text-blue-500" />
                         <span>{t('navbar.myBookings')}</span>
@@ -292,35 +349,59 @@ export default function Navbar() {
                       <Link
                         to="/favorites"
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center space-x-2 px-4 py-2.5 text-base text-gray-700 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-900"
+                        className="flex items-center justify-center space-x-2 py-3 bg-slate-900 border border-slate-800 rounded-xl text-xs font-semibold text-slate-300"
                       >
                         <Heart className="h-4 w-4 text-red-500" />
                         <span>{t('navbar.favorites')}</span>
                       </Link>
-                    </>
+                    </div>
                   )}
-                  
+
+                  {/* Owner and Admin Dashboard shortcut links in mobile drawer */}
+                  {user.role !== 'Tourist' && (
+                    <div className="space-y-2">
+                      {(user.role === 'HotelOwner' || user.role === 'RestaurantOwner' || user.role === 'TransportOwner') && (
+                        <Link
+                          to="/owner/dashboard"
+                          onClick={() => setIsOpen(false)}
+                          className="w-full flex items-center justify-center py-3 bg-slate-900 border border-slate-800 rounded-xl text-xs font-semibold text-slate-300"
+                        >
+                          {t('navbar.ownerDashboard')}
+                        </Link>
+                      )}
+                      {(user.role === 'Admin' || user.role === 'SuperAdmin') && (
+                        <Link
+                          to="/admin/dashboard"
+                          onClick={() => setIsOpen(false)}
+                          className="w-full flex items-center justify-center py-3 bg-blue-900/20 border border-blue-800/30 rounded-xl text-xs font-bold text-sky-400"
+                        >
+                          {t('navbar.adminPanel')}
+                        </Link>
+                      )}
+                    </div>
+                  )}
+
                   <button
                     onClick={handleLogout}
-                    className="flex w-full items-center space-x-2 px-4 py-2.5 text-base font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 cursor-pointer"
+                    className="w-full flex items-center justify-center space-x-2 py-3.5 bg-red-950/20 hover:bg-red-950/30 border border-red-900/35 rounded-2xl text-sm font-semibold text-red-400 cursor-pointer"
                   >
                     <LogOut className="h-4 w-4" />
                     <span>{t('navbar.signOut')}</span>
                   </button>
                 </div>
               ) : (
-                <div className="flex flex-col space-y-2 pt-2 px-4">
+                <div className="grid grid-cols-2 gap-3">
                   <Link
                     to="/login"
                     onClick={() => setIsOpen(false)}
-                    className="block text-center py-2.5 rounded-2xl text-base font-medium text-gray-700 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-900 border border-gray-200 dark:border-slate-800"
+                    className="flex items-center justify-center py-3.5 bg-slate-900 hover:bg-slate-850 border border-slate-800 rounded-2xl text-sm font-semibold text-slate-200"
                   >
                     {t('navbar.signIn')}
                   </Link>
                   <Link
                     to="/register"
                     onClick={() => setIsOpen(false)}
-                    className="block text-center bg-blue-600 text-white py-2.5 rounded-2xl text-base font-medium hover:bg-blue-700 shadow-md shadow-blue-500/15"
+                    className="flex items-center justify-center py-3.5 bg-blue-600 hover:bg-blue-700 rounded-2xl text-sm font-semibold text-white shadow-lg shadow-blue-600/10"
                   >
                     {t('navbar.signUp')}
                   </Link>

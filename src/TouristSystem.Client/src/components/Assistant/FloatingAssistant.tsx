@@ -166,6 +166,18 @@ export default function FloatingAssistant() {
     }
   }, [voices, lang]);
 
+  // Global trigger for voice commands from landing page search
+  useEffect(() => {
+    const handleOpenVoice = () => {
+      setIsOpen(true);
+      setTimeout(() => {
+        handleMicrophoneClick();
+      }, 400);
+    };
+    window.addEventListener('open-ai-assistant-voice', handleOpenVoice);
+    return () => window.removeEventListener('open-ai-assistant-voice', handleOpenVoice);
+  }, [voices, lang]);
+
   // Initialize greeting if empty
   useEffect(() => {
     if (messages.length === 0) {
@@ -178,6 +190,7 @@ export default function FloatingAssistant() {
       ]);
     }
   }, [currentLang, messages.length]);
+
 
   // Autoscroll to bottom
   useEffect(() => {
@@ -503,12 +516,13 @@ export default function FloatingAssistant() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            initial={{ opacity: 0, scale: 0.95, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 30 }}
+            exit={{ opacity: 0, scale: 0.95, y: 50 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed bottom-24 right-6 w-[360px] sm:w-[400px] h-[580px] z-50 rounded-[28px] overflow-hidden flex flex-col bg-slate-950/85 border border-slate-800/80 backdrop-blur-2xl shadow-2xl transform origin-bottom-right"
+            className="fixed bottom-0 right-0 w-full h-full sm:bottom-24 sm:right-6 sm:w-[400px] sm:h-[580px] z-50 sm:rounded-[28px] overflow-hidden flex flex-col bg-slate-950/90 sm:bg-slate-950/85 sm:border border-slate-800/80 backdrop-blur-2xl shadow-2xl transform origin-bottom-right"
           >
+
             {/* Header */}
             <div className="bg-gradient-to-r from-blue-900/60 to-indigo-900/60 p-4 border-b border-slate-800/50 flex justify-between items-center">
               <div className="flex items-center space-x-3">
@@ -708,7 +722,8 @@ export default function FloatingAssistant() {
             )}
 
             {/* Input Form */}
-            <div className="p-3 bg-slate-900/40 border-t border-slate-800/50">
+            <div className="p-3 bg-slate-900/40 border-t border-slate-800/50 pb-6 sm:pb-3">
+
               <form
                 onSubmit={(e) => {
                   e.preventDefault();

@@ -6,6 +6,8 @@ import { Providers } from './app/providers';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import FloatingAssistant from './components/Assistant/FloatingAssistant';
+import BottomNavigation from './components/layout/BottomNavigation';
+
 import PlacesPage from './pages/PlacesPage';
 import PlaceDetailPage from './pages/PlaceDetailPage';
 import HotelsPage from './pages/HotelsPage';
@@ -31,7 +33,7 @@ import { api } from './services/api';
 import type { IPlace } from './types';
 import { motion } from 'framer-motion';
 import { 
-  Search, MapPin, Compass, Star, ArrowRight, Sparkles, Navigation, ArrowUpRight
+  Search, MapPin, Compass, Star, ArrowRight, Sparkles, Navigation, ArrowUpRight, Mic
 } from 'lucide-react';
 import TajikistanRouteMap from './components/TajikistanRouteMap';
 import NavigationPage from './pages/NavigationPage';
@@ -50,6 +52,12 @@ function LandingPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchCity, setSearchCity] = useState('');
   const [searchCategory, setSearchCategory] = useState('');
+
+  const triggerVoiceSearch = () => {
+    const event = new CustomEvent('open-ai-assistant-voice');
+    window.dispatchEvent(event);
+  };
+
 
   useEffect(() => {
     Promise.all([
@@ -193,37 +201,44 @@ function LandingPage() {
               <span>{t('hero.watchVideo', 'Watch Video')}</span>
             </a>
           </motion.div>
-
-          {/* Glassmorphic Search Bar */}
+             {/* Glassmorphic Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-4xl mx-auto bg-slate-900/60 border border-slate-800/80 p-4 rounded-3xl shadow-2xl backdrop-blur-xl"
+            className="max-w-4xl mx-auto bg-slate-900/60 border border-slate-800/80 p-4 sm:p-5 rounded-3xl shadow-2xl backdrop-blur-xl"
           >
             <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
               <div className="relative text-left">
                 <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 ml-3">{t('hero.cityLabel', 'Where to go')}</label>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
+                <div className="relative flex items-center">
+                  <MapPin className="absolute left-3.5 h-4 w-4 text-slate-500 pointer-events-none" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder={t('hero.searchPlaceholder', 'Search locations...')}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-10 pr-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                    placeholder={t('hero.searchPlaceholder', 'Try: Hisor, Lakes...')}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-10 pr-10 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                   />
+                  <button
+                    type="button"
+                    onClick={triggerVoiceSearch}
+                    className="absolute right-3.5 p-1 bg-transparent border-none text-slate-400 hover:text-white cursor-pointer transition-colors"
+                    title="Voice search (AI Assistant)"
+                  >
+                    <Mic className="h-4.5 w-4.5" />
+                  </button>
                 </div>
               </div>
 
               <div className="relative text-left">
                 <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 ml-3">{t('hero.cityLabel', 'City')}</label>
                 <div className="relative">
-                  <Navigation className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
+                  <Navigation className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-500 pointer-events-none" />
                   <select
                     value={searchCity}
                     onChange={(e) => setSearchCity(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-10 pr-3 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-blue-500 cursor-pointer"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-10 pr-3 py-3.5 text-sm text-slate-100 focus:outline-none focus:border-blue-500 cursor-pointer"
                   >
                     <option value="">{t('common.allCities')}</option>
                     <option value="Dushanbe">{t('Dushanbe')}</option>
@@ -238,11 +253,11 @@ function LandingPage() {
               <div className="relative text-left">
                 <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 ml-3">{t('hero.categoryLabel', 'Category')}</label>
                 <div className="relative">
-                  <Compass className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
+                  <Compass className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-500 pointer-events-none" />
                   <select
                     value={searchCategory}
                     onChange={(e) => setSearchCategory(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-10 pr-3 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-blue-500 cursor-pointer"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-10 pr-3 py-3.5 text-sm text-slate-100 focus:outline-none focus:border-blue-500 cursor-pointer"
                   >
                     <option value="">{t('common.allCategories', 'All Categories')}</option>
                     <option value="Mountains">{t('categories.Mountains', 'Mountains')}</option>
@@ -254,16 +269,31 @@ function LandingPage() {
                 </div>
               </div>
 
-              <div className="text-left pt-5 sm:pt-0">
+              <div className="text-left pt-2 sm:pt-5">
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-2xl shadow-lg hover:scale-105 transition-all flex items-center justify-center space-x-2 cursor-pointer"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-blue-600/10 hover:scale-[1.02] active:scale-[0.97] transition-all flex items-center justify-center space-x-2 cursor-pointer border-none"
                 >
-                  <Search className="h-4 w-4" />
+                  <Search className="h-4.5 w-4.5" />
                   <span>{t('common.search')}</span>
                 </button>
               </div>
             </form>
+
+            {/* Suggestions tags */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-[11px] pt-3.5 border-t border-slate-800/40">
+              <span className="text-slate-500 font-bold uppercase tracking-wider mr-1.5">{t('common.suggestions', 'Suggestions')}:</span>
+              {['Hisor Fortress', 'Iskanderkul Lake', 'Seven Lakes', 'Kokhi Navruz'].map((tag) => (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => setSearchQuery(tag)}
+                  className="bg-slate-950/60 hover:bg-slate-900 border border-slate-800/60 hover:border-blue-500/50 text-slate-350 hover:text-white px-3 py-1 rounded-full transition-all cursor-pointer font-medium"
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
@@ -741,6 +771,7 @@ function App() {
           </main>
           <Footer />
           <FloatingAssistant />
+          <BottomNavigation />
         </div>
       </BrowserRouter>
     </Providers>
@@ -748,3 +779,4 @@ function App() {
 }
 
 export default App;
+

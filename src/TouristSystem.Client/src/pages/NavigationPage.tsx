@@ -341,10 +341,11 @@ export default function NavigationPage() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-[calc(100vh-4rem)] bg-slate-950 overflow-hidden">
+    <div className="flex flex-col md:flex-row h-[calc(100vh-4rem)] bg-slate-950 overflow-hidden pb-16 md:pb-0">
 
       {/* ── Left Panel ─────────────────────────────────────────────────────── */}
-      <aside className="w-full md:w-96 flex flex-col bg-slate-900/95 backdrop-blur border-r border-slate-800 overflow-y-auto z-10 shrink-0">
+      <aside className="order-2 md:order-1 w-full md:w-96 h-1/2 md:h-full flex flex-col bg-slate-900/95 backdrop-blur border-t md:border-t-0 md:border-r border-slate-800 overflow-y-auto z-10 shrink-0">
+
 
         {/* Header */}
         <div className="p-5 border-b border-slate-800 bg-gradient-to-r from-blue-600/10 to-sky-500/10">
@@ -630,8 +631,9 @@ export default function NavigationPage() {
       </aside>
 
       {/* ── Right: Map ─────────────────────────────────────────────────────── */}
-      <div className="flex-1 relative min-h-[400px] md:min-h-0">
+      <div className="order-1 md:order-2 flex-grow h-1/2 md:h-full relative min-h-[300px] md:min-h-0">
         <div ref={containerRef} className="absolute inset-0" />
+
 
         {/* Loading overlay */}
         {loading && (
