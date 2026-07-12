@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from './app/store';
+import AdminLayout from './components/layout/AdminLayout';
 import { useTranslation } from './hooks/useTranslation';
 import { Providers } from './app/providers';
 import Navbar from './components/layout/Navbar';
@@ -707,8 +708,10 @@ function LandingPage() {
   );
 }
 
-function App() {
+function AppContent() {
   const theme = useAuthStore((state) => state.theme);
+  const location = useLocation();
+  const isAdminPath = location.pathname.startsWith('/admin');
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -720,59 +723,67 @@ function App() {
   }, [theme]);
 
   return (
+    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 font-sans antialiased transition-colors duration-300">
+      {!isAdminPath && <Navbar />}
+      <main className="flex-grow flex flex-col">
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          
+          {/* Business modules catalogs and details */}
+          <Route path="/places" element={<PlacesPage />} />
+          <Route path="/places/:id" element={<PlaceDetailPage />} />
+          
+          <Route path="/hotels" element={<HotelsPage />} />
+          <Route path="/hotels/:id" element={<HotelDetailPage />} />
+          
+          <Route path="/restaurants" element={<RestaurantsPage />} />
+          <Route path="/restaurants/:id" element={<RestaurantDetailPage />} />
+          
+          <Route path="/transports" element={<TransportsPage />} />
+          
+          <Route path="/guides" element={<GuidesPage />} />
+          <Route path="/guides/:id" element={<GuideDetailPage />} />
+          <Route path="/map" element={<NavigationPage />} />
+
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/my-bookings" element={<MyBookingsPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+
+            {/* Owner Guarded Route */}
+            <Route element={<RoleRoute allowedRoles={['HotelOwner', 'RestaurantOwner', 'TransportOwner', 'Admin', 'SuperAdmin']} />}>
+              <Route path="/owner/dashboard" element={<OwnerDashboardPage />} />
+              <Route path="/owner/services" element={<OwnerServicesPage />} />
+            </Route>
+
+            {/* Admin Guarded Route */}
+            <Route element={<RoleRoute allowedRoles={['Admin', 'SuperAdmin']} />}>
+              <Route element={<AdminLayout />}>
+                <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+                <Route path="/admin/users" element={<AdminUsersPage />} />
+                <Route path="/admin/places" element={<AdminPlacesPage />} />
+                <Route path="/admin/audit-logs" element={<AdminAuditLogsPage />} />
+              </Route>
+            </Route>
+          </Route>
+        </Routes>
+      </main>
+      {!isAdminPath && <Footer />}
+      <FloatingAssistant />
+      {!isAdminPath && <BottomNavigation />}
+    </div>
+  );
+}
+
+function App() {
+  return (
     <Providers>
       <BrowserRouter>
-        <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 font-sans antialiased transition-colors duration-300">
-          <Navbar />
-          <main className="flex-grow flex flex-col">
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              
-              {/* Business modules catalogs and details */}
-              <Route path="/places" element={<PlacesPage />} />
-              <Route path="/places/:id" element={<PlaceDetailPage />} />
-              
-              <Route path="/hotels" element={<HotelsPage />} />
-              <Route path="/hotels/:id" element={<HotelDetailPage />} />
-              
-              <Route path="/restaurants" element={<RestaurantsPage />} />
-              <Route path="/restaurants/:id" element={<RestaurantDetailPage />} />
-              
-              <Route path="/transports" element={<TransportsPage />} />
-              
-              <Route path="/guides" element={<GuidesPage />} />
-              <Route path="/guides/:id" element={<GuideDetailPage />} />
-              <Route path="/map" element={<NavigationPage />} />
-
-              {/* Protected Routes */}
-              <Route element={<ProtectedRoute />}>
-                <Route path="/my-bookings" element={<MyBookingsPage />} />
-                <Route path="/favorites" element={<FavoritesPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-
-                {/* Owner Guarded Route */}
-                <Route element={<RoleRoute allowedRoles={['HotelOwner', 'RestaurantOwner', 'TransportOwner', 'Admin', 'SuperAdmin']} />}>
-                  <Route path="/owner/dashboard" element={<OwnerDashboardPage />} />
-                  <Route path="/owner/services" element={<OwnerServicesPage />} />
-                </Route>
-
-                {/* Admin Guarded Route */}
-                <Route element={<RoleRoute allowedRoles={['Admin', 'SuperAdmin']} />}>
-                  <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-                  <Route path="/admin/users" element={<AdminUsersPage />} />
-                  <Route path="/admin/places" element={<AdminPlacesPage />} />
-                  <Route path="/admin/audit-logs" element={<AdminAuditLogsPage />} />
-                </Route>
-              </Route>
-            </Routes>
-          </main>
-          <Footer />
-          <FloatingAssistant />
-          <BottomNavigation />
-        </div>
+        <AppContent />
       </BrowserRouter>
     </Providers>
   );

@@ -46,3 +46,45 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #2563eb;
 }
+
+/* Color overrides for light mode (when html does NOT have class "dark") */
+:root:not(.dark) {
+  --color-slate-950: #f8fafc; /* Light gray page background */
+  --color-slate-900: #ffffff; /* White card backgrounds */
+  --color-slate-800: #e2e8f0; /* Light gray borders */
+  --color-slate-700: #cbd5e1; /* Accent gray borders */
+  
+  --color-slate-100: #0f172a; /* Dark slate primary text */
+  --color-slate-200: #1e293b; /* Dark slate secondary text */
+  --color-slate-300: #334155; /* Medium text */
+  --color-slate-350: #475569; /* Medium text secondary */
+  --color-slate-400: #64748b; /* Muted text */
+  --color-slate-450: #64748b; /* Muted text secondary */
+  --color-slate-500: #94a3b8; /* Muted captions */
+  --color-slate-600: #cbd5e1; /* Accent colors */
+  --color-slate-650: #475569; /* Forms text */
+}
+
+/* Adapt glassmorphism container color to light theme */
+:root:not(.dark) .glass {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Adjust scrollbar colors in light mode */
+:root:not(.dark) ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+:root:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+/* Remap white text for page/section headings and text descriptions in light mode */
+:root:not(.dark) h1.text-white,
+:root:not(.dark) h2.text-white,
+:root:not(.dark) h3.text-white,
+:root:not(.dark) h4.text-white,
+:root:not(.dark) p.text-white,
+:root:not(.dark) span.text-white:not(.bg-blue-600 *):not(button *) {
+  color: var(--color-slate-100) !important;
+}

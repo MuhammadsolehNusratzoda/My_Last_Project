@@ -1,6 +1,7 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../app/store';
 import { useTranslation, type Language } from '../../hooks/useTranslation';
+import NotificationBell from './NotificationBell';
 import { 
   Compass, User, LogOut, Menu, X, Heart, Calendar, Sun, Moon, Globe, Map, 
   MapPin, Hotel, Utensils, Car, Users 
@@ -131,14 +132,16 @@ export default function Navbar() {
             </button>
 
             {user ? (
-              <div className="relative">
-                <button
-                  onClick={() => setShowDropdown(!showDropdown)}
-                  className="flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900 dark:to-slate-800 border border-blue-100/50 dark:border-slate-800 hover:scale-105 transition-all text-gray-700 dark:text-gray-200 px-4 py-2 rounded-full text-sm font-medium focus:outline-none cursor-pointer"
-                >
-                  <User className="h-4 w-4 text-blue-600 dark:text-sky-400" />
-                  <span>{user.fullName}</span>
-                </button>
+              <div className="flex items-center space-x-3">
+                <NotificationBell />
+                <div className="relative">
+                  <button
+                    onClick={() => setShowDropdown(!showDropdown)}
+                    className="flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900 dark:to-slate-800 border border-blue-100/50 dark:border-slate-800 hover:scale-105 transition-all text-gray-700 dark:text-gray-200 px-4 py-2 rounded-full text-sm font-medium focus:outline-none cursor-pointer"
+                  >
+                    <User className="h-4 w-4 text-blue-600 dark:text-sky-400" />
+                    <span>{user.fullName}</span>
+                  </button>
 
                 <AnimatePresence>
                   {showDropdown && (
@@ -214,6 +217,7 @@ export default function Navbar() {
                   )}
                 </AnimatePresence>
               </div>
+            </div>
             ) : (
               <div className="flex items-center space-x-3">
                 <Link to="/login" className="text-gray-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-sky-400 px-3 py-2 text-sm font-medium transition-colors">
