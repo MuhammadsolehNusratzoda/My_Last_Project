@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Car, Bike, Footprints, Loader2 } from 'lucide-react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -22,13 +23,18 @@ export const cityCoords: Record<string, [number, number]> = {
 };
 
 // Each mode uses its own dedicated OSRM backend
-const MODE_ENDPOINTS: Record<string, { baseUrl: string; profile: string; color: string; weight: number; icon: string; labelKey: string }> = {
+const MODE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  driving: Car,
+  cycling: Bike,
+  foot: Footprints,
+};
+
+const MODE_ENDPOINTS: Record<string, { baseUrl: string; profile: string; color: string; weight: number; labelKey: string }> = {
   driving: {
     baseUrl:  'https://router.project-osrm.org/route/v1',
     profile:  'driving',
     color:    '#3b82f6',
     weight:   5,
-    icon:     '🚗',
     labelKey: 'modeCar',
   },
   cycling: {
@@ -36,7 +42,6 @@ const MODE_ENDPOINTS: Record<string, { baseUrl: string; profile: string; color: 
     profile:  'bike',
     color:    '#10b981',
     weight:   4,
-    icon:     '🚲',
     labelKey: 'modeBike',
   },
   foot: {
@@ -44,7 +49,6 @@ const MODE_ENDPOINTS: Record<string, { baseUrl: string; profile: string; color: 
     profile:  'foot',
     color:    '#f59e0b',
     weight:   4,
-    icon:     '🚶',
     labelKey: 'modeWalk',
   },
 };
@@ -209,7 +213,7 @@ export default function TajikistanRouteMap({ origin, destination, t }: Props) {
                     : 'border-transparent hover:bg-gray-50 dark:hover:bg-gray-800'
                 }`}
               >
-                <span className="text-2xl mb-0.5">{cfg.icon}</span>
+                <span className="mb-0.5 flex justify-center">{(() => { const Icon = MODE_ICONS[mode]; return Icon ? <Icon className="h-6 w-6" /> : null; })()}</span>
                 <span className={`text-xs font-bold ${active ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400'}`}>
                   {t(cfg.labelKey)}
                 </span>
@@ -238,7 +242,7 @@ export default function TajikistanRouteMap({ origin, destination, t }: Props) {
         {fetching && (
           <div className="absolute inset-0 z-[1000] flex items-center justify-center bg-white/75 dark:bg-gray-900/75 pointer-events-none">
             <span className="text-sm font-medium text-blue-600 dark:text-blue-400 flex items-center gap-2">
-              <span className="animate-spin text-xl">🗺</span>
+              <Loader2 className="animate-spin h-5 w-5" />
               {t('searchingRoutes')}
             </span>
           </div>

@@ -34,7 +34,8 @@ import { api } from './services/api';
 import type { IPlace } from './types';
 import { motion } from 'framer-motion';
 import { 
-  Search, MapPin, Compass, Star, ArrowRight, Sparkles, Navigation, ArrowUpRight, Mic
+  Search, MapPin, Compass, Star, ArrowRight, Sparkles, Navigation, ArrowUpRight, Mic,
+  Mountain, Waves, Landmark, TreePine, Church, PartyPopper
 } from 'lucide-react';
 import TajikistanRouteMap from './components/TajikistanRouteMap';
 import NavigationPage from './pages/NavigationPage';
@@ -101,12 +102,12 @@ function LandingPage() {
   };
 
   const categories = [
-    { name: 'Mountains', icon: '🏔', count: 42, labelKey: 'categories.Mountains' },
-    { name: 'Lakes', icon: '🏞', count: 18, labelKey: 'categories.Lakes' },
-    { name: 'Historical Sites', icon: '🏛', count: 27, labelKey: 'categories.Historical' },
-    { name: 'Nature', icon: '🌲', count: 35, labelKey: 'categories.Nature' },
-    { name: 'Culture', icon: '🕌', count: 15, labelKey: 'categories.Culture' },
-    { name: 'Festivals', icon: '🎉', count: 8, labelKey: 'categories.Festivals' },
+    { name: 'Mountains', icon: Mountain, count: 42, labelKey: 'categories.Mountains' },
+    { name: 'Lakes', icon: Waves, count: 18, labelKey: 'categories.Lakes' },
+    { name: 'Historical Sites', icon: Landmark, count: 27, labelKey: 'categories.Historical' },
+    { name: 'Nature', icon: TreePine, count: 35, labelKey: 'categories.Nature' },
+    { name: 'Culture', icon: Church, count: 15, labelKey: 'categories.Culture' },
+    { name: 'Festivals', icon: PartyPopper, count: 8, labelKey: 'categories.Festivals' },
   ];
 
   const testimonials = [
@@ -194,7 +195,7 @@ function LandingPage() {
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              href="https://www.youtube.com/watch?v=UUC5blbBzfw"
               target="_blank"
               rel="noreferrer"
               className="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-100 font-medium px-8 py-3.5 rounded-full hover:scale-105 transition-all flex items-center justify-center space-x-2 backdrop-blur-md"
@@ -335,7 +336,7 @@ function LandingPage() {
                 to={`/places?category=${cat.name}`}
                 className="group p-6 bg-slate-900 border border-slate-800/80 rounded-3xl hover:border-blue-500/50 hover:bg-slate-900/80 text-center transition-all duration-300 hover:-translate-y-1.5"
               >
-                <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform">{cat.icon}</div>
+                <div className="mb-4 transform group-hover:scale-110 transition-transform flex justify-center"><cat.icon className="h-9 w-9 text-blue-400" /></div>
                 <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-blue-400 transition-colors">{t(cat.labelKey, cat.name)}</h3>
                 <span className="text-xs text-slate-500">{formatNumber(cat.count)} {t('common.listings', 'listings')}</span>
               </Link>

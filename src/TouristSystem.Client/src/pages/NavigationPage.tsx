@@ -5,7 +5,8 @@ import { api } from '../services/api';
 import { useTranslation } from '../hooks/useTranslation';
 import {
   MapPin, Navigation, Car, Footprints, Bike, Search, ExternalLink,
-  Copy, Share2, Loader2, ChevronDown, Route, Clock, Ruler, X, CheckCircle
+  Copy, Share2, Loader2, ChevronDown, Route, Clock, Ruler, X, CheckCircle,
+  Hotel, UtensilsCrossed, Landmark
 } from 'lucide-react';
 
 // ─── Fix Leaflet default icons broken by Vite bundler ────────────────────────
@@ -95,11 +96,25 @@ function fmtArrival(sec: number): string {
   return arrive.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
 
-function categoryIcon(cat: string): string {
+// Returns an SVG string for use in Leaflet HTML markers/popups
+function categoryIconSvg(cat: string): string {
+  const svgAttrs = 'xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
   switch (cat) {
-    case 'hotel':      return '🏨';
-    case 'restaurant': return '🍽️';
-    default:           return '🏛️';
+    case 'hotel':
+      return `<svg ${svgAttrs}><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/><path d="m9 16 .348-.24c1.465-1.013 3.84-1.013 5.304 0L15 16"/><path d="M8 7h.01"/><path d="M16 7h.01"/><path d="M12 7h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/><path d="M8 11h.01"/></svg>`;
+    case 'restaurant':
+      return `<svg ${svgAttrs}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>`;
+    default:
+      return `<svg ${svgAttrs}><line x1="3" x2="3" y1="22" y2="2"/><line x1="21" x2="21" y1="22" y2="2"/><path d="M12 17v5"/><path d="M4 22h16"/><path d="M10 14.54a4 4 0 1 1 4 0"/><path d="M10 6h4"/></svg>`;
+  }
+}
+
+// Returns a Lucide React component for use in JSX
+function CategoryIcon({ cat, className }: { cat: string; className?: string }) {
+  switch (cat) {
+    case 'hotel':      return <Hotel className={className} />;
+    case 'restaurant': return <UtensilsCrossed className={className} />;
+    default:           return <Landmark className={className} />;
   }
 }
 
@@ -198,7 +213,7 @@ export default function NavigationPage() {
           box-shadow:0 2px 8px rgba(0,0,0,0.4);border:2px solid white;
           cursor:pointer;transition:transform 0.15s;"
           title="${dest.name}">
-          ${categoryIcon(dest.category)}
+          ${categoryIconSvg(dest.category)}
         </div>`,
         iconSize:   [28, 28],
         iconAnchor: [14, 14],
@@ -207,7 +222,7 @@ export default function NavigationPage() {
         .bindPopup(`
           <div style="min-width:160px;font-family:Inter,sans-serif;">
             <div style="font-weight:700;font-size:13px;margin-bottom:4px;">${dest.name}</div>
-            <div style="font-size:11px;color:#64748b;">${categoryIcon(dest.category)} ${dest.category} · ${dest.city}</div>
+            <div style="font-size:11px;color:#64748b;">${categoryIconSvg(dest.category)} ${dest.category} · ${dest.city}</div>
             ${dest.description ? `<div style="font-size:11px;margin-top:6px;color:#374151;">${dest.description.slice(0, 80)}…</div>` : ''}
           </div>
         `, { maxWidth: 220 })
@@ -465,7 +480,7 @@ export default function NavigationPage() {
                       }}
                       className="w-full flex items-center gap-3 px-3 py-2.5 hover:bg-slate-700 transition-colors text-left"
                     >
-                      <span className="text-lg leading-none shrink-0">{categoryIcon(dest.category)}</span>
+                      <span className="text-lg leading-none shrink-0"><CategoryIcon cat={dest.category} className="h-5 w-5" /></span>
                       <div className="min-w-0 flex-1">
                         <div className="text-sm font-medium text-white truncate">{dest.name}</div>
                         <div className="text-xs text-slate-400 truncate">{dest.city}</div>
@@ -494,7 +509,7 @@ export default function NavigationPage() {
                 className="mt-2 p-3 rounded-xl border flex items-start gap-3"
                 style={{ background: `${categoryColor(selected.category)}0f`, borderColor: `${categoryColor(selected.category)}30` }}
               >
-                <span className="text-xl shrink-0">{categoryIcon(selected.category)}</span>
+                <span className="text-xl shrink-0"><CategoryIcon cat={selected.category} className="h-5 w-5" /></span>
                 <div className="flex-1 min-w-0">
                   <div className="font-semibold text-white text-sm truncate">{selected.name}</div>
                   <div className="text-xs text-slate-400">{selected.city}</div>

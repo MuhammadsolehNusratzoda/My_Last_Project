@@ -29,7 +29,7 @@ const localDict = {
     voiceSelectLabel: 'Select Voice:',
     pitchLabel: 'Pitch (Tone):',
     speedLabel: 'Speed:',
-    noTajikVoiceWarning: '⚠️ Tajik TTS voice is not installed on your system. A fallback voice will be used.',
+    noTajikVoiceWarning: '[!] Tajik TTS voice is not installed on your system. A fallback voice will be used.',
     prompts: [
       'What are the best places in Dushanbe?',
       'Find me a hotel under $100',
@@ -53,7 +53,7 @@ const localDict = {
     voiceSelectLabel: 'Выберите голос:',
     pitchLabel: 'Высота (Тон):',
     speedLabel: 'Скорость:',
-    noTajikVoiceWarning: '⚠️ Таджикский голос не установлен в вашей ОС. Будет использован резервный голос.',
+    noTajikVoiceWarning: '[!] Таджикский голос не установлен в вашей ОС. Будет использован резервный голос.',
     prompts: [
       'Что посмотреть в Душанбе?',
       'Найди отель дешевле $100',
@@ -77,7 +77,7 @@ const localDict = {
     voiceSelectLabel: 'Интихоби овоз:',
     pitchLabel: 'Баландии овоз (Тон):',
     speedLabel: 'Суръат:',
-    noTajikVoiceWarning: '⚠️ Овози тоҷикӣ дар системаи шумо насб нашудааст. Овози алтернативӣ истифода мешавад.',
+    noTajikVoiceWarning: '[!] Овози тоҷикӣ дар системаи шумо насб нашудааст. Овози алтернативӣ истифода мешавад.',
     prompts: [
       'Ҷойҳои беҳтарин дар Душанбе кадомҳоянд?',
       'Меҳмонхонаи арзонтар аз $100 пайдо кун',
@@ -369,7 +369,7 @@ export default function FloatingAssistant() {
         if (last && last.role === 'assistant') {
           updated[updated.length - 1] = {
             ...last,
-            content: '⚠️ Sorry, an error occurred while streaming response. Please try again.'
+            content: '[!] Sorry, an error occurred while streaming response. Please try again.'
           };
         }
         return updated;
