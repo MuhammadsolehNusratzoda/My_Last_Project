@@ -1,0 +1,211 @@
+2026-07-21 07:24:18.440 +05:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Favorite'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-21 07:24:18.672 +05:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Notification'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-21 07:24:18.686 +05:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-21 07:24:29.167 +05:00 [INF] Executed DbCommand (188ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-07-21 07:24:32.558 +05:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-07-21 07:24:32.591 +05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-07-21 07:24:32.598 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-07-21 07:24:32.600 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-07-21 07:24:32.625 +05:00 [INF] Applying migration '20260720075402_AddPassengerTransportProviderModule'.
+2026-07-21 07:24:33.281 +05:00 [INF] Executed DbCommand (452ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE transport_companies (
+    id uuid NOT NULL,
+    name character varying(150) NOT NULL,
+    operating_cities text NOT NULL,
+    is_approved boolean NOT NULL DEFAULT TRUE,
+    is_system_default boolean NOT NULL DEFAULT FALSE,
+    created_at timestamp with time zone NOT NULL,
+    created_by_user_id uuid,
+    updated_at timestamp with time zone,
+    updated_by_user_id uuid,
+    deleted_at timestamp with time zone,
+    deleted_by_user_id uuid,
+    is_deleted boolean NOT NULL DEFAULT FALSE,
+    CONSTRAINT "PK_transport_companies" PRIMARY KEY (id)
+);
+2026-07-21 07:24:33.322 +05:00 [INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE transport_provider_profiles (
+    id uuid NOT NULL,
+    user_id uuid NOT NULL,
+    company_id uuid,
+    custom_company_name character varying(150),
+    employment_type character varying(50) NOT NULL,
+    years_with_company integer NOT NULL,
+    full_name character varying(100) NOT NULL,
+    date_of_birth timestamp with time zone NOT NULL,
+    age integer NOT NULL,
+    gender character varying(20) NOT NULL,
+    phone character varying(30) NOT NULL,
+    email character varying(256),
+    nationality character varying(100) NOT NULL,
+    current_city character varying(100) NOT NULL,
+    current_address character varying(250) NOT NULL,
+    profile_photo_url character varying(500),
+    years_driving_experience integer NOT NULL,
+    is_professional_driver boolean NOT NULL,
+    previous_company character varying(150),
+    license_number character varying(50) NOT NULL,
+    license_category character varying(20) NOT NULL,
+    license_issue_date timestamp with time zone NOT NULL,
+    license_expiration_date timestamp with time zone NOT NULL,
+    license_front_photo_url character varying(500),
+    license_back_photo_url character varying(500),
+    emergency_contact_name character varying(100) NOT NULL,
+    emergency_contact_phone character varying(30) NOT NULL,
+    application_status character varying(50) NOT NULL,
+    driver_status character varying(50) NOT NULL,
+    rating_average numeric(3,2) NOT NULL,
+    completed_trips_count integer NOT NULL,
+    is_identity_verified boolean NOT NULL,
+    is_license_verified boolean NOT NULL,
+    is_vehicle_verified boolean NOT NULL,
+    is_insurance_verified boolean NOT NULL,
+    is_company_verified boolean NOT NULL,
+    rejection_reason text,
+    admin_internal_notes text,
+    submitted_at timestamp with time zone,
+    reviewed_at timestamp with time zone,
+    created_at timestamp with time zone NOT NULL,
+    created_by_user_id uuid,
+    updated_at timestamp with time zone,
+    updated_by_user_id uuid,
+    deleted_at timestamp with time zone,
+    deleted_by_user_id uuid,
+    is_deleted boolean NOT NULL DEFAULT FALSE,
+    CONSTRAINT "PK_transport_provider_profiles" PRIMARY KEY (id),
+    CONSTRAINT "FK_transport_provider_profiles_transport_companies_company_id" FOREIGN KEY (company_id) REFERENCES transport_companies (id) ON DELETE SET NULL,
+    CONSTRAINT "FK_transport_provider_profiles_users_user_id" FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE RESTRICT
+);
+2026-07-21 07:24:33.412 +05:00 [INF] Executed DbCommand (89ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE provider_documents (
+    id uuid NOT NULL,
+    provider_profile_id uuid NOT NULL,
+    document_type character varying(50) NOT NULL,
+    file_url character varying(500) NOT NULL,
+    file_name character varying(256) NOT NULL,
+    file_extension character varying(20) NOT NULL,
+    file_size_bytes bigint NOT NULL,
+    mime_type character varying(100) NOT NULL,
+    is_verified boolean NOT NULL DEFAULT FALSE,
+    created_at timestamp with time zone NOT NULL,
+    created_by_user_id uuid,
+    updated_at timestamp with time zone,
+    updated_by_user_id uuid,
+    deleted_at timestamp with time zone,
+    deleted_by_user_id uuid,
+    is_deleted boolean NOT NULL DEFAULT FALSE,
+    CONSTRAINT "PK_provider_documents" PRIMARY KEY (id),
+    CONSTRAINT "FK_provider_documents_transport_provider_profiles_provider_pro~" FOREIGN KEY (provider_profile_id) REFERENCES transport_provider_profiles (id) ON DELETE CASCADE
+);
+2026-07-21 07:24:33.474 +05:00 [INF] Executed DbCommand (62ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE provider_services (
+    id uuid NOT NULL,
+    provider_profile_id uuid NOT NULL,
+    service_types text NOT NULL,
+    available_cities text NOT NULL,
+    languages_spoken text NOT NULL,
+    payment_methods text NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    created_by_user_id uuid,
+    updated_at timestamp with time zone,
+    updated_by_user_id uuid,
+    deleted_at timestamp with time zone,
+    deleted_by_user_id uuid,
+    is_deleted boolean NOT NULL DEFAULT FALSE,
+    CONSTRAINT "PK_provider_services" PRIMARY KEY (id),
+    CONSTRAINT "FK_provider_services_transport_provider_profiles_provider_prof~" FOREIGN KEY (provider_profile_id) REFERENCES transport_provider_profiles (id) ON DELETE CASCADE
+);
+2026-07-21 07:24:33.598 +05:00 [INF] Executed DbCommand (123ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE provider_vehicles (
+    id uuid NOT NULL,
+    provider_profile_id uuid NOT NULL,
+    registration_number character varying(30) NOT NULL,
+    brand character varying(50) NOT NULL,
+    model character varying(50) NOT NULL,
+    manufacturing_year integer NOT NULL,
+    color character varying(30) NOT NULL,
+    passenger_seats integer NOT NULL,
+    has_air_conditioning boolean NOT NULL,
+    has_wifi boolean NOT NULL,
+    has_luggage_space boolean NOT NULL,
+    child_seat_available boolean NOT NULL,
+    wheelchair_accessible boolean NOT NULL,
+    pet_friendly boolean NOT NULL,
+    smoking_allowed boolean NOT NULL,
+    registration_certificate_url character varying(500) NOT NULL,
+    insurance_certificate_url character varying(500) NOT NULL,
+    technical_inspection_certificate_url character varying(500),
+    created_at timestamp with time zone NOT NULL,
+    created_by_user_id uuid,
+    updated_at timestamp with time zone,
+    updated_by_user_id uuid,
+    deleted_at timestamp with time zone,
+    deleted_by_user_id uuid,
+    is_deleted boolean NOT NULL DEFAULT FALSE,
+    CONSTRAINT "PK_provider_vehicles" PRIMARY KEY (id),
+    CONSTRAINT "FK_provider_vehicles_transport_provider_profiles_provider_prof~" FOREIGN KEY (provider_profile_id) REFERENCES transport_provider_profiles (id) ON DELETE CASCADE
+);
+2026-07-21 07:24:33.624 +05:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE provider_working_hours (
+    id uuid NOT NULL,
+    provider_profile_id uuid NOT NULL,
+    day_of_week character varying(20) NOT NULL,
+    start_time interval NOT NULL,
+    end_time interval NOT NULL,
+    is_24_hours boolean NOT NULL DEFAULT FALSE,
+    created_at timestamp with time zone NOT NULL,
+    created_by_user_id uuid,
+    updated_at timestamp with time zone,
+    updated_by_user_id uuid,
+    deleted_at timestamp with time zone,
+    deleted_by_user_id uuid,
+    is_deleted boolean NOT NULL DEFAULT FALSE,
+    CONSTRAINT "PK_provider_working_hours" PRIMARY KEY (id),
+    CONSTRAINT "FK_provider_working_hours_transport_provider_profiles_provider~" FOREIGN KEY (provider_profile_id) REFERENCES transport_provider_profiles (id) ON DELETE CASCADE
+);
+2026-07-21 07:24:33.705 +05:00 [INF] Executed DbCommand (81ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE vehicle_photos (
+    id uuid NOT NULL,
+    vehicle_id uuid NOT NULL,
+    photo_url character varying(500) NOT NULL,
+    is_primary boolean NOT NULL,
+    display_order integer NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    created_by_user_id uuid,
+    updated_at timestamp with time zone,
+    updated_by_user_id uuid,
+    deleted_at timestamp with time zone,
+    deleted_by_user_id uuid,
+    is_deleted boolean NOT NULL DEFAULT FALSE,
+    CONSTRAINT "PK_vehicle_photos" PRIMARY KEY (id),
+    CONSTRAINT "FK_vehicle_photos_provider_vehicles_vehicle_id" FOREIGN KEY (vehicle_id) REFERENCES provider_vehicles (id) ON DELETE CASCADE
+);
+2026-07-21 07:24:33.723 +05:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_provider_documents_provider_profile_id" ON provider_documents (provider_profile_id);
+2026-07-21 07:24:33.727 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_provider_services_provider_profile_id" ON provider_services (provider_profile_id);
+2026-07-21 07:24:33.760 +05:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_provider_vehicles_provider_profile_id" ON provider_vehicles (provider_profile_id);
+2026-07-21 07:24:33.763 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_provider_working_hours_provider_profile_id" ON provider_working_hours (provider_profile_id);
+2026-07-21 07:24:33.769 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_transport_provider_profiles_company_id" ON transport_provider_profiles (company_id);
+2026-07-21 07:24:33.846 +05:00 [INF] Executed DbCommand (76ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_transport_provider_profiles_user_id" ON transport_provider_profiles (user_id);
+2026-07-21 07:24:33.868 +05:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_vehicle_photos_vehicle_id" ON vehicle_photos (vehicle_id);
+2026-07-21 07:24:33.883 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260720075402_AddPassengerTransportProviderModule', '9.0.2');

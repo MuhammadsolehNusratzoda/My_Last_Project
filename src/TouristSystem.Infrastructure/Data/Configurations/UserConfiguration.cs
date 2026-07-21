@@ -35,6 +35,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnName("phone_number")
             .HasMaxLength(20);
 
+        builder.Property(u => u.ProfileImageUrl)
+            .HasColumnName("profile_image_url")
+            .HasMaxLength(500);
+
         builder.Property(u => u.Role)
             .HasColumnName("role")
             .HasConversion<string>()

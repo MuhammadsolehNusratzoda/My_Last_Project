@@ -38,7 +38,7 @@ export default function Navbar() {
     { path: '/places', label: t('navbar.places'), icon: MapPin },
     { path: '/hotels', label: t('navbar.hotels'), icon: Hotel },
     { path: '/restaurants', label: t('navbar.restaurants'), icon: Utensils },
-    { path: '/transports', label: t('navbar.transports'), icon: Car },
+    { path: '/passenger-transports', label: 'Passenger Transport', icon: Car },
     { path: '/guides', label: t('navbar.guides'), icon: Users },
     { path: '/map', label: t('navbar.map'), icon: Map },
   ];
@@ -139,7 +139,15 @@ export default function Navbar() {
                     onClick={() => setShowDropdown(!showDropdown)}
                     className="flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900 dark:to-slate-800 border border-blue-100/50 dark:border-slate-800 hover:scale-105 transition-all text-gray-700 dark:text-gray-200 px-4 py-2 rounded-full text-sm font-medium focus:outline-none cursor-pointer"
                   >
-                    <User className="h-4 w-4 text-blue-600 dark:text-sky-400" />
+                    {user.profileImageUrl ? (
+                      <img
+                        src={`http://localhost:5010${user.profileImageUrl}`}
+                        alt={user.fullName}
+                        className="h-6 w-6 rounded-full object-cover border border-blue-200 dark:border-slate-700"
+                      />
+                    ) : (
+                      <User className="h-4 w-4 text-blue-600 dark:text-sky-400" />
+                    )}
                     <span>{user.fullName}</span>
                   </button>
 
@@ -173,6 +181,14 @@ export default function Navbar() {
                           >
                             <Heart className="h-4 w-4 text-red-500" />
                             <span>{t('navbar.favorites')}</span>
+                          </Link>
+                          <Link
+                            to="/register-provider"
+                            onClick={() => setShowDropdown(false)}
+                            className="flex items-center space-x-2 px-4 py-2.5 text-sm text-sky-400 font-semibold hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors"
+                          >
+                            <Car className="h-4 w-4 text-sky-400" />
+                            <span>Register as Driver</span>
                           </Link>
                         </>
                       )}
@@ -331,8 +347,16 @@ export default function Navbar() {
               {user ? (
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
-                    <div className="w-11 h-11 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
-                      <User className="h-5 w-5 text-blue-400" />
+                    <div className="w-11 h-11 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center overflow-hidden">
+                      {user.profileImageUrl ? (
+                        <img
+                          src={`http://localhost:5010${user.profileImageUrl}`}
+                          alt={user.fullName}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <User className="h-5 w-5 text-blue-400" />
+                      )}
                     </div>
                     <div className="text-left">
                       <div className="text-sm font-bold text-white leading-tight">{user.fullName}</div>

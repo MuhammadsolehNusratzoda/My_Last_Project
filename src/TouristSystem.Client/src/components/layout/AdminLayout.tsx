@@ -58,6 +58,11 @@ export default function AdminLayout() {
       icon: Users
     },
     {
+      path: '/admin/provider-applications',
+      label: 'Driver Applications',
+      icon: ClipboardList
+    },
+    {
       path: '/admin/audit-logs',
       label: t('admin.auditLogs', 'Support / Logs'),
       icon: ClipboardList

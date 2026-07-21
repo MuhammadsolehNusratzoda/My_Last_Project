@@ -53,6 +53,8 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse>
             user.FullName,
             user.Email,
             user.Role.ToString(),
+            user.PhoneNumber,
+            user.ProfileImageUrl,
             token);
     }
 }

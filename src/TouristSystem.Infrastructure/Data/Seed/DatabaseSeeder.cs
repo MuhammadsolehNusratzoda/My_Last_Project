@@ -13,6 +13,21 @@ public static class DatabaseSeeder
 {
     public static void Seed(ApplicationDbContext context)
     {
+        // 0. Seed Default Transport Companies
+        if (!context.TransportCompanies.Any())
+        {
+            var defaultCompanies = new List<TransportCompany>
+            {
+                new TransportCompany { Name = "JURA", OperatingCities = "[\"Dushanbe\",\"Khujand\"]", IsApproved = true, IsSystemDefault = true, CreatedAt = DateTime.UtcNow },
+                new TransportCompany { Name = "Maxim", OperatingCities = "[\"Dushanbe\",\"Khujand\"]", IsApproved = true, IsSystemDefault = true, CreatedAt = DateTime.UtcNow },
+                new TransportCompany { Name = "Olucha Taxi", OperatingCities = "[\"Dushanbe\"]", IsApproved = true, IsSystemDefault = true, CreatedAt = DateTime.UtcNow },
+                new TransportCompany { Name = "Somon Taxi", OperatingCities = "[\"Dushanbe\"]", IsApproved = true, IsSystemDefault = true, CreatedAt = DateTime.UtcNow },
+                new TransportCompany { Name = "Express Tajikistan", OperatingCities = "[\"Dushanbe\",\"Khujand\",\"Panjakent\",\"Hisor\",\"Khorog\",\"Kulob\",\"Bokhtar\"]", IsApproved = true, IsSystemDefault = true, CreatedAt = DateTime.UtcNow }
+            };
+            context.TransportCompanies.AddRange(defaultCompanies);
+            context.SaveChanges();
+        }
+
         // 1. Seed Users
         if (!context.Users.Any(u => u.Role == UserRole.SuperAdmin))
         {

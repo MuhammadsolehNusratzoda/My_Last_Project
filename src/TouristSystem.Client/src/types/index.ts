@@ -3,6 +3,7 @@ export interface IUser {
   fullName: string;
   email: string;
   phoneNumber: string;
+  profileImageUrl?: string;
   role: 'Tourist' | 'Guide' | 'HotelOwner' | 'RestaurantOwner' | 'TransportOwner' | 'Admin' | 'SuperAdmin';
 }
 
@@ -128,3 +129,155 @@ export interface IFavorite {
   itemImageUrl?: string;
   createdAt: string;
 }
+
+export interface ITransportCompany {
+  id: string;
+  name: string;
+  operatingCities: string[];
+  isSystemDefault: boolean;
+}
+
+export interface IVehicleInfo {
+  registrationNumber: string;
+  brand: string;
+  model: string;
+  manufacturingYear: number;
+  color: string;
+  passengerSeats: number;
+  hasAirConditioning: boolean;
+  hasWifi: boolean;
+  hasLuggageSpace: boolean;
+  childSeatAvailable: boolean;
+  wheelchairAccessible: boolean;
+  petFriendly: boolean;
+  smokingAllowed: boolean;
+  registrationCertificateUrl: string;
+  insuranceCertificateUrl: string;
+  technicalInspectionCertificateUrl?: string;
+  vehiclePhotos: string[];
+}
+
+export interface IServiceInfo {
+  serviceTypes: string[];
+  availableCities: string[];
+  languagesSpoken: string[];
+  paymentMethods: string[];
+}
+
+export interface IWorkingHour {
+  dayOfWeek: string;
+  startTime: string;
+  endTime: string;
+  is24Hours: boolean;
+}
+
+export interface ISaveProviderDraft {
+  fullName: string;
+  dateOfBirth: string;
+  gender: string;
+  phone: string;
+  email?: string;
+  nationality: string;
+  currentCity: string;
+  currentAddress: string;
+  profilePhotoUrl?: string;
+  yearsDrivingExperience: number;
+  isProfessionalDriver: boolean;
+  previousCompany?: string;
+  licenseNumber: string;
+  licenseCategory: string;
+  licenseIssueDate: string;
+  licenseExpirationDate: string;
+  licenseFrontPhotoUrl?: string;
+  licenseBackPhotoUrl?: string;
+  companyId?: string;
+  customCompanyName?: string;
+  employmentType: 'Driver' | 'Owner' | 'Partner';
+  yearsWithCompany: number;
+  vehicle?: IVehicleInfo;
+  service?: IServiceInfo;
+  workingHours: IWorkingHour[];
+  emergencyContactName: string;
+  emergencyContactPhone: string;
+}
+
+export interface IProviderApplicationDossier {
+  id: string;
+  userId: string;
+  fullName: string;
+  dateOfBirth: string;
+  age: number;
+  gender: string;
+  phone: string;
+  email?: string;
+  nationality: string;
+  currentCity: string;
+  currentAddress: string;
+  profilePhotoUrl?: string;
+  yearsDrivingExperience: number;
+  isProfessionalDriver: boolean;
+  previousCompany?: string;
+  licenseNumber: string;
+  licenseCategory: string;
+  licenseIssueDate: string;
+  licenseExpirationDate: string;
+  licenseFrontPhotoUrl?: string;
+  licenseBackPhotoUrl?: string;
+  companyId?: string;
+  companyName?: string;
+  customCompanyName?: string;
+  employmentType: string;
+  yearsWithCompany: number;
+  vehicle?: IVehicleInfo;
+  service?: IServiceInfo;
+  workingHours: IWorkingHour[];
+  emergencyContactName: string;
+  emergencyContactPhone: string;
+  applicationStatus: 'Draft' | 'PendingReview' | 'Approved' | 'Rejected' | 'Suspended';
+  driverStatus: 'Available' | 'Busy' | 'Offline';
+  ratingAverage: number;
+  completedTripsCount: number;
+  isIdentityVerified: boolean;
+  isLicenseVerified: boolean;
+  isVehicleVerified: boolean;
+  isInsuranceVerified: boolean;
+  isCompanyVerified: boolean;
+  isFullyVerified: boolean;
+  rejectionReason?: string;
+  adminInternalNotes?: string;
+  submittedAt?: string;
+  reviewedAt?: string;
+  createdAt: string;
+}
+
+export interface IPassengerProviderSearchResult {
+  id: string;
+  userId: string;
+  fullName: string;
+  phone: string;
+  currentCity: string;
+  profilePhotoUrl: string;
+  companyName: string;
+  yearsDrivingExperience: number;
+  ratingAverage: number;
+  completedTripsCount: number;
+  driverStatus: string;
+  isFullyVerified: boolean;
+  vehicleBrand: string;
+  vehicleModel: string;
+  vehicleYear: number;
+  vehicleColor: string;
+  passengerSeats: number;
+  vehicleRegNumber: string;
+  vehiclePhotos: string[];
+  hasAirConditioning: boolean;
+  hasWifi: boolean;
+  hasLuggageSpace: boolean;
+  childSeatAvailable: boolean;
+  wheelchairAccessible: boolean;
+  serviceTypes: string[];
+  availableCities: string[];
+  languagesSpoken: string[];
+  paymentMethods: string[];
+}
+

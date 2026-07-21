@@ -30,6 +30,13 @@ public class ApplicationDbContext : DbContext
     public DbSet<Hotel> Hotels => Set<Hotel>();
     public DbSet<Restaurant> Restaurants => Set<Restaurant>();
     public DbSet<Transport> Transports => Set<Transport>();
+    public DbSet<TransportCompany> TransportCompanies => Set<TransportCompany>();
+    public DbSet<TransportProviderProfile> TransportProviderProfiles => Set<TransportProviderProfile>();
+    public DbSet<ProviderVehicle> ProviderVehicles => Set<ProviderVehicle>();
+    public DbSet<VehiclePhoto> VehiclePhotos => Set<VehiclePhoto>();
+    public DbSet<ProviderService> ProviderServices => Set<ProviderService>();
+    public DbSet<ProviderWorkingHour> ProviderWorkingHours => Set<ProviderWorkingHour>();
+    public DbSet<ProviderDocument> ProviderDocuments => Set<ProviderDocument>();
     public DbSet<Guide> Guides => Set<Guide>();
     public DbSet<Booking> Bookings => Set<Booking>();
     public DbSet<Review> Reviews => Set<Review>();

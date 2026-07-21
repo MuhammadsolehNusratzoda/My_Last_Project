@@ -32,6 +32,13 @@ public class TransportsController : ControllerBase
         return Ok(response);
     }
 
+    [HttpGet("search-passenger-providers")]
+    public async Task<IActionResult> SearchPassengerProviders([FromQuery] TouristSystem.Application.Features.TouristSearch.Queries.SearchPassengerProviders.SearchPassengerProvidersQuery query)
+    {
+        var response = await _sender.Send(query);
+        return Ok(response);
+    }
+
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetDetail(Guid id)
     {

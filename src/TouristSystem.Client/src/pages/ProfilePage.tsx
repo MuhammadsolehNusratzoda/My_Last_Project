@@ -1,33 +1,98 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useAuthStore } from '../app/store';
 import { useTranslation } from '../hooks/useTranslation';
-import { User, Mail, Shield, Phone, Loader2, CheckCircle } from 'lucide-react';
+import { api } from '../services/api';
+import {
+  User, Mail, Shield, Phone, Loader2, CheckCircle, Camera, Trash2, Upload, AlertCircle
+} from 'lucide-react';
+
+const API_BASE = 'http://localhost:5010';
 
 export default function ProfilePage() {
-  const { user, token, setAuth } = useAuthStore();
+  const { user, token, updateUser } = useAuthStore();
   const [fullName, setFullName] = useState(user?.fullName || '');
   const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber || '');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [photoLoading, setPhotoLoading] = useState(false);
+  const [photoError, setPhotoError] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
 
-  const handleSave = (e: React.FormEvent) => {
+  const profileImageSrc = user?.profileImageUrl
+    ? `${API_BASE}${user.profileImageUrl}`
+    : null;
+
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
 
-    setTimeout(() => {
-      if (user && token) {
-        // Save updated details into Zustand store
-        setAuth(token, '', {
-          ...user,
-          fullName,
-          phoneNumber,
-        });
-      }
-      setLoading(false);
+    try {
+      const res = await api.put('/users/profile', {
+        fullName,
+        phoneNumber,
+      });
+      updateUser({
+        fullName: res.data.fullName,
+        phoneNumber: res.data.phoneNumber,
+        profileImageUrl: res.data.profileImageUrl,
+      });
       setSuccess(true);
-    }, 800);
+    } catch {
+      // Fallback: save locally if API fails
+      updateUser({ fullName, phoneNumber });
+      setSuccess(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Client-side validations
+    if (file.size > 5 * 1024 * 1024) {
+      setPhotoError(t('profile.photoTooLarge', 'Photo must be less than 5 MB.'));
+      return;
+    }
+    if (!['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.type)) {
+      setPhotoError(t('profile.photoInvalidType', 'Only JPEG, PNG, GIF, and WebP images are allowed.'));
+      return;
+    }
+
+    setPhotoLoading(true);
+    setPhotoError('');
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await api.post('/users/profile-photo', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      updateUser({ profileImageUrl: res.data.profileImageUrl });
+    } catch {
+      setPhotoError(t('profile.photoUploadFailed', 'Failed to upload photo. Please try again.'));
+    } finally {
+      setPhotoLoading(false);
+      // Clear input so the same file can be re-selected
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
+
+  const handlePhotoDelete = async () => {
+    setPhotoLoading(true);
+    setPhotoError('');
+
+    try {
+      await api.delete('/users/profile-photo');
+      updateUser({ profileImageUrl: undefined });
+    } catch {
+      setPhotoError(t('profile.photoDeleteFailed', 'Failed to delete photo. Please try again.'));
+    } finally {
+      setPhotoLoading(false);
+    }
   };
 
   if (!user) {
@@ -52,6 +117,88 @@ export default function ProfilePage() {
             <span>{t('toasts.profileUpdated', 'Profile details updated successfully!')}</span>
           </div>
         )}
+
+        {/* ── Profile Photo Section ── */}
+        <div className="mb-8 flex flex-col items-center sm:flex-row sm:items-start gap-6">
+          {/* Avatar preview */}
+          <div className="relative group shrink-0">
+            <div className="h-28 w-28 rounded-full overflow-hidden bg-slate-800 border-2 border-slate-700 flex items-center justify-center shadow-lg">
+              {profileImageSrc ? (
+                <img
+                  src={profileImageSrc}
+                  alt={user.fullName}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <User className="h-12 w-12 text-slate-500" />
+              )}
+              {photoLoading && (
+                <div className="absolute inset-0 bg-slate-900/70 flex items-center justify-center rounded-full">
+                  <Loader2 className="h-6 w-6 animate-spin text-blue-400" />
+                </div>
+              )}
+            </div>
+
+            {/* Hover overlay for upload */}
+            {!photoLoading && (
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="absolute inset-0 rounded-full bg-slate-900/0 group-hover:bg-slate-900/60 flex items-center justify-center transition-all duration-200 cursor-pointer border-none"
+              >
+                <Camera className="h-6 w-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              </button>
+            )}
+          </div>
+
+          {/* Photo controls */}
+          <div className="flex flex-col gap-3 text-left justify-center pt-2">
+            <p className="text-sm font-semibold text-white">{t('profile.profilePhoto', 'Profile Photo')}</p>
+            <p className="text-xs text-slate-400 max-w-xs">{t('profile.photoHint', 'Upload a JPEG, PNG, GIF, or WebP image. Max 5 MB.')}</p>
+
+            <div className="flex gap-2 flex-wrap">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={photoLoading}
+                className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-xl shadow hover:scale-105 active:scale-95 transition-all cursor-pointer border-none disabled:opacity-50"
+              >
+                <Upload className="h-3.5 w-3.5" />
+                {profileImageSrc
+                  ? t('profile.changePhoto', 'Change Photo')
+                  : t('profile.uploadPhoto', 'Upload Photo')}
+              </button>
+
+              {profileImageSrc && (
+                <button
+                  type="button"
+                  onClick={handlePhotoDelete}
+                  disabled={photoLoading}
+                  className="inline-flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold px-4 py-2 rounded-xl border border-red-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer disabled:opacity-50"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                  {t('profile.deletePhoto', 'Delete Photo')}
+                </button>
+              )}
+            </div>
+
+            {photoError && (
+              <div className="flex items-center gap-1.5 text-red-400 text-xs mt-1">
+                <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+                <span>{photoError}</span>
+              </div>
+            )}
+
+            {/* Hidden file input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/gif,image/webp"
+              onChange={handlePhotoUpload}
+              className="hidden"
+            />
+          </div>
+        </div>
 
         <form onSubmit={handleSave} className="space-y-6 text-left">
           <div>

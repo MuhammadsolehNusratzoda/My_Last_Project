@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TouristSystem.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d24712dd8896ac8cd561129ea9dac35191c31d45")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff61ecd619c7b0abcbd5e074265135a61733e202")]
 [assembly: System.Reflection.AssemblyProductAttribute("TouristSystem.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TouristSystem.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,6 +15,8 @@ public interface IUnitOfWork : IDisposable
     IHotelRepository Hotels { get; }
     IRestaurantRepository Restaurants { get; }
     ITransportRepository Transports { get; }
+    ITransportProviderRepository TransportProviders { get; }
+    ITransportCompanyRepository TransportCompanies { get; }
     IGuideRepository Guides { get; }
     IBookingRepository Bookings { get; }
     IReviewRepository Reviews { get; }

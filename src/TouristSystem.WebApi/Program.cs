@@ -96,6 +96,8 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 // Serilog Request Logging
 app.UseSerilogRequestLogging();
 
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");

@@ -1145,7 +1145,10 @@
         },
         "runtime": {
           "bin/placeholder/TouristSystem.Application.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "TouristSystem.Domain/1.0.0": {
         "type": "project",

@@ -29,6 +29,9 @@ import AdminAuditLogsPage from './pages/AdminAuditLogsPage';
 import OwnerDashboardPage from './pages/OwnerDashboardPage';
 import OwnerServicesPage from './pages/OwnerServicesPage';
 import ProfilePage from './pages/ProfilePage';
+import ProviderRegistrationWizardPage from './pages/ProviderRegistrationWizardPage';
+import AdminProviderApplicationsPage from './pages/AdminProviderApplicationsPage';
+import PassengerTransportSearchPage from './pages/PassengerTransportSearchPage';
 import { ProtectedRoute, RoleRoute } from './routes';
 import { api } from './services/api';
 import type { IPlace } from './types';
@@ -744,6 +747,7 @@ function AppContent() {
           <Route path="/restaurants/:id" element={<RestaurantDetailPage />} />
           
           <Route path="/transports" element={<TransportsPage />} />
+          <Route path="/passenger-transports" element={<PassengerTransportSearchPage />} />
           
           <Route path="/guides" element={<GuidesPage />} />
           <Route path="/guides/:id" element={<GuideDetailPage />} />
@@ -754,6 +758,7 @@ function AppContent() {
             <Route path="/my-bookings" element={<MyBookingsPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/register-provider" element={<ProviderRegistrationWizardPage />} />
 
             {/* Owner Guarded Route */}
             <Route element={<RoleRoute allowedRoles={['HotelOwner', 'RestaurantOwner', 'TransportOwner', 'Admin', 'SuperAdmin']} />}>
@@ -767,6 +772,7 @@ function AppContent() {
                 <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
                 <Route path="/admin/users" element={<AdminUsersPage />} />
                 <Route path="/admin/places" element={<AdminPlacesPage />} />
+                <Route path="/admin/provider-applications" element={<AdminProviderApplicationsPage />} />
                 <Route path="/admin/audit-logs" element={<AdminAuditLogsPage />} />
               </Route>
             </Route>

@@ -10,4 +10,6 @@ public record LoginResponse(
     string FullName,
     string Email,
     string Role,
+    string? PhoneNumber,
+    string? ProfileImageUrl,
     string Token);

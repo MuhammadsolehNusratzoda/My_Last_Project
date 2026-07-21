@@ -23,6 +23,8 @@ public class UnitOfWork : IUnitOfWork
         Hotels = new HotelRepository(context);
         Restaurants = new RestaurantRepository(context);
         Transports = new TransportRepository(context);
+        TransportProviders = new TransportProviderRepository(context);
+        TransportCompanies = new TransportCompanyRepository(context);
         Guides = new GuideRepository(context);
         Bookings = new BookingRepository(context);
         Reviews = new ReviewRepository(context);
@@ -37,6 +39,8 @@ public class UnitOfWork : IUnitOfWork
     public IHotelRepository Hotels { get; }
     public IRestaurantRepository Restaurants { get; }
     public ITransportRepository Transports { get; }
+    public ITransportProviderRepository TransportProviders { get; }
+    public ITransportCompanyRepository TransportCompanies { get; }
     public IGuideRepository Guides { get; }
     public IBookingRepository Bookings { get; }
     public IReviewRepository Reviews { get; }
