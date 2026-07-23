@@ -61,9 +61,15 @@ public class ProviderRegistrationController : ControllerBase
     }
 
     [HttpPost("upload-document")]
-    public async Task<IActionResult> UploadDocument([FromForm] IFormFile file, [FromForm] string category)
+    public async Task<IActionResult> UploadDocument([FromForm] UploadDocumentRequest request)
     {
-        var relativeUrl = await _sender.Send(new UploadProviderDocumentCommand(file, category));
+        var relativeUrl = await _sender.Send(new UploadProviderDocumentCommand(request.File, request.Category));
         return Ok(new { url = relativeUrl });
     }
+}
+
+public class UploadDocumentRequest
+{
+    public IFormFile File { get; set; } = null!;
+    public string Category { get; set; } = null!;
 }
