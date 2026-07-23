@@ -35,7 +35,7 @@ import PassengerTransportSearchPage from './pages/PassengerTransportSearchPage';
 import { ProtectedRoute, RoleRoute } from './routes';
 import { api } from './services/api';
 import type { IPlace } from './types';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, MapPin, Compass, Star, ArrowRight, Sparkles, Navigation, ArrowUpRight, Mic,
   Mountain, Waves, Landmark, TreePine, Church, PartyPopper
@@ -43,8 +43,59 @@ import {
 import TajikistanRouteMap from './components/TajikistanRouteMap';
 import NavigationPage from './pages/NavigationPage';
 
+const HERO_BACKGROUNDS = [
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Dushanbe_center_from_above.jpg',
+    alt: 'Aerial view of central Dushanbe, with the Ismoil Somoni monument, Dousti Square and the Dushanbe Flagpole'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Flag_of_Tajikistan.svg/3840px-Flag_of_Tajikistan.svg.png',
+    alt: 'The flag of Tajikistan'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Hisor_Fortress_%2817230862984%29.jpg',
+    alt: 'The twin-towered gate of Hisor Fortress near Dushanbe, Tajikistan'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/3/3b/Pamir_Mountains%2C_Tajikistan%2C_06-04-2008.jpg',
+    alt: 'The Pamir Mountains, Tajikistan'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Emblem_of_Tajikistan.svg',
+    alt: 'The state emblem of Tajikistan'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Remains_of_the_Khujand_Fortress.jpg',
+    alt: 'The historic Khujand Fortress, Tajikistan'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/2/23/Iskander-kul%2C_Tajikistan.JPG',
+    alt: 'Lake Iskanderkul in the Fann Mountains, Tajikistan'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Hulbuk_Fort_in_Pingan%2C_Tajikistan.jpg',
+    alt: 'The Hulbuk Fortress, Khatlon Region, Tajikistan'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Kurutob_Tajikistan.JPG',
+    alt: 'Qurutob, a traditional Tajik dish'
+  },
+  {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Sharik_toraq.jpg',
+    alt: 'Qurut, traditional dried yogurt balls'
+  }
+];
+
 function LandingPage() {
   const navigate = useNavigate();
+  const [heroBgIndex, setHeroBgIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setHeroBgIndex((i) => (i + 1) % HERO_BACKGROUNDS.length);
+    }, 6000);
+    return () => clearInterval(id);
+  }, []);
   const { t, getLocalized, formatNumber } = useTranslation();
   const [stats, setStats] = useState({ attractions: 120, hotels: 350, restaurants: 75, cities: 25, visitors: '15K+' });
   const [popularPlaces, setPopularPlaces] = useState<IPlace[]>([]);
@@ -155,12 +206,19 @@ function LandingPage() {
     <div className="bg-slate-950 text-slate-100 min-h-screen">
       {/* Full-Screen Hero Section */}
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?auto=format&fit=crop&w=2000&q=80"
-            alt={t('hero.imageAlt', 'Tajikistan Landscape')}
-            className="w-full h-full object-cover scale-105 filter brightness-50"
-          />
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <AnimatePresence mode="sync">
+            <motion.img
+              key={HERO_BACKGROUNDS[heroBgIndex].src}
+              src={HERO_BACKGROUNDS[heroBgIndex].src}
+              alt={HERO_BACKGROUNDS[heroBgIndex].alt}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1.15 }}
+              exit={{ opacity: 0 }}
+              transition={{ opacity: { duration: 1.5, ease: 'easeInOut' }, scale: { duration: 6.5, ease: 'linear' } }}
+              className="absolute inset-0 w-full h-full object-cover filter brightness-50"
+            />
+          </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
         </div>
 

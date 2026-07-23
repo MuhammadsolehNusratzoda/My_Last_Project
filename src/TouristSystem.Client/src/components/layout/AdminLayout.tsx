@@ -1,9 +1,9 @@
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { useAuthStore } from '../../app/store';
 import { useTranslation } from '../../hooks/useTranslation';
-import { 
-  BarChart2, Users, MapPin, ClipboardList, LogOut, Search, 
-  HelpCircle, Compass, ArrowLeft, Sun, Moon, Plus, Globe
+import {
+  BarChart2, Users, MapPin, ClipboardList, LogOut, Search,
+  HelpCircle, Compass, ArrowLeft, Sun, Moon, Plus, Globe, Car
 } from 'lucide-react';
 import NotificationBell from './NotificationBell';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -61,6 +61,11 @@ export default function AdminLayout() {
       path: '/admin/provider-applications',
       label: 'Driver Applications',
       icon: ClipboardList
+    },
+    {
+      path: '/register-provider',
+      label: 'Register Provider',
+      icon: Car
     },
     {
       path: '/admin/audit-logs',

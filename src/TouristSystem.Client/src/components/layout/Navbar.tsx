@@ -38,7 +38,7 @@ export default function Navbar() {
     { path: '/places', label: t('navbar.places'), icon: MapPin },
     { path: '/hotels', label: t('navbar.hotels'), icon: Hotel },
     { path: '/restaurants', label: t('navbar.restaurants'), icon: Utensils },
-    { path: '/passenger-transports', label: 'Passenger Transport', icon: Car },
+    { path: '/passenger-transports', label: 'Transport', icon: Car },
     { path: '/guides', label: t('navbar.guides'), icon: Users },
     { path: '/map', label: t('navbar.map'), icon: Map },
   ];
@@ -181,14 +181,6 @@ export default function Navbar() {
                           >
                             <Heart className="h-4 w-4 text-red-500" />
                             <span>{t('navbar.favorites')}</span>
-                          </Link>
-                          <Link
-                            to="/register-provider"
-                            onClick={() => setShowDropdown(false)}
-                            className="flex items-center space-x-2 px-4 py-2.5 text-sm text-sky-400 font-semibold hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors"
-                          >
-                            <Car className="h-4 w-4 text-sky-400" />
-                            <span>Register as Driver</span>
                           </Link>
                         </>
                       )}
