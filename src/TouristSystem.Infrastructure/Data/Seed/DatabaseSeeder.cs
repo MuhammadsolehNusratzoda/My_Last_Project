@@ -9,7 +9,7 @@ namespace TouristSystem.Infrastructure.Data.Seed;
 /// <summary>
 /// Handles seeding initial reference records and default administrator accounts on system startup.
 /// </summary>
-public static class DatabaseSeeder
+public static partial class DatabaseSeeder
 {
     public static void Seed(ApplicationDbContext context)
     {
@@ -265,6 +265,7 @@ public static class DatabaseSeeder
                     CreatedAt = DateTime.UtcNow
                 }
             };
+            places.AddRange(GetExtraPlaces());
             context.Places.AddRange(places);
         }
 
@@ -364,6 +365,7 @@ public static class DatabaseSeeder
                     CreatedAt = DateTime.UtcNow
                 }
             };
+            hotels.AddRange(GetExtraHotels(hotelOwnerId));
             context.Hotels.AddRange(hotels);
         }
 

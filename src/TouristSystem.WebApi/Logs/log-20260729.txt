@@ -1,0 +1,1005 @@
+2026-07-29 08:50:40.514 +05:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Favorite'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-29 08:50:40.629 +05:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Notification'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-29 08:50:40.635 +05:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-29 08:50:41.900 +05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM transport_companies AS t
+    WHERE NOT (t.is_deleted))
+2026-07-29 08:50:42.041 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE NOT (u.is_deleted) AND u.role = 'SuperAdmin')
+2026-07-29 08:50:42.795 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'hotelowner@touristsystem.com'
+LIMIT 1
+2026-07-29 08:50:43.177 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'restaurantowner@touristsystem.com'
+LIMIT 1
+2026-07-29 08:50:43.881 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'dilshod@touristsystem.com'
+LIMIT 1
+2026-07-29 08:50:43.895 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'madina@touristsystem.com'
+LIMIT 1
+2026-07-29 08:50:43.914 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'transportowner@touristsystem.com'
+LIMIT 1
+2026-07-29 08:50:43.940 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'tourist@touristsystem.com'
+LIMIT 1
+2026-07-29 08:50:44.061 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM tourist_places AS t
+    WHERE NOT (t.is_deleted))
+2026-07-29 08:50:44.121 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM hotels AS h
+    WHERE NOT (h.is_deleted))
+2026-07-29 08:50:44.178 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM restaurants AS r
+    WHERE NOT (r.is_deleted))
+2026-07-29 08:50:44.230 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM guides AS g
+    WHERE NOT (g.is_deleted))
+2026-07-29 08:50:44.311 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM transports AS t
+    WHERE NOT (t.is_deleted))
+2026-07-29 08:50:44.545 +05:00 [INF] User profile is available. Using 'C:\Users\Сухайб\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-29 08:50:44.689 +05:00 [WRN] The WebRootPath was not found: C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.WebApi\wwwroot. Static files may be unavailable.
+2026-07-29 08:50:44.749 +05:00 [INF] Now listening on: http://localhost:5010
+2026-07-29 08:50:44.797 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-29 08:50:44.815 +05:00 [INF] Hosting environment: Development
+2026-07-29 08:50:44.828 +05:00 [INF] Content root path: C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.WebApi
+2026-07-29 08:50:52.732 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:50:52.761 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:50:52.732 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:50:53.346 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:50:53.365 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:50:53.495 +05:00 [WRN] Failed to determine the https port for redirect.
+2026-07-29 08:50:53.738 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:50:53.738 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:50:53.743 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:50:53.799 +05:00 [INF] HTTP OPTIONS /api/places responded 204 in 112.4186 ms
+2026-07-29 08:50:53.814 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 333.6266 ms
+2026-07-29 08:50:53.782 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 65.1773 ms
+2026-07-29 08:50:54.107 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - 204 null null 760.7494ms
+2026-07-29 08:50:54.148 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - 204 null null 1418.3379ms
+2026-07-29 08:50:55.109 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - 204 null null 1744.2739ms
+2026-07-29 08:50:55.442 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:50:55.912 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:50:56.500 +05:00 [INF] HTTP OPTIONS /api/places responded 204 in 588.4267 ms
+2026-07-29 08:50:56.485 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:50:55.972 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:50:56.931 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - 204 null null 4201.7223ms
+2026-07-29 08:50:56.958 +05:00 [INF] HTTP OPTIONS /api/restaurants responded 204 in 472.9108 ms
+2026-07-29 08:50:57.066 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - 204 null null 1624.5968ms
+2026-07-29 08:50:57.038 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:50:57.038 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:50:57.703 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:50:57.715 +05:00 [INF] HTTP OPTIONS /api/restaurants responded 204 in 676.9303 ms
+2026-07-29 08:50:57.883 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:50:57.923 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - 204 null null 5193.6113ms
+2026-07-29 08:50:58.090 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:50:58'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-29 08:50:58.090 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:50:58'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-29 08:50:59.099 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:50:58'.
+2026-07-29 08:50:59.063 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:50:58'.
+2026-07-29 08:50:59.553 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:50:59.559 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:50:59.765 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:50:59.765 +05:00 [INF] Route matched with {action = "GetList", controller = "Places"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Places.Queries.GetPlacesList.GetPlacesListQuery) on controller TouristSystem.WebApi.Controllers.PlacesController (TouristSystem.WebApi).
+2026-07-29 08:51:01.343 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:51:03.842 +05:00 [INF] Executed DbCommand (346ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+2026-07-29 08:51:04.060 +05:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+2026-07-29 08:51:05.807 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:06.220 +05:00 [INF] Executed DbCommand (35ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+ORDER BY h.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:06.220 +05:00 [INF] Executed DbCommand (43ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id, t.address, t.city, t.created_at, t.created_by_user_id, t.deleted_at, t.deleted_by_user_id, t.description, t.entry_fee, t.image_url, t.is_deleted, t.latitude, t.longitude, t.name, t.rating_average, t.reviews_count, t.slug, t.status, t.updated_at, t.updated_by_user_id
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+ORDER BY t.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:06.284 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:06'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-29 08:51:06.424 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:06'.
+2026-07-29 08:51:06.720 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Places.Queries.GetPlacesList.PlacesListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:06.771 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:06.790 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:06.887 +05:00 [INF] Route matched with {action = "GetList", controller = "Restaurants"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.GetRestaurantsListQuery) on controller TouristSystem.WebApi.Controllers.RestaurantsController (TouristSystem.WebApi).
+2026-07-29 08:51:07.007 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi) in 5636.6662ms
+2026-07-29 08:51:07.007 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 7208.7678ms
+2026-07-29 08:51:08.467 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:08.422 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:08.502 +05:00 [INF] HTTP GET /api/places responded 200 in 10619.6590 ms
+2026-07-29 08:51:08.498 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+2026-07-29 08:51:08.487 +05:00 [INF] HTTP GET /api/hotels responded 200 in 11448.6919 ms
+2026-07-29 08:51:08.584 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - 200 null application/json; charset=utf-8 10881.5835ms
+2026-07-29 08:51:08.637 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - 200 null application/json; charset=utf-8 12665.187ms
+2026-07-29 08:51:08.688 +05:00 [INF] Executed DbCommand (24ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.address, r.city, r.created_at, r.created_by_user_id, r.cuisine_type, r.deleted_at, r.deleted_by_user_id, r.description, r.has_delivery, r.has_parking, r.has_wifi, r.image_url, r.is_deleted, r.latitude, r.longitude, r.name, r.opening_hours, r.owner_id, r.phone_number, r.price_range, r.rating_average, r.reviews_count, r.slug, r.status, r.updated_at, r.updated_by_user_id, r.website_url
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+ORDER BY r.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:09.304 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:51:09.462 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:09.304 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:51:09.529 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:09.513 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:09'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-29 08:51:09.569 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:09'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-29 08:51:09.635 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:09'.
+2026-07-29 08:51:09.616 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:09'.
+2026-07-29 08:51:09.702 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:09.707 +05:00 [INF] Route matched with {action = "GetList", controller = "Places"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Places.Queries.GetPlacesList.GetPlacesListQuery) on controller TouristSystem.WebApi.Controllers.PlacesController (TouristSystem.WebApi).
+2026-07-29 08:51:09.703 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.RestaurantsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:09.686 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:09.778 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:51:09.768 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+2026-07-29 08:51:09.844 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+2026-07-29 08:51:09.847 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi) in 1441.2884ms
+2026-07-29 08:51:09.935 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:09.965 +05:00 [INF] HTTP GET /api/restaurants responded 200 in 4158.1211 ms
+2026-07-29 08:51:09.935 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+ORDER BY h.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:09.885 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:51:10.116 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:10.064 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - 200 null application/json; charset=utf-8 8723.5754ms
+2026-07-29 08:51:10.083 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:10.185 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 373.3345ms
+2026-07-29 08:51:10.197 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:09.898 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id, t.address, t.city, t.created_at, t.created_by_user_id, t.deleted_at, t.deleted_by_user_id, t.description, t.entry_fee, t.image_url, t.is_deleted, t.latitude, t.longitude, t.name, t.rating_average, t.reviews_count, t.slug, t.status, t.updated_at, t.updated_by_user_id
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+ORDER BY t.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:10.130 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:10'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-29 08:51:10.577 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:10'.
+2026-07-29 08:51:10.546 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Places.Queries.GetPlacesList.PlacesListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:10.744 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi) in 1007.2147ms
+2026-07-29 08:51:10.731 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:10.800 +05:00 [INF] Route matched with {action = "GetList", controller = "Restaurants"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.GetRestaurantsListQuery) on controller TouristSystem.WebApi.Controllers.RestaurantsController (TouristSystem.WebApi).
+2026-07-29 08:51:10.784 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:10.830 +05:00 [INF] HTTP GET /api/places responded 200 in 1367.7925 ms
+2026-07-29 08:51:10.501 +05:00 [INF] HTTP GET /api/hotels responded 200 in 971.8568 ms
+2026-07-29 08:51:10.832 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+2026-07-29 08:51:10.852 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - 200 null application/json; charset=utf-8 1547.806ms
+2026-07-29 08:51:11.280 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - 200 null application/json; charset=utf-8 1975.3931ms
+2026-07-29 08:51:11.317 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.address, r.city, r.created_at, r.created_by_user_id, r.cuisine_type, r.deleted_at, r.deleted_by_user_id, r.description, r.has_delivery, r.has_parking, r.has_wifi, r.image_url, r.is_deleted, r.latitude, r.longitude, r.name, r.opening_hours, r.owner_id, r.phone_number, r.price_range, r.rating_average, r.reviews_count, r.slug, r.status, r.updated_at, r.updated_by_user_id, r.website_url
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+ORDER BY r.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:11.396 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.RestaurantsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:11.484 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi) in 666.5476ms
+2026-07-29 08:51:11.557 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:11.679 +05:00 [INF] HTTP GET /api/restaurants responded 200 in 1563.4885 ms
+2026-07-29 08:51:12.177 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - 200 null application/json; charset=utf-8 2292.4013ms
+2026-07-29 08:51:17.271 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/bookings?pageSize=100 - null null
+2026-07-29 08:51:17.313 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/bookings?pageSize=100 - null null
+2026-07-29 08:51:18.044 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:18.018 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:18.064 +05:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 46.5397 ms
+2026-07-29 08:51:18.052 +05:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 7.2238 ms
+2026-07-29 08:51:18.110 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/bookings?pageSize=100 - 204 null null 796.9286ms
+2026-07-29 08:51:18.088 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/bookings?pageSize=100 - 204 null null 816.521ms
+2026-07-29 08:51:18.247 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/bookings?pageSize=100 - null null
+2026-07-29 08:51:18.268 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:18.270 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:18'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-29 08:51:18.287 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:18'.
+2026-07-29 08:51:18.303 +05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-07-29 08:51:18.319 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-07-29 08:51:18.333 +05:00 [INF] HTTP GET /api/bookings responded 401 in 64.9576 ms
+2026-07-29 08:51:18.338 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/bookings?pageSize=100 - 401 0 null 90.8723ms
+2026-07-29 08:51:18.532 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/bookings?pageSize=100 - null null
+2026-07-29 08:51:18.624 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:18.636 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:18'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-29 08:51:18.665 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '23.07.2026 08:18:33', Current time (UTC): '29.07.2026 03:51:18'.
+2026-07-29 08:51:18.716 +05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-07-29 08:51:18.723 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-07-29 08:51:18.733 +05:00 [INF] HTTP GET /api/bookings responded 401 in 108.3189 ms
+2026-07-29 08:51:18.746 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/bookings?pageSize=100 - 401 0 null 214.5081ms
+2026-07-29 08:51:31.057 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/auth/login - null null
+2026-07-29 08:51:31.280 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:31.295 +05:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 15.9262 ms
+2026-07-29 08:51:31.348 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/auth/login - 204 null null 290.3418ms
+2026-07-29 08:51:31.430 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5010/api/auth/login - application/json 71
+2026-07-29 08:51:31.564 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:31.596 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.AuthController.Login (TouristSystem.WebApi)'
+2026-07-29 08:51:31.630 +05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TouristSystem.Application.Features.Auth.Commands.Login.LoginCommand) on controller TouristSystem.WebApi.Controllers.AuthController (TouristSystem.WebApi).
+2026-07-29 08:51:31.947 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__ToLower_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND lower(u.email) = @__ToLower_0
+LIMIT 1
+2026-07-29 08:51:32.522 +05:00 [INF] Executed DbCommand (20ms) [Parameters=[@p16='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?', @p5='?' (DbType = Boolean), @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime), @p10='?', @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime), @p15='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET created_at = @p0, created_by_user_id = @p1, deleted_at = @p2, deleted_by_user_id = @p3, email = @p4, email_confirmed = @p5, full_name = @p6, is_active = @p7, is_deleted = @p8, last_login_at = @p9, password_hash = @p10, phone_number = @p11, profile_image_url = @p12, role = @p13, updated_at = @p14, updated_by_user_id = @p15
+WHERE id = @p16;
+2026-07-29 08:51:32.638 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Features.Auth.Commands.Login.LoginResponse'.
+2026-07-29 08:51:32.654 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.AuthController.Login (TouristSystem.WebApi) in 961.1341ms
+2026-07-29 08:51:32.661 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.AuthController.Login (TouristSystem.WebApi)'
+2026-07-29 08:51:32.676 +05:00 [INF] HTTP POST /api/auth/login responded 200 in 1112.0026 ms
+2026-07-29 08:51:32.737 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5010/api/auth/login - 200 null application/json; charset=utf-8 1307.106ms
+2026-07-29 08:51:32.936 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:51:33.036 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:51:35.753 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:51:35.784 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:35.818 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 33.8519 ms
+2026-07-29 08:51:35.851 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - 204 null null 2915.2358ms
+2026-07-29 08:51:35.788 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:35.949 +05:00 [INF] HTTP OPTIONS /api/restaurants responded 204 in 161.4434 ms
+2026-07-29 08:51:35.938 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:51:35.989 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:35.988 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - 204 null null 2952.0073ms
+2026-07-29 08:51:35.806 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:36.067 +05:00 [INF] HTTP OPTIONS /api/places responded 204 in 260.8986 ms
+2026-07-29 08:51:36.084 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - 204 null null 330.8116ms
+2026-07-29 08:51:36.017 +05:00 [INF] HTTP OPTIONS /api/places responded 204 in 27.8510 ms
+2026-07-29 08:51:36.054 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:51:36.288 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:51:36.435 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:36.402 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:36.464 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 61.9040 ms
+2026-07-29 08:51:36.484 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - 204 null null 430.0264ms
+2026-07-29 08:51:36.382 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - 204 null null 443.8763ms
+2026-07-29 08:51:36.449 +05:00 [INF] HTTP OPTIONS /api/restaurants responded 204 in 14.3968 ms
+2026-07-29 08:51:36.620 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:51:36.754 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:36.719 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - 204 null null 430.7249ms
+2026-07-29 08:51:36.703 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:51:36.871 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:36.854 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:36.914 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:51:36.899 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:36.890 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:51:37.000 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:36.986 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+2026-07-29 08:51:36.967 +05:00 [INF] Route matched with {action = "GetList", controller = "Restaurants"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.GetRestaurantsListQuery) on controller TouristSystem.WebApi.Controllers.RestaurantsController (TouristSystem.WebApi).
+2026-07-29 08:51:37.432 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:37.531 +05:00 [INF] Route matched with {action = "GetList", controller = "Places"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Places.Queries.GetPlacesList.GetPlacesListQuery) on controller TouristSystem.WebApi.Controllers.PlacesController (TouristSystem.WebApi).
+2026-07-29 08:51:37.488 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+2026-07-29 08:51:37.468 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+ORDER BY h.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:37.596 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:37.610 +05:00 [INF] Executed DbCommand (22ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.address, r.city, r.created_at, r.created_by_user_id, r.cuisine_type, r.deleted_at, r.deleted_by_user_id, r.description, r.has_delivery, r.has_parking, r.has_wifi, r.image_url, r.is_deleted, r.latitude, r.longitude, r.name, r.opening_hours, r.owner_id, r.phone_number, r.price_range, r.rating_average, r.reviews_count, r.slug, r.status, r.updated_at, r.updated_by_user_id, r.website_url
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+ORDER BY r.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:37.880 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+2026-07-29 08:51:38.019 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 1067.0543ms
+2026-07-29 08:51:38.113 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:38.130 +05:00 [INF] HTTP GET /api/hotels responded 200 in 1376.0423 ms
+2026-07-29 08:51:38.030 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:51:38.379 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:38.085 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.RestaurantsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:38.470 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi) in 984.5717ms
+2026-07-29 08:51:38.119 +05:00 [INF] Executed DbCommand (18ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id, t.address, t.city, t.created_at, t.created_by_user_id, t.deleted_at, t.deleted_by_user_id, t.description, t.entry_fee, t.image_url, t.is_deleted, t.latitude, t.longitude, t.name, t.rating_average, t.reviews_count, t.slug, t.status, t.updated_at, t.updated_by_user_id
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+ORDER BY t.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:38.451 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:38.528 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:51:38.484 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:38.553 +05:00 [INF] HTTP GET /api/restaurants responded 200 in 1682.4898 ms
+2026-07-29 08:51:38.344 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - 200 null application/json; charset=utf-8 1724.0319ms
+2026-07-29 08:51:38.515 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Places.Queries.GetPlacesList.PlacesListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:38.562 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+2026-07-29 08:51:38.583 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - 200 null application/json; charset=utf-8 1880.3077ms
+2026-07-29 08:51:38.633 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:51:38.638 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi) in 1081.6477ms
+2026-07-29 08:51:38.742 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:38.699 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:51:38.728 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:38.668 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+ORDER BY h.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:38.844 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:38.799 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:51:39.470 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:39.500 +05:00 [INF] Route matched with {action = "GetList", controller = "Places"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Places.Queries.GetPlacesList.GetPlacesListQuery) on controller TouristSystem.WebApi.Controllers.PlacesController (TouristSystem.WebApi).
+2026-07-29 08:51:39.453 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 905.3134ms
+2026-07-29 08:51:39.737 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:39.754 +05:00 [INF] HTTP GET /api/hotels responded 200 in 1374.4068 ms
+2026-07-29 08:51:39.703 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+2026-07-29 08:51:38.803 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:38.749 +05:00 [INF] HTTP GET /api/places responded 200 in 1748.8817 ms
+2026-07-29 08:51:39.876 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - 200 null application/json; charset=utf-8 2988.3391ms
+2026-07-29 08:51:39.849 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id, t.address, t.city, t.created_at, t.created_by_user_id, t.deleted_at, t.deleted_by_user_id, t.description, t.entry_fee, t.image_url, t.is_deleted, t.latitude, t.longitude, t.name, t.rating_average, t.reviews_count, t.slug, t.status, t.updated_at, t.updated_by_user_id
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+ORDER BY t.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:39.862 +05:00 [INF] Route matched with {action = "GetList", controller = "Restaurants"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.GetRestaurantsListQuery) on controller TouristSystem.WebApi.Controllers.RestaurantsController (TouristSystem.WebApi).
+2026-07-29 08:51:39.814 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - 200 null application/json; charset=utf-8 1783.9476ms
+2026-07-29 08:51:40.526 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Places.Queries.GetPlacesList.PlacesListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:40.592 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+2026-07-29 08:51:40.626 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi) in 927.0558ms
+2026-07-29 08:51:40.659 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:40.647 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.address, r.city, r.created_at, r.created_by_user_id, r.cuisine_type, r.deleted_at, r.deleted_by_user_id, r.description, r.has_delivery, r.has_parking, r.has_wifi, r.image_url, r.is_deleted, r.latitude, r.longitude, r.name, r.opening_hours, r.owner_id, r.phone_number, r.price_range, r.rating_average, r.reviews_count, r.slug, r.status, r.updated_at, r.updated_by_user_id, r.website_url
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+ORDER BY r.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:51:40.675 +05:00 [INF] HTTP GET /api/places responded 200 in 1876.4648 ms
+2026-07-29 08:51:40.695 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.RestaurantsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:51:40.759 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi) in 183.7356ms
+2026-07-29 08:51:40.744 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - 200 null application/json; charset=utf-8 2044.7701ms
+2026-07-29 08:51:40.778 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:51:41.044 +05:00 [INF] HTTP GET /api/restaurants responded 200 in 2316.5297 ms
+2026-07-29 08:51:41.089 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - 200 null application/json; charset=utf-8 2457.2557ms
+2026-07-29 08:52:46.688 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/guides?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:52:46.691 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/guides?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:52:47.558 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:47.700 +05:00 [INF] HTTP OPTIONS /api/guides responded 204 in 141.6855 ms
+2026-07-29 08:52:47.689 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:47.869 +05:00 [INF] HTTP OPTIONS /api/guides responded 204 in 180.3536 ms
+2026-07-29 08:52:47.841 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/guides?pageNumber=1&pageSize=50 - 204 null null 1152.6514ms
+2026-07-29 08:52:47.891 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/guides?pageNumber=1&pageSize=50 - 204 null null 1199.9753ms
+2026-07-29 08:52:48.001 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/guides?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:52:48.124 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:48.332 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.GuidesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:52:48.440 +05:00 [INF] Route matched with {action = "GetList", controller = "Guides"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Guides.Queries.GetGuidesList.GetGuidesListQuery) on controller TouristSystem.WebApi.Controllers.GuidesController (TouristSystem.WebApi).
+2026-07-29 08:52:48.583 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM guides AS g
+WHERE NOT (g.is_deleted)
+2026-07-29 08:52:48.735 +05:00 [INF] Executed DbCommand (18ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT g0.id, g0.bio, g0.city, g0.created_at, g0.created_by_user_id, g0.deleted_at, g0.deleted_by_user_id, g0.experience_years, g0.image_url, g0.is_available, g0.is_deleted, g0.languages, g0.price_per_day, g0.rating_average, g0.reviews_count, g0.status, g0.updated_at, g0.updated_by_user_id, g0.user_id, u0.id, u0.created_at, u0.created_by_user_id, u0.deleted_at, u0.deleted_by_user_id, u0.email, u0.email_confirmed, u0.full_name, u0.is_active, u0.is_deleted, u0.last_login_at, u0.password_hash, u0.phone_number, u0.profile_image_url, u0.role, u0.updated_at, u0.updated_by_user_id
+FROM (
+    SELECT g.id, g.bio, g.city, g.created_at, g.created_by_user_id, g.deleted_at, g.deleted_by_user_id, g.experience_years, g.image_url, g.is_available, g.is_deleted, g.languages, g.price_per_day, g.rating_average, g.reviews_count, g.status, g.updated_at, g.updated_by_user_id, g.user_id
+    FROM guides AS g
+    WHERE NOT (g.is_deleted)
+    ORDER BY g.experience_years DESC
+    LIMIT @__p_1 OFFSET @__p_0
+) AS g0
+INNER JOIN (
+    SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+    FROM users AS u
+    WHERE NOT (u.is_deleted)
+) AS u0 ON g0.user_id = u0.id
+ORDER BY g0.experience_years DESC
+2026-07-29 08:52:49.004 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Guides.Queries.GetGuidesList.GuidesListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:52:49.068 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.GuidesController.GetList (TouristSystem.WebApi) in 602.0524ms
+2026-07-29 08:52:49.072 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/guides?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:52:49.153 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.GuidesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:52:49.312 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:49.350 +05:00 [INF] HTTP GET /api/guides responded 200 in 1226.3724 ms
+2026-07-29 08:52:49.385 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.GuidesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:52:49.418 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/guides?pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 1417.1872ms
+2026-07-29 08:52:49.440 +05:00 [INF] Route matched with {action = "GetList", controller = "Guides"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Guides.Queries.GetGuidesList.GetGuidesListQuery) on controller TouristSystem.WebApi.Controllers.GuidesController (TouristSystem.WebApi).
+2026-07-29 08:52:50.602 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM guides AS g
+WHERE NOT (g.is_deleted)
+2026-07-29 08:52:51.031 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT g0.id, g0.bio, g0.city, g0.created_at, g0.created_by_user_id, g0.deleted_at, g0.deleted_by_user_id, g0.experience_years, g0.image_url, g0.is_available, g0.is_deleted, g0.languages, g0.price_per_day, g0.rating_average, g0.reviews_count, g0.status, g0.updated_at, g0.updated_by_user_id, g0.user_id, u0.id, u0.created_at, u0.created_by_user_id, u0.deleted_at, u0.deleted_by_user_id, u0.email, u0.email_confirmed, u0.full_name, u0.is_active, u0.is_deleted, u0.last_login_at, u0.password_hash, u0.phone_number, u0.profile_image_url, u0.role, u0.updated_at, u0.updated_by_user_id
+FROM (
+    SELECT g.id, g.bio, g.city, g.created_at, g.created_by_user_id, g.deleted_at, g.deleted_by_user_id, g.experience_years, g.image_url, g.is_available, g.is_deleted, g.languages, g.price_per_day, g.rating_average, g.reviews_count, g.status, g.updated_at, g.updated_by_user_id, g.user_id
+    FROM guides AS g
+    WHERE NOT (g.is_deleted)
+    ORDER BY g.experience_years DESC
+    LIMIT @__p_1 OFFSET @__p_0
+) AS g0
+INNER JOIN (
+    SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+    FROM users AS u
+    WHERE NOT (u.is_deleted)
+) AS u0 ON g0.user_id = u0.id
+ORDER BY g0.experience_years DESC
+2026-07-29 08:52:51.074 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Guides.Queries.GetGuidesList.GuidesListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:52:51.367 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.GuidesController.GetList (TouristSystem.WebApi) in 780.0151ms
+2026-07-29 08:52:51.450 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.GuidesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:52:51.594 +05:00 [INF] HTTP GET /api/guides responded 200 in 2282.3650 ms
+2026-07-29 08:52:51.881 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/transports/search-passenger-providers? - null null
+2026-07-29 08:52:51.900 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/transports/search-passenger-providers? - null null
+2026-07-29 08:52:51.951 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/guides?pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 2878.7871ms
+2026-07-29 08:52:51.983 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:52.018 +05:00 [INF] HTTP OPTIONS /api/transports/search-passenger-providers responded 204 in 34.6035 ms
+2026-07-29 08:52:51.998 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:52.033 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/transports/search-passenger-providers? - 204 null null 151.7581ms
+2026-07-29 08:52:52.080 +05:00 [INF] HTTP OPTIONS /api/transports/search-passenger-providers responded 204 in 81.8511 ms
+2026-07-29 08:52:52.119 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/transports/search-passenger-providers? - 204 null null 218.6395ms
+2026-07-29 08:52:52.099 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/transports/search-passenger-providers? - null null
+2026-07-29 08:52:52.232 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:52.243 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.TransportsController.SearchPassengerProviders (TouristSystem.WebApi)'
+2026-07-29 08:52:52.341 +05:00 [INF] Route matched with {action = "SearchPassengerProviders", controller = "Transports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchPassengerProviders(TouristSystem.Application.Features.TouristSearch.Queries.SearchPassengerProviders.SearchPassengerProvidersQuery) on controller TouristSystem.WebApi.Controllers.TransportsController (TouristSystem.WebApi).
+2026-07-29 08:52:52.427 +05:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM transport_provider_profiles AS t
+WHERE NOT (t.is_deleted) AND t.application_status = 'Approved'
+2026-07-29 08:52:52.758 +05:00 [INF] Executed DbCommand (40ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t1.id, t1.admin_internal_notes, t1.age, t1.application_status, t1.company_id, t1.completed_trips_count, t1.created_at, t1.created_by_user_id, t1.current_address, t1.current_city, t1.custom_company_name, t1.date_of_birth, t1.deleted_at, t1.deleted_by_user_id, t1.driver_status, t1.email, t1.emergency_contact_name, t1.emergency_contact_phone, t1.employment_type, t1.full_name, t1.gender, t1.is_company_verified, t1.is_deleted, t1.is_identity_verified, t1.is_insurance_verified, t1.is_license_verified, t1.is_professional_driver, t1.is_vehicle_verified, t1.license_back_photo_url, t1.license_category, t1.license_expiration_date, t1.license_front_photo_url, t1.license_issue_date, t1.license_number, t1.nationality, t1.phone, t1.previous_company, t1.profile_photo_url, t1.rating_average, t1.rejection_reason, t1.reviewed_at, t1.submitted_at, t1.updated_at, t1.updated_by_user_id, t1.user_id, t1.years_driving_experience, t1.years_with_company, t2.id, t2.created_at, t2.created_by_user_id, t2.deleted_at, t2.deleted_by_user_id, t2.is_approved, t2.is_deleted, t2.is_system_default, t2.name, t2.operating_cities, t2.updated_at, t2.updated_by_user_id, p0.id, p0.brand, p0.child_seat_available, p0.color, p0.created_at, p0.created_by_user_id, p0.deleted_at, p0.deleted_by_user_id, p0.has_air_conditioning, p0.has_luggage_space, p0.has_wifi, p0.insurance_certificate_url, p0.is_deleted, p0.manufacturing_year, p0.model, p0.passenger_seats, p0.pet_friendly, p0.provider_profile_id, p0.registration_certificate_url, p0.registration_number, p0.smoking_allowed, p0.technical_inspection_certificate_url, p0.updated_at, p0.updated_by_user_id, p0.wheelchair_accessible, p2.id, v0.id, v0.created_at, v0.created_by_user_id, v0.deleted_at, v0.deleted_by_user_id, v0.display_order, v0.is_deleted, v0.is_primary, v0.photo_url, v0.updated_at, v0.updated_by_user_id, v0.vehicle_id, p2.available_cities, p2.created_at, p2.created_by_user_id, p2.deleted_at, p2.deleted_by_user_id, p2.is_deleted, p2.languages_spoken, p2.payment_methods, p2.provider_profile_id, p2.service_types, p2.updated_at, p2.updated_by_user_id
+FROM (
+    SELECT t.id, t.admin_internal_notes, t.age, t.application_status, t.company_id, t.completed_trips_count, t.created_at, t.created_by_user_id, t.current_address, t.current_city, t.custom_company_name, t.date_of_birth, t.deleted_at, t.deleted_by_user_id, t.driver_status, t.email, t.emergency_contact_name, t.emergency_contact_phone, t.employment_type, t.full_name, t.gender, t.is_company_verified, t.is_deleted, t.is_identity_verified, t.is_insurance_verified, t.is_license_verified, t.is_professional_driver, t.is_vehicle_verified, t.license_back_photo_url, t.license_category, t.license_expiration_date, t.license_front_photo_url, t.license_issue_date, t.license_number, t.nationality, t.phone, t.previous_company, t.profile_photo_url, t.rating_average, t.rejection_reason, t.reviewed_at, t.submitted_at, t.updated_at, t.updated_by_user_id, t.user_id, t.years_driving_experience, t.years_with_company
+    FROM transport_provider_profiles AS t
+    WHERE NOT (t.is_deleted) AND t.application_status = 'Approved'
+    ORDER BY t.rating_average DESC, t.completed_trips_count DESC
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t1
+LEFT JOIN (
+    SELECT t0.id, t0.created_at, t0.created_by_user_id, t0.deleted_at, t0.deleted_by_user_id, t0.is_approved, t0.is_deleted, t0.is_system_default, t0.name, t0.operating_cities, t0.updated_at, t0.updated_by_user_id
+    FROM transport_companies AS t0
+    WHERE NOT (t0.is_deleted)
+) AS t2 ON t1.company_id = t2.id
+LEFT JOIN (
+    SELECT p.id, p.brand, p.child_seat_available, p.color, p.created_at, p.created_by_user_id, p.deleted_at, p.deleted_by_user_id, p.has_air_conditioning, p.has_luggage_space, p.has_wifi, p.insurance_certificate_url, p.is_deleted, p.manufacturing_year, p.model, p.passenger_seats, p.pet_friendly, p.provider_profile_id, p.registration_certificate_url, p.registration_number, p.smoking_allowed, p.technical_inspection_certificate_url, p.updated_at, p.updated_by_user_id, p.wheelchair_accessible
+    FROM provider_vehicles AS p
+    WHERE NOT (p.is_deleted)
+) AS p0 ON t1.id = p0.provider_profile_id
+LEFT JOIN (
+    SELECT p1.id, p1.available_cities, p1.created_at, p1.created_by_user_id, p1.deleted_at, p1.deleted_by_user_id, p1.is_deleted, p1.languages_spoken, p1.payment_methods, p1.provider_profile_id, p1.service_types, p1.updated_at, p1.updated_by_user_id
+    FROM provider_services AS p1
+    WHERE NOT (p1.is_deleted)
+) AS p2 ON t1.id = p2.provider_profile_id
+LEFT JOIN (
+    SELECT v.id, v.created_at, v.created_by_user_id, v.deleted_at, v.deleted_by_user_id, v.display_order, v.is_deleted, v.is_primary, v.photo_url, v.updated_at, v.updated_by_user_id, v.vehicle_id
+    FROM vehicle_photos AS v
+    WHERE NOT (v.is_deleted)
+) AS v0 ON p0.id = v0.vehicle_id
+ORDER BY t1.rating_average DESC, t1.completed_trips_count DESC, t1.id, t2.id, p0.id, p2.id
+2026-07-29 08:52:52.837 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.TouristSearch.Queries.SearchPassengerProviders.PassengerProviderSearchResultDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:52:52.865 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.TransportsController.SearchPassengerProviders (TouristSystem.WebApi) in 509.6294ms
+2026-07-29 08:52:52.872 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/transports/search-passenger-providers? - null null
+2026-07-29 08:52:52.909 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:52.895 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.TransportsController.SearchPassengerProviders (TouristSystem.WebApi)'
+2026-07-29 08:52:52.915 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.TransportsController.SearchPassengerProviders (TouristSystem.WebApi)'
+2026-07-29 08:52:52.927 +05:00 [INF] Route matched with {action = "SearchPassengerProviders", controller = "Transports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchPassengerProviders(TouristSystem.Application.Features.TouristSearch.Queries.SearchPassengerProviders.SearchPassengerProvidersQuery) on controller TouristSystem.WebApi.Controllers.TransportsController (TouristSystem.WebApi).
+2026-07-29 08:52:52.918 +05:00 [INF] HTTP GET /api/transports/search-passenger-providers responded 200 in 685.5735 ms
+2026-07-29 08:52:52.961 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM transport_provider_profiles AS t
+WHERE NOT (t.is_deleted) AND t.application_status = 'Approved'
+2026-07-29 08:52:52.977 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/transports/search-passenger-providers? - 200 null application/json; charset=utf-8 877.9844ms
+2026-07-29 08:52:53.046 +05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t1.id, t1.admin_internal_notes, t1.age, t1.application_status, t1.company_id, t1.completed_trips_count, t1.created_at, t1.created_by_user_id, t1.current_address, t1.current_city, t1.custom_company_name, t1.date_of_birth, t1.deleted_at, t1.deleted_by_user_id, t1.driver_status, t1.email, t1.emergency_contact_name, t1.emergency_contact_phone, t1.employment_type, t1.full_name, t1.gender, t1.is_company_verified, t1.is_deleted, t1.is_identity_verified, t1.is_insurance_verified, t1.is_license_verified, t1.is_professional_driver, t1.is_vehicle_verified, t1.license_back_photo_url, t1.license_category, t1.license_expiration_date, t1.license_front_photo_url, t1.license_issue_date, t1.license_number, t1.nationality, t1.phone, t1.previous_company, t1.profile_photo_url, t1.rating_average, t1.rejection_reason, t1.reviewed_at, t1.submitted_at, t1.updated_at, t1.updated_by_user_id, t1.user_id, t1.years_driving_experience, t1.years_with_company, t2.id, t2.created_at, t2.created_by_user_id, t2.deleted_at, t2.deleted_by_user_id, t2.is_approved, t2.is_deleted, t2.is_system_default, t2.name, t2.operating_cities, t2.updated_at, t2.updated_by_user_id, p0.id, p0.brand, p0.child_seat_available, p0.color, p0.created_at, p0.created_by_user_id, p0.deleted_at, p0.deleted_by_user_id, p0.has_air_conditioning, p0.has_luggage_space, p0.has_wifi, p0.insurance_certificate_url, p0.is_deleted, p0.manufacturing_year, p0.model, p0.passenger_seats, p0.pet_friendly, p0.provider_profile_id, p0.registration_certificate_url, p0.registration_number, p0.smoking_allowed, p0.technical_inspection_certificate_url, p0.updated_at, p0.updated_by_user_id, p0.wheelchair_accessible, p2.id, v0.id, v0.created_at, v0.created_by_user_id, v0.deleted_at, v0.deleted_by_user_id, v0.display_order, v0.is_deleted, v0.is_primary, v0.photo_url, v0.updated_at, v0.updated_by_user_id, v0.vehicle_id, p2.available_cities, p2.created_at, p2.created_by_user_id, p2.deleted_at, p2.deleted_by_user_id, p2.is_deleted, p2.languages_spoken, p2.payment_methods, p2.provider_profile_id, p2.service_types, p2.updated_at, p2.updated_by_user_id
+FROM (
+    SELECT t.id, t.admin_internal_notes, t.age, t.application_status, t.company_id, t.completed_trips_count, t.created_at, t.created_by_user_id, t.current_address, t.current_city, t.custom_company_name, t.date_of_birth, t.deleted_at, t.deleted_by_user_id, t.driver_status, t.email, t.emergency_contact_name, t.emergency_contact_phone, t.employment_type, t.full_name, t.gender, t.is_company_verified, t.is_deleted, t.is_identity_verified, t.is_insurance_verified, t.is_license_verified, t.is_professional_driver, t.is_vehicle_verified, t.license_back_photo_url, t.license_category, t.license_expiration_date, t.license_front_photo_url, t.license_issue_date, t.license_number, t.nationality, t.phone, t.previous_company, t.profile_photo_url, t.rating_average, t.rejection_reason, t.reviewed_at, t.submitted_at, t.updated_at, t.updated_by_user_id, t.user_id, t.years_driving_experience, t.years_with_company
+    FROM transport_provider_profiles AS t
+    WHERE NOT (t.is_deleted) AND t.application_status = 'Approved'
+    ORDER BY t.rating_average DESC, t.completed_trips_count DESC
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t1
+LEFT JOIN (
+    SELECT t0.id, t0.created_at, t0.created_by_user_id, t0.deleted_at, t0.deleted_by_user_id, t0.is_approved, t0.is_deleted, t0.is_system_default, t0.name, t0.operating_cities, t0.updated_at, t0.updated_by_user_id
+    FROM transport_companies AS t0
+    WHERE NOT (t0.is_deleted)
+) AS t2 ON t1.company_id = t2.id
+LEFT JOIN (
+    SELECT p.id, p.brand, p.child_seat_available, p.color, p.created_at, p.created_by_user_id, p.deleted_at, p.deleted_by_user_id, p.has_air_conditioning, p.has_luggage_space, p.has_wifi, p.insurance_certificate_url, p.is_deleted, p.manufacturing_year, p.model, p.passenger_seats, p.pet_friendly, p.provider_profile_id, p.registration_certificate_url, p.registration_number, p.smoking_allowed, p.technical_inspection_certificate_url, p.updated_at, p.updated_by_user_id, p.wheelchair_accessible
+    FROM provider_vehicles AS p
+    WHERE NOT (p.is_deleted)
+) AS p0 ON t1.id = p0.provider_profile_id
+LEFT JOIN (
+    SELECT p1.id, p1.available_cities, p1.created_at, p1.created_by_user_id, p1.deleted_at, p1.deleted_by_user_id, p1.is_deleted, p1.languages_spoken, p1.payment_methods, p1.provider_profile_id, p1.service_types, p1.updated_at, p1.updated_by_user_id
+    FROM provider_services AS p1
+    WHERE NOT (p1.is_deleted)
+) AS p2 ON t1.id = p2.provider_profile_id
+LEFT JOIN (
+    SELECT v.id, v.created_at, v.created_by_user_id, v.deleted_at, v.deleted_by_user_id, v.display_order, v.is_deleted, v.is_primary, v.photo_url, v.updated_at, v.updated_by_user_id, v.vehicle_id
+    FROM vehicle_photos AS v
+    WHERE NOT (v.is_deleted)
+) AS v0 ON p0.id = v0.vehicle_id
+ORDER BY t1.rating_average DESC, t1.completed_trips_count DESC, t1.id, t2.id, p0.id, p2.id
+2026-07-29 08:52:53.112 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.TouristSearch.Queries.SearchPassengerProviders.PassengerProviderSearchResultDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:52:53.146 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.TransportsController.SearchPassengerProviders (TouristSystem.WebApi) in 203.2163ms
+2026-07-29 08:52:53.197 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.TransportsController.SearchPassengerProviders (TouristSystem.WebApi)'
+2026-07-29 08:52:53.283 +05:00 [INF] HTTP GET /api/transports/search-passenger-providers responded 200 in 374.1329 ms
+2026-07-29 08:52:53.416 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/transports/search-passenger-providers? - 200 null application/json; charset=utf-8 543.181ms
+2026-07-29 08:52:53.973 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:52:53.974 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:52:54.464 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:54.578 +05:00 [INF] HTTP OPTIONS /api/restaurants responded 204 in 114.4663 ms
+2026-07-29 08:52:54.602 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageNumber=1&pageSize=50 - 204 null null 629.2351ms
+2026-07-29 08:52:54.562 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:55.128 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/restaurants?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:52:55.129 +05:00 [INF] HTTP OPTIONS /api/restaurants responded 204 in 567.7254 ms
+2026-07-29 08:52:55.178 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:55.506 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:52:55.496 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageNumber=1&pageSize=50 - 204 null null 1521.2282ms
+2026-07-29 08:52:55.523 +05:00 [INF] Route matched with {action = "GetList", controller = "Restaurants"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.GetRestaurantsListQuery) on controller TouristSystem.WebApi.Controllers.RestaurantsController (TouristSystem.WebApi).
+2026-07-29 08:52:55.691 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+2026-07-29 08:52:55.828 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.address, r.city, r.created_at, r.created_by_user_id, r.cuisine_type, r.deleted_at, r.deleted_by_user_id, r.description, r.has_delivery, r.has_parking, r.has_wifi, r.image_url, r.is_deleted, r.latitude, r.longitude, r.name, r.opening_hours, r.owner_id, r.phone_number, r.price_range, r.rating_average, r.reviews_count, r.slug, r.status, r.updated_at, r.updated_by_user_id, r.website_url
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+ORDER BY r.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:52:55.920 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.RestaurantsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:52:55.960 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi) in 284.7305ms
+2026-07-29 08:52:55.968 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/restaurants?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:52:56.024 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:52:56.076 +05:00 [INF] HTTP GET /api/restaurants responded 200 in 897.9971 ms
+2026-07-29 08:52:56.090 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/restaurants?pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 962.2843ms
+2026-07-29 08:52:56.059 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:52:56.921 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:52:56.932 +05:00 [INF] Route matched with {action = "GetList", controller = "Restaurants"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.GetRestaurantsListQuery) on controller TouristSystem.WebApi.Controllers.RestaurantsController (TouristSystem.WebApi).
+2026-07-29 08:52:57.830 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+2026-07-29 08:52:57.840 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.address, r.city, r.created_at, r.created_by_user_id, r.cuisine_type, r.deleted_at, r.deleted_by_user_id, r.description, r.has_delivery, r.has_parking, r.has_wifi, r.image_url, r.is_deleted, r.latitude, r.longitude, r.name, r.opening_hours, r.owner_id, r.phone_number, r.price_range, r.rating_average, r.reviews_count, r.slug, r.status, r.updated_at, r.updated_by_user_id, r.website_url
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+ORDER BY r.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:52:57.852 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.RestaurantsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:52:57.856 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi) in 31.7414ms
+2026-07-29 08:52:57.864 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:52:57.872 +05:00 [INF] HTTP GET /api/restaurants responded 200 in 1812.9082 ms
+2026-07-29 08:52:57.883 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/restaurants?pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 1914.9672ms
+2026-07-29 08:53:05.364 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:05.372 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:05.863 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:05.820 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:05.894 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 73.4840 ms
+2026-07-29 08:53:05.921 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageNumber=1&pageSize=50 - 204 null null 557.5776ms
+2026-07-29 08:53:05.877 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 13.8314 ms
+2026-07-29 08:53:06.198 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageNumber=1&pageSize=50 - 204 null null 825.8813ms
+2026-07-29 08:53:06.189 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:06.306 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:06.362 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:06.392 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:53:06.414 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+2026-07-29 08:53:06.454 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+ORDER BY h.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:53:06.517 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:53:06.540 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 130.7545ms
+2026-07-29 08:53:06.542 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:06.576 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:06.558 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:06.609 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:06.617 +05:00 [INF] HTTP GET /api/hotels responded 200 in 310.8522 ms
+2026-07-29 08:53:06.628 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 439.02ms
+2026-07-29 08:53:06.620 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:53:07.039 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+2026-07-29 08:53:07.155 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+ORDER BY h.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:53:07.192 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:53:07.205 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 182.3581ms
+2026-07-29 08:53:07.295 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:07.307 +05:00 [INF] HTTP GET /api/hotels responded 200 in 730.8413 ms
+2026-07-29 08:53:07.324 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 782.4031ms
+2026-07-29 08:53:15.689 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?city=Khujand&pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:15.885 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:15.952 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 66.4762 ms
+2026-07-29 08:53:16.007 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?city=Khujand&pageNumber=1&pageSize=50 - 204 null null 318.7252ms
+2026-07-29 08:53:16.037 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?city=Khujand&pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:16.056 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:16.065 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:16.074 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:53:16.179 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__filterCity_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted) AND lower(h.city) = @__filterCity_0
+2026-07-29 08:53:16.257 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__filterCity_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted) AND lower(h.city) = @__filterCity_0
+ORDER BY h.name
+LIMIT @__p_2 OFFSET @__p_1
+2026-07-29 08:53:16.356 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:53:16.388 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 232.9771ms
+2026-07-29 08:53:16.700 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:16.722 +05:00 [INF] HTTP GET /api/hotels responded 200 in 666.0335 ms
+2026-07-29 08:53:16.741 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?city=Khujand&pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 703.3885ms
+2026-07-29 08:53:28.201 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?city=Hisor&pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:28.668 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:28.726 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 57.7795 ms
+2026-07-29 08:53:29.063 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?city=Hisor&pageNumber=1&pageSize=50 - 204 null null 861.2512ms
+2026-07-29 08:53:29.315 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?city=Hisor&pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:29.927 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:29.936 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:29.980 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:53:30.033 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__filterCity_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted) AND lower(h.city) = @__filterCity_0
+2026-07-29 08:53:30.070 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__filterCity_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted) AND lower(h.city) = @__filterCity_0
+ORDER BY h.name
+LIMIT @__p_2 OFFSET @__p_1
+2026-07-29 08:53:30.365 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:53:30.397 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 379.4175ms
+2026-07-29 08:53:30.449 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:30.499 +05:00 [INF] HTTP GET /api/hotels responded 200 in 572.2162 ms
+2026-07-29 08:53:30.531 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?city=Hisor&pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 1216.6194ms
+2026-07-29 08:53:34.190 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?city=Khorog&pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:34.952 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:35.063 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 111.8118 ms
+2026-07-29 08:53:35.605 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?city=Khorog&pageNumber=1&pageSize=50 - 204 null null 1415.069ms
+2026-07-29 08:53:35.701 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?city=Khorog&pageNumber=1&pageSize=50 - null null
+2026-07-29 08:53:35.788 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:53:35.904 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:35.970 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:53:36.049 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[@__filterCity_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted) AND lower(h.city) = @__filterCity_0
+2026-07-29 08:53:36.200 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__filterCity_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted) AND lower(h.city) = @__filterCity_0
+ORDER BY h.name
+LIMIT @__p_2 OFFSET @__p_1
+2026-07-29 08:53:36.502 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:53:36.530 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 495.3208ms
+2026-07-29 08:53:36.539 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:53:36.555 +05:00 [INF] HTTP GET /api/hotels responded 200 in 767.3454 ms
+2026-07-29 08:53:36.582 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?city=Khorog&pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 881.7479ms
+2026-07-29 08:54:22.188 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?city=Panjakent&pageNumber=1&pageSize=50 - null null
+2026-07-29 08:54:22.688 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:54:22.706 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 17.7150 ms
+2026-07-29 08:54:22.766 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?city=Panjakent&pageNumber=1&pageSize=50 - 204 null null 573.2962ms
+2026-07-29 08:54:22.820 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?city=Panjakent&pageNumber=1&pageSize=50 - null null
+2026-07-29 08:54:22.916 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:54:22.937 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:54:22.977 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:54:23.027 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__filterCity_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted) AND lower(h.city) = @__filterCity_0
+2026-07-29 08:54:23.077 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__filterCity_0='?', @__p_2='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted) AND lower(h.city) = @__filterCity_0
+ORDER BY h.name
+LIMIT @__p_2 OFFSET @__p_1
+2026-07-29 08:54:23.519 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:54:23.544 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 523.7167ms
+2026-07-29 08:54:23.584 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:54:23.602 +05:00 [INF] HTTP GET /api/hotels responded 200 in 686.8656 ms
+2026-07-29 08:54:23.620 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?city=Panjakent&pageNumber=1&pageSize=50 - 200 null application/json; charset=utf-8 799.9049ms
+2026-07-29 08:58:56.138 +05:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Favorite'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-29 08:58:56.192 +05:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'Notification'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-29 08:58:56.194 +05:00 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-29 08:58:57.059 +05:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM transport_companies AS t
+    WHERE NOT (t.is_deleted))
+2026-07-29 08:58:57.280 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE NOT (u.is_deleted) AND u.role = 'SuperAdmin')
+2026-07-29 08:58:57.344 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'hotelowner@touristsystem.com'
+LIMIT 1
+2026-07-29 08:58:57.508 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'restaurantowner@touristsystem.com'
+LIMIT 1
+2026-07-29 08:58:57.522 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'dilshod@touristsystem.com'
+LIMIT 1
+2026-07-29 08:58:57.537 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'madina@touristsystem.com'
+LIMIT 1
+2026-07-29 08:58:57.551 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'transportowner@touristsystem.com'
+LIMIT 1
+2026-07-29 08:58:57.561 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT u.id, u.created_at, u.created_by_user_id, u.deleted_at, u.deleted_by_user_id, u.email, u.email_confirmed, u.full_name, u.is_active, u.is_deleted, u.last_login_at, u.password_hash, u.phone_number, u.profile_image_url, u.role, u.updated_at, u.updated_by_user_id
+FROM users AS u
+WHERE NOT (u.is_deleted) AND u.email = 'tourist@touristsystem.com'
+LIMIT 1
+2026-07-29 08:58:57.720 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM tourist_places AS t
+    WHERE NOT (t.is_deleted))
+2026-07-29 08:58:57.768 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM hotels AS h
+    WHERE NOT (h.is_deleted))
+2026-07-29 08:58:57.787 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM restaurants AS r
+    WHERE NOT (r.is_deleted))
+2026-07-29 08:58:57.816 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM guides AS g
+    WHERE NOT (g.is_deleted))
+2026-07-29 08:58:57.835 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM transports AS t
+    WHERE NOT (t.is_deleted))
+2026-07-29 08:58:57.994 +05:00 [INF] User profile is available. Using 'C:\Users\Сухайб\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-29 08:58:58.058 +05:00 [WRN] The WebRootPath was not found: C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.WebApi\wwwroot. Static files may be unavailable.
+2026-07-29 08:58:58.096 +05:00 [INF] Now listening on: http://localhost:5010
+2026-07-29 08:58:58.100 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-29 08:58:58.101 +05:00 [INF] Hosting environment: Development
+2026-07-29 08:58:58.103 +05:00 [INF] Content root path: C:\Users\Сухайб\Desktop\TouristSystem\src\TouristSystem.WebApi
+2026-07-29 08:59:09.974 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:59:09.993 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:59:09.974 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:59:12.125 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:59:12.141 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:59:12.472 +05:00 [WRN] Failed to determine the https port for redirect.
+2026-07-29 08:59:13.079 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:13.079 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:13.080 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:13.098 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 21.7572 ms
+2026-07-29 08:59:13.097 +05:00 [INF] HTTP OPTIONS /api/places responded 204 in 65.3477 ms
+2026-07-29 08:59:13.094 +05:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 627.0393 ms
+2026-07-29 08:59:13.128 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - 204 null null 986.7348ms
+2026-07-29 08:59:13.129 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/hotels?pageSize=6 - 204 null null 3159.0716ms
+2026-07-29 08:59:13.129 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - 204 null null 1004.1794ms
+2026-07-29 08:59:13.211 +05:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:59:13.238 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:59:13.241 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:59:13.245 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:13.263 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:13.263 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:13.264 +05:00 [INF] HTTP OPTIONS /api/restaurants responded 204 in 19.0987 ms
+2026-07-29 08:59:13.279 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - 204 null null 68.604ms
+2026-07-29 08:59:13.296 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:13.298 +05:00 [INF] HTTP OPTIONS /api/restaurants responded 204 in 2.3474 ms
+2026-07-29 08:59:13.314 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/restaurants?pageSize=6 - 204 null null 3354.8652ms
+2026-07-29 08:59:13.329 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:59:13.341 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:13.486 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:13.486 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:13.486 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:13.763 +05:00 [INF] Route matched with {action = "GetList", controller = "Places"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Places.Queries.GetPlacesList.GetPlacesListQuery) on controller TouristSystem.WebApi.Controllers.PlacesController (TouristSystem.WebApi).
+2026-07-29 08:59:13.763 +05:00 [INF] Route matched with {action = "GetList", controller = "Restaurants"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.GetRestaurantsListQuery) on controller TouristSystem.WebApi.Controllers.RestaurantsController (TouristSystem.WebApi).
+2026-07-29 08:59:13.763 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:59:14.693 +05:00 [INF] Executed DbCommand (183ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+2026-07-29 08:59:14.739 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:14.817 +05:00 [INF] HTTP OPTIONS /api/places responded 204 in 77.4567 ms
+2026-07-29 08:59:14.826 +05:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5010/api/places?pageSize=6 - 204 null null 4858.1455ms
+2026-07-29 08:59:14.874 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+2026-07-29 08:59:14.934 +05:00 [INF] Executed DbCommand (67ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+2026-07-29 08:59:15.017 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.address, r.city, r.created_at, r.created_by_user_id, r.cuisine_type, r.deleted_at, r.deleted_by_user_id, r.description, r.has_delivery, r.has_parking, r.has_wifi, r.image_url, r.is_deleted, r.latitude, r.longitude, r.name, r.opening_hours, r.owner_id, r.phone_number, r.price_range, r.rating_average, r.reviews_count, r.slug, r.status, r.updated_at, r.updated_by_user_id, r.website_url
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+ORDER BY r.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:59:15.028 +05:00 [INF] Executed DbCommand (114ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id, t.address, t.city, t.created_at, t.created_by_user_id, t.deleted_at, t.deleted_by_user_id, t.description, t.entry_fee, t.image_url, t.is_deleted, t.latitude, t.longitude, t.name, t.rating_average, t.reviews_count, t.slug, t.status, t.updated_at, t.updated_by_user_id
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+ORDER BY t.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:59:15.274 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Places.Queries.GetPlacesList.PlacesListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:59:15.279 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.RestaurantsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:59:15.373 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi) in 1571.2629ms
+2026-07-29 08:59:15.373 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi) in 1572.6396ms
+2026-07-29 08:59:15.375 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:15.376 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:15.378 +05:00 [INF] HTTP GET /api/places responded 200 in 2115.0909 ms
+2026-07-29 08:59:15.381 +05:00 [INF] HTTP GET /api/restaurants responded 200 in 2040.3472 ms
+2026-07-29 08:59:15.390 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - 200 null application/json; charset=utf-8 2151.7668ms
+2026-07-29 08:59:15.394 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - 200 null application/json; charset=utf-8 2064.7939ms
+2026-07-29 08:59:15.405 +05:00 [INF] Executed DbCommand (380ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+ORDER BY h.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:59:15.423 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - null null
+2026-07-29 08:59:15.423 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - null null
+2026-07-29 08:59:15.562 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:59:15.571 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:15.573 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:15.586 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:15.586 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:15.589 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 1783.2348ms
+2026-07-29 08:59:15.590 +05:00 [INF] Route matched with {action = "GetList", controller = "Restaurants"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.GetRestaurantsListQuery) on controller TouristSystem.WebApi.Controllers.RestaurantsController (TouristSystem.WebApi).
+2026-07-29 08:59:15.591 +05:00 [INF] Route matched with {action = "GetList", controller = "Places"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Places.Queries.GetPlacesList.GetPlacesListQuery) on controller TouristSystem.WebApi.Controllers.PlacesController (TouristSystem.WebApi).
+2026-07-29 08:59:15.593 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:15.638 +05:00 [INF] HTTP GET /api/hotels responded 200 in 2375.5835 ms
+2026-07-29 08:59:15.639 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - 200 null application/json; charset=utf-8 2398.8828ms
+2026-07-29 08:59:15.624 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+2026-07-29 08:59:15.643 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+2026-07-29 08:59:15.743 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - null null
+2026-07-29 08:59:15.759 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t.id, t.address, t.city, t.created_at, t.created_by_user_id, t.deleted_at, t.deleted_by_user_id, t.description, t.entry_fee, t.image_url, t.is_deleted, t.latitude, t.longitude, t.name, t.rating_average, t.reviews_count, t.slug, t.status, t.updated_at, t.updated_by_user_id
+FROM tourist_places AS t
+WHERE NOT (t.is_deleted)
+ORDER BY t.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:59:15.760 +05:00 [INF] CORS policy execution successful.
+2026-07-29 08:59:15.763 +05:00 [INF] Executing endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:15.763 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Places.Queries.GetPlacesList.PlacesListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:59:15.763 +05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.address, r.city, r.created_at, r.created_by_user_id, r.cuisine_type, r.deleted_at, r.deleted_by_user_id, r.description, r.has_delivery, r.has_parking, r.has_wifi, r.image_url, r.is_deleted, r.latitude, r.longitude, r.name, r.opening_hours, r.owner_id, r.phone_number, r.price_range, r.rating_average, r.reviews_count, r.slug, r.status, r.updated_at, r.updated_by_user_id, r.website_url
+FROM restaurants AS r
+WHERE NOT (r.is_deleted)
+ORDER BY r.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:59:15.771 +05:00 [INF] Route matched with {action = "GetList", controller = "Hotels"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetList(TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.GetHotelsListQuery) on controller TouristSystem.WebApi.Controllers.HotelsController (TouristSystem.WebApi).
+2026-07-29 08:59:15.776 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi) in 147.7203ms
+2026-07-29 08:59:15.796 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.PlacesController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:15.789 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Restaurants.Queries.GetRestaurantsList.RestaurantsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:59:15.797 +05:00 [INF] HTTP GET /api/places responded 200 in 223.3602 ms
+2026-07-29 08:59:15.805 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+2026-07-29 08:59:15.807 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi) in 212.0157ms
+2026-07-29 08:59:15.813 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/places?pageSize=6 - 200 null application/json; charset=utf-8 390.0515ms
+2026-07-29 08:59:15.822 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.RestaurantsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:15.824 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT h.id, h.address, h.available_rooms, h.city, h.created_at, h.created_by_user_id, h.deleted_at, h.deleted_by_user_id, h.description, h.has_gym, h.has_parking, h.has_pool, h.has_restaurant, h.has_wifi, h.image_url, h.is_budget, h.is_deleted, h.is_family_friendly, h.is_luxury, h.latitude, h.longitude, h.name, h.owner_id, h.phone_number, h.price_per_night, h.rating_average, h.reviews_count, h.slug, h.stars, h.status, h.total_rooms, h.updated_at, h.updated_by_user_id, h.website_url
+FROM hotels AS h
+WHERE NOT (h.is_deleted)
+ORDER BY h.name
+LIMIT @__p_1 OFFSET @__p_0
+2026-07-29 08:59:15.826 +05:00 [INF] HTTP GET /api/restaurants responded 200 in 254.8104 ms
+2026-07-29 08:59:15.855 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/restaurants?pageSize=6 - 200 null application/json; charset=utf-8 432.0566ms
+2026-07-29 08:59:15.841 +05:00 [INF] Executing OkObjectResult, writing value of type 'TouristSystem.Application.Common.Models.PagedList`1[[TouristSystem.Application.Features.Hotels.Queries.GetHotelsList.HotelsListDto, TouristSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-29 08:59:15.868 +05:00 [INF] Executed action TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi) in 76.2162ms
+2026-07-29 08:59:15.871 +05:00 [INF] Executed endpoint 'TouristSystem.WebApi.Controllers.HotelsController.GetList (TouristSystem.WebApi)'
+2026-07-29 08:59:15.872 +05:00 [INF] HTTP GET /api/hotels responded 200 in 111.9532 ms
+2026-07-29 08:59:15.875 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5010/api/hotels?pageSize=6 - 200 null application/json; charset=utf-8 131.9973ms
