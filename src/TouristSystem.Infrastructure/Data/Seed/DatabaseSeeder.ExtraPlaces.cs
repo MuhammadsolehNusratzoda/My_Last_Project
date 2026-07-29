@@ -18,7 +18,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Ancient Town of Panjakent",
                 Slug = "ancient-town-of-panjakent",
-                Description = "Sprawling 5th-8th century ruins of the pre-Islamic Sogdian capital, abandoned after the Arab conquest and never rebuilt, so its streets, temples, and merchant houses remain traceable underfoot. The site yielded spectacular wall paintings now split between the Hermitage and Dushanbe's National Museum of Antiquities.",
+                Description = "Sprawling 5th-8th century ruins of the pre-Islamic Sogdian capital, abandoned after the Arab conquest and never rebuilt, so its streets, temples, and merchant houses remain traceable underfoot.",
                 City = "Panjakent",
                 Address = "Devashtich Street, southeastern outskirts of Panjakent",
                 Latitude = 39.4881m,
@@ -34,7 +34,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Sarazm Archaeological Site",
                 Slug = "sarazm-archaeological-site",
-                Description = "A UNESCO World Heritage proto-urban settlement dating back roughly 5,500 years, Sarazm was one of Central Asia's earliest cities, revealing advanced metallurgy, irrigation, and trade links stretching toward the Indus Valley.",
+                Description = "A UNESCO World Heritage proto-urban settlement dating back roughly 5,500 years, Sarazm was one of Central Asia's earliest cities, revealing advanced metallurgy, irrigation, and trade links.",
                 City = "Panjakent",
                 Address = "Sohibnazar village, Panjakent District (15 km west of Panjakent)",
                 Latitude = 39.5083m,
@@ -50,7 +50,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Rudaki Republican Museum of Regional History",
                 Slug = "rudaki-museum-panjakent",
-                Description = "Panjakent's principal museum holds more than 98,000 artifacts spanning the Bronze Age through the Sogdian era, including reproductions of the famous frescoes recovered from the ancient city ruins, plus natural-history exhibits of the Zeravshan Valley.",
+                Description = "Panjakent's principal museum holds more than 98,000 artifacts spanning the Bronze Age through the Sogdian era, including reproductions of the famous frescoes recovered from the ancient city ruins.",
                 City = "Panjakent",
                 Address = "Rudaki Street, central Panjakent",
                 Latitude = 39.4958m,
@@ -66,7 +66,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Rudaki Mausoleum",
                 Slug = "rudaki-mausoleum-panjrud",
-                Description = "A polygonal red-brick mausoleum crowned with a blue-tiled dome, built in 1958 over the excavated grave of poet Rudaki in his home village of Panjrud. Blind in his final years, Rudaki died here in 941 after a celebrated career at the Samanid court.",
+                Description = "A polygonal red-brick mausoleum crowned with a blue-tiled dome, built in 1958 over the excavated grave of poet Rudaki in his home village of Panjrud.",
                 City = "Panjakent",
                 Address = "Panjrud village, Panjakent District",
                 Latitude = 39.3550m,
@@ -78,45 +78,13 @@ public static partial class DatabaseSeeder
                 Status = EntityStatus.Approved,
                 CreatedAt = System.DateTime.UtcNow
             },
-            new Place
-            {
-                Name = "Panjakent Bazaar",
-                Slug = "panjakent-bazaar",
-                Description = "A lively, distinctly circular covered market held up by white columns at the heart of town, where locals trade meat, dairy, dried fruit, spices, and fresh Zeravshan Valley produce much as they have for generations.",
-                City = "Panjakent",
-                Address = "Rudaki Avenue, central Panjakent",
-                Latitude = 39.4945m,
-                Longitude = 67.6090m,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/8b/Pendzhikent_Market%2C_Tajikistan_%28494465%29.jpg",
-                EntryFee = 0.00m,
-                RatingAverage = 4.4m,
-                ReviewsCount = 76,
-                Status = EntityStatus.Approved,
-                CreatedAt = System.DateTime.UtcNow
-            },
-            new Place
-            {
-                Name = "Kulikalon Lakes",
-                Slug = "kulikalon-lakes",
-                Description = "A trio of turquoise glacial lakes cradled beneath sheer granite walls in the Fann Mountains, reached via the alpine village of Artuch. Second in size only to Iskanderkul among the Fann Mountains' lakes, it is a magnet for trekkers and climbers.",
-                City = "Panjakent",
-                Address = "Artuch Valley, Fann Mountains, Panjakent District",
-                Latitude = 39.2569m,
-                Longitude = 68.1636m,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/b/bb/Kulikalon_Lake_and_Fann_Mountains%2C_Tajikistan.jpg",
-                EntryFee = 0.00m,
-                RatingAverage = 4.8m,
-                ReviewsCount = 94,
-                Status = EntityStatus.Approved,
-                CreatedAt = System.DateTime.UtcNow
-            },
 
             // ---------- Khujand ----------
             new Place
             {
                 Name = "Sheikh Muslihiddin Mosque and Mausoleum",
                 Slug = "sheikh-muslihiddin-mosque-and-mausoleum",
-                Description = "This domed 16th-century mosque-mausoleum complex in central Khujand honors Muslihiddin Khujandi, a 12th-century poet, Sufi teacher and ruler revered as a local saint. It includes a mosque with carved wooden columns and a 19th-century 20-meter minaret.",
+                Description = "This domed 16th-century mosque-mausoleum complex in central Khujand honors Muslihiddin Khujandi, a 12th-century poet, Sufi teacher and ruler revered as a local saint.",
                 City = "Khujand",
                 Address = "Central Khujand, near Panjshanbe Bazaar square, Khujand",
                 Latitude = 40.2839m,
@@ -132,7 +100,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Khujand Fortress",
                 Slug = "khujand-fortress",
-                Description = "Also known as the Citadel of Kurush-Shah, this fortification traces its origins back more than 2,500 years to the era of Alexander the Great's Alexandria Eschate. The restored walls and towers overlook the Syr Darya river.",
+                Description = "Also known as the Citadel of Kurush-Shah, this fortification traces its origins back more than 2,500 years to the era of Alexander the Great's Alexandria Eschate.",
                 City = "Khujand",
                 Address = "Ismoil Somoni Avenue, near the Syr Darya embankment, Khujand",
                 Latitude = 40.2852m,
@@ -148,7 +116,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Historical Museum of Sughd",
                 Slug = "historical-museum-of-sughd",
-                Description = "Founded in 1986 to mark Khujand's 2,500th anniversary, this is one of Tajikistan's largest museums, housing over 15,000 artifacts within the reconstructed fortress walls, including marble mosaics of Alexander the Great's campaigns.",
+                Description = "Founded in 1986 to mark Khujand's 2,500th anniversary, this is one of Tajikistan's largest museums, housing over 15,000 artifacts within the reconstructed fortress walls.",
                 City = "Khujand",
                 Address = "Khujand Fortress complex, Ismoil Somoni Avenue, Khujand",
                 Latitude = 40.2852m,
@@ -164,7 +132,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Kamoli Khujandi Literary Museum",
                 Slug = "kamoli-khujandi-literary-museum",
-                Description = "Set inside Kamoli Khujandi Park on the southern bank of the Syr Darya, this museum is dedicated to the life and works of the 14th-century Persian poet Kamol Khujandi, linked to the opposite bank by Khujand's cable car.",
+                Description = "Set inside Kamoli Khujandi Park on the southern bank of the Syr Darya, this museum is dedicated to the life and works of the 14th-century Persian poet Kamol Khujandi.",
                 City = "Khujand",
                 Address = "Kamoli Khujandi Park, south bank of Syr Darya, Khujand",
                 Latitude = 40.2877m,
@@ -178,33 +146,17 @@ public static partial class DatabaseSeeder
             },
             new Place
             {
-                Name = "Kamol Khujandi Monument",
-                Slug = "kamol-khujandi-monument",
-                Description = "Erected in 1996 by sculptor K. Nadirov, this seated bronze statue of the beloved poet Kamol Khujandi is the centerpiece of Kamoli Khujandi Park, one of the city's most photographed tributes to Tajik literary heritage.",
+                Name = "Arbob Palace",
+                Slug = "arbob-palace",
+                Description = "A magnificent cultural palace built in the 1950s modeled after the St. Petersburg Peterhof palace, featuring spectacular fountains, beautiful gardens, and hand-painted wooden ceilings. It is historically significant as the site where the independence of Tajikistan was declared.",
                 City = "Khujand",
-                Address = "Kamoli Khujandi Park, Khujand",
-                Latitude = 40.2875m,
-                Longitude = 69.6130m,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/5/59/Kamol_Khujandi_monument_in_Khujand.jpg",
-                EntryFee = 0.00m,
-                RatingAverage = 4.5m,
-                ReviewsCount = 29,
-                Status = EntityStatus.Approved,
-                CreatedAt = System.DateTime.UtcNow
-            },
-            new Place
-            {
-                Name = "Alexandria Eschate Ancient City Walls",
-                Slug = "alexandria-eschate-ancient-city-walls",
-                Description = "These reconstructed ramparts mark the site of Alexandria Eschate (\"Alexandria the Farthest\"), the fortified city founded by Alexander the Great in 329 BC at what is now Khujand, a striking reminder of the city's ancient Silk Road origins.",
-                City = "Khujand",
-                Address = "Khujand Fortress grounds, Khujand",
-                Latitude = 40.2848m,
-                Longitude = 69.6188m,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/f/f5/Alexander_the_Great_city_in_Khujand%2C_Tajikistan.jpg",
-                EntryFee = 0.00m,
-                RatingAverage = 4.2m,
-                ReviewsCount = 25,
+                Address = "Arbob Hill, Ghafurov District, near Khujand",
+                Latitude = 40.2692m,
+                Longitude = 69.6917m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/f/f1/%D0%94%D0%B2%D0%BE%D1%80%D0%B5%D1%86_%D0%90%D1%80%D0%B1%D0%BE%D0%B1%2C_%D0%A1%D0%BE%D0%B3%D0%B4%D0%B8%D0%B9%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB..JPG",
+                EntryFee = 1.50m,
+                RatingAverage = 4.8m,
+                ReviewsCount = 145,
                 Status = EntityStatus.Approved,
                 CreatedAt = System.DateTime.UtcNow
             },
@@ -214,7 +166,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Ismaili Centre Khorog",
                 Slug = "ismaili-centre-khorog",
-                Description = "A striking community and cultural centre on the bank of the Gunt River, opened in December 2018 and funded by the Aga Khan Foundation. Its design blends Pamiri-house motifs with modern glass and timber architecture.",
+                Description = "A striking community and cultural centre on the bank of the Gunt River, opened in December 2018. Its design blends Pamiri-house motifs with modern glass and timber architecture.",
                 City = "Khorog",
                 Address = "Gunt River embankment, Khorog",
                 Latitude = 37.4933m,
@@ -230,7 +182,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Khorog City Park",
                 Slug = "khorog-city-park",
-                Description = "A shaded riverside park on the north bank of the Gunt River, lined with tall poplar trees and renovated by the Aga Khan Trust for Culture in 2009. Paved walkways, fountains, and an open-air theatre make it the social heart of the city.",
+                Description = "A shaded riverside park on the north bank of the Gunt River, lined with tall poplar trees. Paved walkways, fountains, and an open-air theatre make it the social heart of the city.",
                 City = "Khorog",
                 Address = "Davronov Street, Khorog",
                 Latitude = 37.4935m,
@@ -246,7 +198,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "World War II Memorial, Khorog",
                 Slug = "world-war-ii-memorial-khorog",
-                Description = "A Soviet-era memorial complex on Lenin Street depicting a soldier in heroic pose atop a snow-cap-shaped plinth, with plaques listing local soldiers killed in 1941-1945.",
+                Description = "A Soviet-era memorial complex depicting a soldier in heroic pose atop a snow-cap-shaped plinth, with plaques listing local soldiers killed in 1941-1945.",
                 City = "Khorog",
                 Address = "Lenin Street, Khorog",
                 Latitude = 37.4908m,
@@ -262,7 +214,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Khorog Regional Museum",
                 Slug = "khorog-regional-museum",
-                Description = "Housed in a Soviet-era theatre building, this is the largest museum in Gorno-Badakhshan, displaying Pamiri textiles and traditional dress, regional geology and mineral samples, and artifacts from the Soviet period.",
+                Description = "Housed in a Soviet-era theatre building, this museum displays Pamiri textiles, traditional dress, regional geology, mineral samples, and artifacts from the Soviet period.",
                 City = "Khorog",
                 Address = "near Lenin Street, Khorog",
                 Latitude = 37.4930m,
@@ -278,7 +230,7 @@ public static partial class DatabaseSeeder
             {
                 Name = "Khorog Bazaar",
                 Slug = "khorog-bazaar",
-                Description = "The bustling central market just west of downtown on Lenin Street, offering fresh produce, dried fruits and nuts, herbs and spices. On Saturdays it links to a unique cross-border market where Afghan traders cross the Tem bridge to sell goods.",
+                Description = "The bustling central market just west of downtown on Lenin Street, offering fresh produce, dried fruits, nuts, herbs, and spices.",
                 City = "Khorog",
                 Address = "Lenin Street, Khorog",
                 Latitude = 37.4951m,
@@ -290,19 +242,167 @@ public static partial class DatabaseSeeder
                 Status = EntityStatus.Approved,
                 CreatedAt = System.DateTime.UtcNow
             },
+
+            // ---------- Dushanbe ----------
             new Place
             {
-                Name = "Ismail Somoni Statue, Khorog",
-                Slug = "ismail-somoni-statue-khorog",
-                Description = "A bronze statue of Ismail Somoni, the 9th-10th century founder-figure of the Tajik nation, set in a small park near Khorog State University. The dramatic granite plinth frames the statue against the surrounding Pamir peaks.",
-                City = "Khorog",
-                Address = "Lenin Street, near Khorog State University, Khorog",
-                Latitude = 37.4940m,
-                Longitude = 71.5495m,
-                ImageUrl = "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
+                Name = "National Museum of Tajikistan",
+                Slug = "national-museum-of-tajikistan",
+                Description = "A modern museum housing over 22,000 exhibits showcasing the history, culture, and nature of Tajikistan, featuring a replica of the giant sleeping Buddha.",
+                City = "Dushanbe",
+                Address = "Ismoil Somoni Avenue 11, Dushanbe",
+                Latitude = 38.5815m,
+                Longitude = 68.7801m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/b/b3/Dushanbe_National_Museum.jpg",
+                EntryFee = 5.00m,
+                RatingAverage = 4.7m,
+                ReviewsCount = 92,
+                Status = EntityStatus.Approved,
+                CreatedAt = System.DateTime.UtcNow
+            },
+            new Place
+            {
+                Name = "Rudaki Park",
+                Slug = "rudaki-park-dushanbe",
+                Description = "A lush, beautifully landscaped green park in central Dushanbe featuring fountains, walking paths, and the iconic statue of the classical Persian poet Rudaki under a golden canopy.",
+                City = "Dushanbe",
+                Address = "Rudaki Avenue, Dushanbe",
+                Latitude = 38.5790m,
+                Longitude = 68.7835m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/e/eb/Rudaki_Park%2C_Dushanbe.jpg",
                 EntryFee = 0.00m,
-                RatingAverage = 4.1m,
-                ReviewsCount = 24,
+                RatingAverage = 4.8m,
+                ReviewsCount = 105,
+                Status = EntityStatus.Approved,
+                CreatedAt = System.DateTime.UtcNow
+            },
+            new Place
+            {
+                Name = "Victory Park",
+                Slug = "victory-park-dushanbe",
+                Description = "Located on a hill offering panoramic views of Dushanbe, this park features a memorial to the Great Patriotic War with an eternal flame and steps leading to a grand monument.",
+                City = "Dushanbe",
+                Address = "Victory Park, Dushanbe",
+                Latitude = 38.5885m,
+                Longitude = 68.8055m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/c/cc/Victory_Park_Dushanbe.jpg",
+                EntryFee = 0.00m,
+                RatingAverage = 4.4m,
+                ReviewsCount = 68,
+                Status = EntityStatus.Approved,
+                CreatedAt = System.DateTime.UtcNow
+            },
+            new Place
+            {
+                Name = "Mehrgon Bazaar",
+                Slug = "mehrgon-bazaar",
+                Description = "A grand indoor bazaar built with classical Tajik architectural elements, high columns, and a glass dome, offering a colorful display of fresh fruits, nuts, flatbreads, and traditional sweets.",
+                City = "Dushanbe",
+                Address = "Mehran Street, Dushanbe",
+                Latitude = 38.5992m,
+                Longitude = 68.7990m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/af/Mehrgon_Bazaar_Dushanbe.jpg",
+                EntryFee = 0.00m,
+                RatingAverage = 4.6m,
+                ReviewsCount = 84,
+                Status = EntityStatus.Approved,
+                CreatedAt = System.DateTime.UtcNow
+            },
+            new Place
+            {
+                Name = "Ismoil Somoni Monument",
+                Slug = "ismoil-somoni-monument-dushanbe",
+                Description = "A majestic 13-meter bronze statue of Ismoil Somoni, the founder of the 10th-century Samanid dynasty, set under an impressive 40-meter golden arch in Dousti Square.",
+                City = "Dushanbe",
+                Address = "Dousti Square, Dushanbe",
+                Latitude = 38.5739m,
+                Longitude = 68.7875m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ea/Ismail_Somoni_Monument_Dushanbe.jpg",
+                EntryFee = 0.00m,
+                RatingAverage = 4.9m,
+                ReviewsCount = 195,
+                Status = EntityStatus.Approved,
+                CreatedAt = System.DateTime.UtcNow
+            },
+
+            // ---------- Hisor ----------
+            new Place
+            {
+                Name = "Old Madrasa (Madrasai Kuhna)",
+                Slug = "old-madrasa-hisor",
+                Description = "A historic 16th-century religious school located opposite the fortress, featuring brick archways, a central courtyard, and cells which now host the local museum.",
+                City = "Hisor",
+                Address = "Historical Reserve, Hisor",
+                Latitude = 38.5265m,
+                Longitude = 68.5530m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/0/07/Hisor_Madrasa_Tajikistan.jpg",
+                EntryFee = 1.00m,
+                RatingAverage = 4.6m,
+                ReviewsCount = 47,
+                Status = EntityStatus.Approved,
+                CreatedAt = System.DateTime.UtcNow
+            },
+            new Place
+            {
+                Name = "Mausoleum of Makhdumi Azam",
+                Slug = "mausoleum-of-makhdumi-azam",
+                Description = "A sacred 16th-century mausoleum dedicated to the Sufi teacher Makhdumi Azam, situated next to the fortress and visited by many local pilgrims.",
+                City = "Hisor",
+                Address = "Historical Reserve, Hisor",
+                Latitude = 38.5270m,
+                Longitude = 68.5535m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/e/e0/Makhdumi_Azam_Mausoleum_Hissar.jpg",
+                EntryFee = 0.00m,
+                RatingAverage = 4.5m,
+                ReviewsCount = 31,
+                Status = EntityStatus.Approved,
+                CreatedAt = System.DateTime.UtcNow
+            },
+            new Place
+            {
+                Name = "Caravanserai (Khanga)",
+                Slug = "caravanserai-hisor",
+                Description = "The remains of a traditional roadside inn where merchants and caravans traveling along the Silk Road stayed, located close to the fortress walls.",
+                City = "Hisor",
+                Address = "Historical Reserve, Hisor",
+                Latitude = 38.5260m,
+                Longitude = 68.5520m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/3/3b/Pamir_Mountains%2C_Tajikistan%2C_06-04-2008.jpg",
+                EntryFee = 0.00m,
+                RatingAverage = 4.2m,
+                ReviewsCount = 18,
+                Status = EntityStatus.Approved,
+                CreatedAt = System.DateTime.UtcNow
+            },
+            new Place
+            {
+                Name = "Historical Museum of Hisor",
+                Slug = "historical-museum-of-hisor",
+                Description = "A fascinating museum located inside the Old Madrasa displaying archaeological finds from Hisor, including ancient coins, weapons, clothing, and pottery.",
+                City = "Hisor",
+                Address = "Madrasai Kuhna, Hisor",
+                Latitude = 38.5264m,
+                Longitude = 68.5528m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/3/39/Hisor_Fortress_%2817230862984%29.jpg",
+                EntryFee = 1.00m,
+                RatingAverage = 4.5m,
+                ReviewsCount = 38,
+                Status = EntityStatus.Approved,
+                CreatedAt = System.DateTime.UtcNow
+            },
+            new Place
+            {
+                Name = "Shambari Mineral Springs",
+                Slug = "shambari-mineral-springs",
+                Description = "A famous health resort located in the scenic hills above Hisor, known for its natural therapeutic mineral waters, spa treatments, and clean mountain air.",
+                City = "Hisor",
+                Address = "Shambari Village, Hisor District",
+                Latitude = 38.6433m,
+                Longitude = 68.5333m,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/2/23/Iskander-kul%2C_Tajikistan.JPG",
+                EntryFee = 0.00m,
+                RatingAverage = 4.3m,
+                ReviewsCount = 22,
                 Status = EntityStatus.Approved,
                 CreatedAt = System.DateTime.UtcNow
             }

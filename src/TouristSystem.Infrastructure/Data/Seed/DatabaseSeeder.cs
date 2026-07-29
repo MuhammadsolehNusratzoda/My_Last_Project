@@ -163,6 +163,32 @@ public static partial class DatabaseSeeder
         var guideUser2Id = guideUser2.Id;
         var transportOwnerId = transportOwner.Id;
 
+        // Force a re-seed if the database currently has fewer than 30 entries OR contains old placeholder Unsplash links OR contains the old Alexandria walls slug OR is missing the new hotels OR has broken image URLs
+        if (context.Places.Count() < 30 || context.Hotels.Count() < 30 || context.Restaurants.Count() < 30 ||
+            context.Places.Any(p => p.Slug == "kokhi-navruz" && p.ImageUrl != null && p.ImageUrl.Contains("unsplash.com")) ||
+            context.Places.Any(p => p.Slug == "alexandria-eschate-ancient-city-walls") ||
+            context.Places.Any(p => p.Slug == "arbob-palace" && p.ImageUrl != null && p.ImageUrl.Contains("Arbob_Palace.jpg")) ||
+            context.Hotels.Any(h => h.Slug == "dushanbe-serena-hotel" && h.ImageUrl != null && h.ImageUrl.Contains("e/e0/Interior_of_the_Serena")) ||
+            !context.Hotels.Any(h => h.Slug == "rumi-hotel-dushanbe") ||
+            !context.Hotels.Any(h => h.Slug == "parliament-palace-hotel-khujand") ||
+            !context.Hotels.Any(h => h.Slug == "hotel-rudaki-plaza-panjakent") ||
+            !context.Hotels.Any(h => h.Slug == "hisor-fortress-view-hotel") ||
+            !context.Hotels.Any(h => h.Slug == "the-royal-kulob") ||
+            !context.Hotels.Any(h => h.Slug == "bokhtariyon-hotel-bokhtar") ||
+            !context.Hotels.Any(h => h.Slug == "khorog-serena-inn"))
+        {
+            // Clear all dependent tables to prevent foreign key errors
+            context.Reviews.RemoveRange(context.Reviews);
+            context.Bookings.RemoveRange(context.Bookings);
+            context.Favorites.RemoveRange(context.Favorites);
+            
+            // Clear core tables
+            context.Places.RemoveRange(context.Places);
+            context.Hotels.RemoveRange(context.Hotels);
+            context.Restaurants.RemoveRange(context.Restaurants);
+            context.SaveChanges();
+        }
+
         // 2. Seed Places (Destinations)
         if (!context.Places.Any())
         {
@@ -177,7 +203,7 @@ public static partial class DatabaseSeeder
                     Address = "Somoni Avenue 46, Dushanbe",
                     Latitude = 38.5833m,
                     Longitude = 68.7667m,
-                    ImageUrl = "https://images.unsplash.com/photo-1588097281266-31018abc3a2e?auto=format&fit=crop&w=800&q=80",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/1/1e/Kohi_Navruz_%28Navruz_Palace%29_in_Dushanbe%2C_Tajikistan_%28G_gpJOZc7q4%29.jpg",
                     EntryFee = 5.00m,
                     RatingAverage = 4.8m,
                     ReviewsCount = 120,
@@ -193,7 +219,7 @@ public static partial class DatabaseSeeder
                     Address = "Hisor District, Hisor",
                     Latitude = 38.5263m,
                     Longitude = 68.5525m,
-                    ImageUrl = "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/3/39/Hisor_Fortress_%2817230862984%29.jpg",
                     EntryFee = 3.00m,
                     RatingAverage = 4.6m,
                     ReviewsCount = 85,
@@ -209,7 +235,7 @@ public static partial class DatabaseSeeder
                     Address = "Sharq Street, Khujand",
                     Latitude = 40.2858m,
                     Longitude = 69.6272m,
-                    ImageUrl = "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=800&q=80",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/d/da/Panjshanbe_bazaar_in_Khujand_.jpg",
                     EntryFee = 0.00m,
                     RatingAverage = 4.7m,
                     ReviewsCount = 94,
@@ -225,7 +251,7 @@ public static partial class DatabaseSeeder
                     Address = "Fann Mountains region",
                     Latitude = 39.0833m,
                     Longitude = 68.3667m,
-                    ImageUrl = "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/2/23/Iskander-kul%2C_Tajikistan.JPG",
                     EntryFee = 2.00m,
                     RatingAverage = 4.9m,
                     ReviewsCount = 150,
@@ -241,7 +267,7 @@ public static partial class DatabaseSeeder
                     Address = "Shing Valley, Panjakent",
                     Latitude = 39.1833m,
                     Longitude = 67.8333m,
-                    ImageUrl = "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/6/6f/Lakes_of_Tajikistan_31.JPG",
                     EntryFee = 2.00m,
                     RatingAverage = 4.9m,
                     ReviewsCount = 65,
@@ -257,7 +283,7 @@ public static partial class DatabaseSeeder
                     Address = "Khorog, Pamir",
                     Latitude = 37.4950m,
                     Longitude = 71.5583m,
-                    ImageUrl = "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ea/Khorog_botanical_garden_%281%29_%2831569837815%29.jpg",
                     EntryFee = 1.50m,
                     RatingAverage = 4.5m,
                     ReviewsCount = 42,
@@ -279,28 +305,22 @@ public static partial class DatabaseSeeder
                     OwnerId = hotelOwnerId,
                     Name = "Dushanbe Serena Hotel",
                     Slug = "dushanbe-serena-hotel",
-                    Description = "A 5-star hotel featuring traditional Tajik designs, lush gardens, high-end amenities, and outstanding dining options in the heart of the capital.",
+                    Description = "A benchmark in Tajik hospitality, the Serena Hotel sits on the iconic Rudaki Avenue — the central boulevard of Dushanbe. This boutique 5-star property is praised for exceptional staff service, comfortable spacious rooms, and a welcoming restaurant. Ideal for business and leisure travelers.",
                     City = "Dushanbe",
                     Address = "Rudaki Avenue 14, Dushanbe",
-                    Latitude = 38.5658m,
-                    Longitude = 68.7983m,
-                    PhoneNumber = "+992487014000",
+                    Latitude = 38.5590m,
+                    Longitude = 68.7749m,
+                    PhoneNumber = "+992372211423",
                     WebsiteUrl = "https://www.serenahotels.com/dushanbe",
-                    ImageUrl = "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
-                    PricePerNight = 160.00m,
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ae/Interior_of_the_Serena_Hotel_in_Dushanbe_04.jpg",
+                    PricePerNight = 141.00m,
                     Stars = 5,
-                    RatingAverage = 4.8m,
-                    ReviewsCount = 88,
-                    TotalRooms = 120,
-                    AvailableRooms = 45,
-                    HasWifi = true,
-                    HasParking = true,
-                    HasPool = true,
-                    HasGym = true,
-                    HasRestaurant = true,
-                    IsFamilyFriendly = true,
-                    IsLuxury = true,
-                    IsBudget = false,
+                    RatingAverage = 4.3m,
+                    ReviewsCount = 278,
+                    TotalRooms = 102,
+                    AvailableRooms = 21,
+                    HasWifi = true, HasParking = true, HasPool = false, HasGym = true, HasRestaurant = true,
+                    IsFamilyFriendly = true, IsLuxury = true, IsBudget = false,
                     Status = EntityStatus.Approved,
                     CreatedAt = DateTime.UtcNow
                 },
@@ -309,58 +329,46 @@ public static partial class DatabaseSeeder
                     OwnerId = hotelOwnerId,
                     Name = "Khujand Grand Hotel",
                     Slug = "khujand-grand-hotel",
-                    Description = "Comfortable 4-star hotel offering magnificent Syr Darya river views, elegant rooms, and top-tier services for both leisure and business travelers.",
+                    Description = "A well-regarded 4-star hotel steps from the center of Khujand on Tanbury Street. Offers city views from every room, a terrace, bar, and restaurant serving great local food. Guests consistently praise the friendly and helpful staff. Features a 24-hour front desk, free WiFi, and laundry service.",
                     City = "Khujand",
-                    Address = "Rakhmon Nabiev Street 24, Khujand",
-                    Latitude = 40.2792m,
-                    Longitude = 69.6237m,
-                    PhoneNumber = "+992927771234",
-                    WebsiteUrl = "http://khujandgrandhotel.tj",
-                    ImageUrl = "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80",
+                    Address = "Tanbury Street 20, Khujand",
+                    Latitude = 40.2912m,
+                    Longitude = 69.6241m,
+                    PhoneNumber = "+992342242936",
+                    WebsiteUrl = null,
+                    ImageUrl = "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
                     PricePerNight = 75.00m,
                     Stars = 4,
-                    RatingAverage = 4.4m,
-                    ReviewsCount = 52,
-                    TotalRooms = 60,
-                    AvailableRooms = 28,
-                    HasWifi = true,
-                    HasParking = true,
-                    HasPool = false,
-                    HasGym = true,
-                    HasRestaurant = true,
-                    IsFamilyFriendly = true,
-                    IsLuxury = false,
-                    IsBudget = false,
+                    RatingAverage = 4.3m,
+                    ReviewsCount = 96,
+                    TotalRooms = 55,
+                    AvailableRooms = 10,
+                    HasWifi = true, HasParking = true, HasPool = false, HasGym = false, HasRestaurant = true,
+                    IsFamilyFriendly = true, IsLuxury = false, IsBudget = false,
                     Status = EntityStatus.Approved,
                     CreatedAt = DateTime.UtcNow
                 },
                 new Hotel
                 {
                     OwnerId = hotelOwnerId,
-                    Name = "Pamir Lodge Khorog",
-                    Slug = "pamir-lodge-khorog",
-                    Description = "The ultimate guesthouse and meeting point for travelers journeying across the Pamir Highway, offering budget rooms, common areas, and a cozy local vibe.",
+                    Name = "Khorog Serena Inn",
+                    Slug = "khorog-serena-inn",
+                    Description = "The finest hotel in the Pamir Mountains, rated 4.6 by 39 verified guests on Tripadvisor. Perched on the edge of the Panj River at the border with Afghanistan, this intimate boutique inn has only 6 rooms — each with modern amenities and stunning river and mountain views. Known for extraordinary hospitality, thoughtful staff, and a restaurant. Book well in advance as it sells out quickly.",
                     City = "Khorog",
-                    Address = "Gagarin Street 48, Khorog",
+                    Address = "Panj Riverside, Khorog, GBAO 736000",
                     Latitude = 37.4912m,
-                    Longitude = 71.5456m,
-                    PhoneNumber = "+992935051234",
-                    WebsiteUrl = "http://pamirlodge.com",
-                    ImageUrl = "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
-                    PricePerNight = 25.00m,
-                    Stars = 2,
-                    RatingAverage = 4.5m,
-                    ReviewsCount = 110,
-                    TotalRooms = 20,
-                    AvailableRooms = 8,
-                    HasWifi = true,
-                    HasParking = true,
-                    HasPool = false,
-                    HasGym = false,
-                    HasRestaurant = true,
-                    IsFamilyFriendly = true,
-                    IsLuxury = false,
-                    IsBudget = true,
+                    Longitude = 71.5548m,
+                    PhoneNumber = "+992352222500",
+                    WebsiteUrl = "https://www.serenahotels.com/khorog",
+                    ImageUrl = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+                    PricePerNight = 120.00m,
+                    Stars = 4,
+                    RatingAverage = 4.6m,
+                    ReviewsCount = 39,
+                    TotalRooms = 6,
+                    AvailableRooms = 2,
+                    HasWifi = true, HasParking = true, HasPool = false, HasGym = false, HasRestaurant = true,
+                    IsFamilyFriendly = true, IsLuxury = true, IsBudget = false,
                     Status = EntityStatus.Approved,
                     CreatedAt = DateTime.UtcNow
                 }
@@ -386,7 +394,7 @@ public static partial class DatabaseSeeder
                     Longitude = 68.7891m,
                     PhoneNumber = "+992372242133",
                     WebsiteUrl = "http://rokhat.tj",
-                    ImageUrl = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tea_House_Rohat_Dushanbe.jpg",
                     CuisineType = "National, Uzbek",
                     PriceRange = PriceRange.Medium,
                     OpeningHours = "08:00 - 23:00",
@@ -447,6 +455,7 @@ public static partial class DatabaseSeeder
                     CreatedAt = DateTime.UtcNow
                 }
             };
+            restaurants.AddRange(GetExtraRestaurants(restaurantOwnerId));
             context.Restaurants.AddRange(restaurants);
         }
 

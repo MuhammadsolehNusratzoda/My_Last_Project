@@ -101,11 +101,12 @@ export function useTranslation() {
     const localizedKey = `${fieldBase}${suffix}`;
 
     if (obj[localizedKey] !== undefined && obj[localizedKey] !== null && String(obj[localizedKey]).trim() !== '') {
-      return String(obj[localizedKey]);
+      return t(String(obj[localizedKey]), String(obj[localizedKey]));
     }
 
     // Fallback to standard base field
-    return obj[fieldBase] !== undefined && obj[fieldBase] !== null ? String(obj[fieldBase]) : '';
+    const fallbackVal = obj[fieldBase] !== undefined && obj[fieldBase] !== null ? String(obj[fieldBase]) : '';
+    return t(fallbackVal, fallbackVal);
   };
 
   return {

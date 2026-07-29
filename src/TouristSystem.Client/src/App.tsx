@@ -37,7 +37,7 @@ import { api } from './services/api';
 import type { IPlace } from './types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Search, MapPin, Compass, Star, ArrowRight, Sparkles, Navigation, ArrowUpRight, Mic,
+  Search, MapPin, Compass, Star, ArrowRight, Sparkles, Navigation, ArrowUpRight, Mic, Play, X,
   Mountain, Waves, Landmark, TreePine, Church, PartyPopper
 } from 'lucide-react';
 import TajikistanRouteMap from './components/TajikistanRouteMap';
@@ -98,6 +98,7 @@ function LandingPage() {
   }, []);
   const { t, getLocalized, formatNumber } = useTranslation();
   const [stats, setStats] = useState({ attractions: 120, hotels: 350, restaurants: 75, cities: 25, visitors: '15K+' });
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [popularPlaces, setPopularPlaces] = useState<IPlace[]>([]);
   const [featuredHotels, setFeaturedHotels] = useState<any[]>([]);
   const [featuredRestaurants, setFeaturedRestaurants] = useState<any[]>([]);
@@ -255,14 +256,13 @@ function LandingPage() {
               <span>{t('hero.placesCategory', 'Places & Sights')}</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <a
-              href="https://www.youtube.com/watch?v=UUC5blbBzfw"
-              target="_blank"
-              rel="noreferrer"
-              className="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-100 font-medium px-8 py-3.5 rounded-full hover:scale-105 transition-all flex items-center justify-center space-x-2 backdrop-blur-md"
+            <button
+              onClick={() => setIsVideoModalOpen(true)}
+              className="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-100 font-medium px-8 py-3.5 rounded-full hover:scale-105 transition-all flex items-center justify-center space-x-2 backdrop-blur-md cursor-pointer"
             >
+              <Play className="h-4 w-4 text-sky-400 fill-sky-400/20" />
               <span>{t('hero.watchVideo', 'Watch Video')}</span>
-            </a>
+            </button>
           </motion.div>
              {/* Glassmorphic Search Bar */}
           <motion.div
@@ -766,6 +766,48 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Video Modal Overlay */}
+      <AnimatePresence>
+        {isVideoModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md p-4 sm:p-6"
+            onClick={() => setIsVideoModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: 'spring', duration: 0.5 }}
+              className="relative w-full max-w-5xl aspect-video bg-slate-950 border border-slate-800/80 rounded-3xl overflow-hidden shadow-2xl flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setIsVideoModalOpen(false)}
+                className="absolute top-4 right-4 z-10 p-2.5 bg-slate-950/60 hover:bg-slate-950/90 border border-white/10 text-white rounded-full transition-all duration-200 hover:scale-110 shadow-lg backdrop-blur-md cursor-pointer"
+                title="Close"
+              >
+                <X className="h-4 w-4" />
+              </button>
+
+              {/* Native Video Player */}
+              <div className="w-full h-full bg-black flex items-center justify-center">
+                <video
+                  src="/tajikistan_promo.mp4"
+                  className="w-full h-full object-cover"
+                  controls
+                  autoPlay
+                  playsInline
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
