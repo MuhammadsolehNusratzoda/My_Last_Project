@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { api } from '../services/api';
+import { api, API_ORIGIN } from '../services/api';
 import type { IProviderApplicationDossier } from '../types';
 import {
   ShieldCheck, CheckCircle2, XCircle, AlertTriangle, Eye, Search, Filter,
@@ -258,16 +258,16 @@ export default function AdminProviderApplicationsPage() {
                 {selectedDossier.licenseFrontPhotoUrl && (
                   <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800">
                     <div className="text-[10px] text-slate-400 mb-1">Front License Photo</div>
-                    <a href={`http://localhost:5010${selectedDossier.licenseFrontPhotoUrl}`} target="_blank" rel="noreferrer">
-                      <img src={`http://localhost:5010${selectedDossier.licenseFrontPhotoUrl}`} alt="License Front" className="w-full h-32 object-cover rounded-xl border border-slate-700" />
+                    <a href={`${API_ORIGIN}${selectedDossier.licenseFrontPhotoUrl}`} target="_blank" rel="noreferrer">
+                      <img src={`${API_ORIGIN}${selectedDossier.licenseFrontPhotoUrl}`} alt="License Front" className="w-full h-32 object-cover rounded-xl border border-slate-700" />
                     </a>
                   </div>
                 )}
                 {selectedDossier.vehicle?.registrationCertificateUrl && (
                   <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800">
                     <div className="text-[10px] text-slate-400 mb-1">Registration Certificate</div>
-                    <a href={`http://localhost:5010${selectedDossier.vehicle.registrationCertificateUrl}`} target="_blank" rel="noreferrer">
-                      <img src={`http://localhost:5010${selectedDossier.vehicle.registrationCertificateUrl}`} alt="Reg Cert" className="w-full h-32 object-cover rounded-xl border border-slate-700" />
+                    <a href={`${API_ORIGIN}${selectedDossier.vehicle.registrationCertificateUrl}`} target="_blank" rel="noreferrer">
+                      <img src={`${API_ORIGIN}${selectedDossier.vehicle.registrationCertificateUrl}`} alt="Reg Cert" className="w-full h-32 object-cover rounded-xl border border-slate-700" />
                     </a>
                   </div>
                 )}

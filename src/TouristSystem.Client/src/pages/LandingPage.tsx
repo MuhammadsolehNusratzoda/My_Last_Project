@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
 import { api } from '../services/api';
+import ErrorState from '../components/common/ErrorState';
 import type { IPlace } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, MapPin, Compass, Star, ArrowRight, Sparkles, Navigation, ArrowUpRight, Mic, Play, X, Mountain, Waves, Landmark, TreePine, Church, PartyPopper } from 'lucide-react';
@@ -80,7 +81,10 @@ export default function LandingPage() {
   };
 
 
-  useEffect(() => {
+  const [loadError, setLoadError] = useState(false);
+
+  const loadLandingData = () => {
+    setLoadError(false);
     Promise.all([
       api.get('/places?pageSize=6'),
       api.get('/hotels?pageSize=6'),
@@ -103,7 +107,12 @@ export default function LandingPage() {
       setFeaturedRestaurants(dbRestaurants.slice(0, 3));
     }).catch(err => {
       console.error("Error loading landing page data", err);
+      setLoadError(true);
     });
+  };
+
+  useEffect(() => {
+    loadLandingData();
   }, []);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -429,6 +438,10 @@ export default function LandingPage() {
                   </div>
                 </div>
               ))
+            ) : loadError ? (
+              <div className="md:col-span-3">
+                <ErrorState onRetry={loadLandingData} />
+              </div>
             ) : (
               // Loading skeletons
               [1, 2, 3].map((n) => (
@@ -500,7 +513,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               ))
-            ) : (
+            ) : loadError ? null : (
               [1, 2, 3].map((n) => (
                 <div key={n} className="bg-slate-900 border border-slate-800 rounded-[24px] h-[400px] animate-pulse" />
               ))
@@ -567,7 +580,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               ))
-            ) : (
+            ) : loadError ? null : (
               [1, 2, 3].map((n) => (
                 <div key={n} className="bg-slate-900 border border-slate-800 rounded-[24px] h-[400px] animate-pulse" />
               ))

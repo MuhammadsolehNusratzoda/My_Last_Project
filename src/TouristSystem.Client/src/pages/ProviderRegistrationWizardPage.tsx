@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../app/store';
-import { api } from '../services/api';
+import { api, API_ORIGIN } from '../services/api';
 import { useTranslation } from '../hooks/useTranslation';
 import type { ISaveProviderDraft, ITransportCompany, IProviderApplicationDossier } from '../types';
 import {
@@ -733,7 +733,7 @@ export default function ProviderRegistrationWizardPage() {
               <div className="flex gap-2 mt-3 flex-wrap">
                 {form.vehicle?.vehiclePhotos.map((p, idx) => (
                   <div key={idx} className="relative w-16 h-16 rounded-xl overflow-hidden border border-slate-700">
-                    <img src={`http://localhost:5010${p}`} alt="Vehicle" className="w-full h-full object-cover" />
+                    <img src={`${API_ORIGIN}${p}`} alt="Vehicle" className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>

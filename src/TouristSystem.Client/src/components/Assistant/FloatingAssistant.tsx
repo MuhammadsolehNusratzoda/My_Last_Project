@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   MessageSquare, X, Send, Trash2, Copy, Check, Mic, Bot, Sparkles, User, Volume2, VolumeX, Settings
 } from 'lucide-react';
+import { API_BASE_URL } from '../../services/api';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -292,7 +293,7 @@ export default function FloatingAssistant() {
     try {
       abortControllerRef.current = new AbortController();
 
-      const response = await fetch('http://localhost:5010/api/assistant/chat-stream', {
+      const response = await fetch(`${API_BASE_URL}/assistant/chat-stream`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

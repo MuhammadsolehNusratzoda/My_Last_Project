@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { api } from '../services/api';
+import ErrorState from '../components/common/ErrorState';
 import { useTranslation } from '../hooks/useTranslation';
 import type { IPlace } from '../types';
 import { Search, MapPin, Star, Eye, Sparkles } from 'lucide-react';
@@ -23,6 +24,7 @@ export default function PlacesPage() {
   const [searchParams] = useSearchParams();
   const [places, setPlaces] = useState<IPlace[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
   const [cityFilter, setCityFilter] = useState(searchParams.get('city') || '');
   const { t, getLocalized, formatNumber } = useTranslation();
@@ -33,6 +35,7 @@ export default function PlacesPage() {
 
   const fetchPlaces = async () => {
     setLoading(true);
+    setLoadError(false);
     try {
       const params = {
         searchTerm: searchTerm || undefined,
@@ -44,6 +47,7 @@ export default function PlacesPage() {
       setPlaces(response.data.items || []);
     } catch (error) {
       console.error('Error fetching places:', error);
+      setLoadError(true);
     } finally {
       setLoading(false);
     }
@@ -140,6 +144,8 @@ export default function PlacesPage() {
                 <div key={n} className="bg-slate-900 border border-slate-800 rounded-[24px] h-[400px] animate-pulse" />
               ))}
             </motion.div>
+          ) : loadError ? (
+            <ErrorState key="load-error" onRetry={fetchPlaces} />
           ) : places.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 10 }}

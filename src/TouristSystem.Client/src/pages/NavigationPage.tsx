@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { api } from '../services/api';
+import ErrorState from '../components/common/ErrorState';
 import { useTranslation } from '../hooks/useTranslation';
 import {
   MapPin, Navigation, Car, Footprints, Bike, Search, ExternalLink,
@@ -140,6 +141,7 @@ export default function NavigationPage() {
   const [destinations,   setDestinations]   = useState<Destination[]>([]);
   const [filtered,       setFiltered]       = useState<Destination[]>([]);
   const [loading,        setLoading]        = useState(true);
+  const [loadError,      setLoadError]      = useState(false);
   const [userPos,        setUserPos]        = useState<[number, number] | null>(null);
   const [detecting,      setDetecting]      = useState(false);
   const [locationError,  setLocationError]  = useState('');
@@ -154,14 +156,23 @@ export default function NavigationPage() {
   const [toast,          setToast]          = useState('');
 
   // ── Load destinations from backend ──────────────────────────────────────────
-  useEffect(() => {
+  const loadDestinations = () => {
+    setLoading(true);
+    setLoadError(false);
     api.get<Destination[]>('/map/destinations')
       .then(res => {
         setDestinations(res.data);
         setFiltered(res.data);
       })
-      .catch(() => setDestinations([]))
+      .catch(() => {
+        setDestinations([]);
+        setLoadError(true);
+      })
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    loadDestinations();
   }, []);
 
   // ── Filter destinations ──────────────────────────────────────────────────────
@@ -502,6 +513,12 @@ export default function NavigationPage() {
                 </div>
               )}
             </div>
+
+            {loadError && (
+              <div className="mt-2">
+                <ErrorState compact onRetry={loadDestinations} />
+              </div>
+            )}
 
             {/* Selected destination card */}
             {selected && (

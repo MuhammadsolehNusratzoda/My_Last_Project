@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';
+import ErrorState from '../components/common/ErrorState';
 import { useTranslation } from '../hooks/useTranslation';
 import type { IRestaurant } from '../types';
 import { Search, MapPin, Star, Eye, Utensils, DollarSign, Filter, Sparkles } from 'lucide-react';
@@ -33,6 +34,7 @@ const foodSuggestionsMap: Record<string, string[]> = {
 export default function RestaurantsPage() {
   const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [cityFilter, setCityFilter] = useState('');
   const [cuisineFilter, setCuisineFilter] = useState('');
@@ -44,6 +46,7 @@ export default function RestaurantsPage() {
 
   const fetchRestaurants = async () => {
     setLoading(true);
+    setLoadError(false);
     try {
       const params = {
         searchTerm: searchTerm || undefined,
@@ -56,6 +59,7 @@ export default function RestaurantsPage() {
       setRestaurants(response.data.items || []);
     } catch (error) {
       console.error('Error fetching restaurants:', error);
+      setLoadError(true);
     } finally {
       setLoading(false);
     }
@@ -203,6 +207,8 @@ export default function RestaurantsPage() {
                 <div key={n} className="bg-slate-900 border border-slate-800 rounded-[24px] h-[400px] animate-pulse" />
               ))}
             </motion.div>
+          ) : loadError ? (
+            <ErrorState key="load-error" onRetry={fetchRestaurants} />
           ) : restaurants.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 10 }}

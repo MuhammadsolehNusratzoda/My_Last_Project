@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';
+import ErrorState from '../components/common/ErrorState';
 import { useTranslation } from '../hooks/useTranslation';
 import type { IHotel } from '../types';
 import { Search, MapPin, Eye, Filter, Sparkles } from 'lucide-react';
@@ -22,6 +23,7 @@ const hotelsSuggestionsMap: Record<string, string[]> = {
 export default function HotelsPage() {
   const [hotels, setHotels] = useState<IHotel[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [cityFilter, setCityFilter] = useState('');
   const [starsFilter, setStarsFilter] = useState<number | null>(null);
@@ -33,6 +35,7 @@ export default function HotelsPage() {
 
   const fetchHotels = async () => {
     setLoading(true);
+    setLoadError(false);
     try {
       const params = {
         searchTerm: searchTerm || undefined,
@@ -45,6 +48,7 @@ export default function HotelsPage() {
       setHotels(response.data.items || []);
     } catch (error) {
       console.error('Error fetching hotels:', error);
+      setLoadError(true);
     } finally {
       setLoading(false);
     }
@@ -173,6 +177,8 @@ export default function HotelsPage() {
                 <div key={n} className="bg-slate-900 border border-slate-800 rounded-[24px] h-[420px] animate-pulse" />
               ))}
             </motion.div>
+          ) : loadError ? (
+            <ErrorState key="load-error" onRetry={fetchHotels} />
           ) : hotels.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 10 }}

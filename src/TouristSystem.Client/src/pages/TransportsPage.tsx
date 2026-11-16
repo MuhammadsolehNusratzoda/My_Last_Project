@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { api } from '../services/api';
+import ErrorState from '../components/common/ErrorState';
 import type { ITransport } from '../types';
 import { useAuthStore } from '../app/store';
 import { useTranslation } from '../hooks/useTranslation';
@@ -17,6 +18,7 @@ export default function TransportsPage() {
 
   const [transports, setTransports] = useState<ITransport[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   // Search parameters
   const [origin, setOrigin] = useState('');
@@ -35,6 +37,7 @@ export default function TransportsPage() {
 
   const fetchTransports = async () => {
     setLoading(true);
+    setLoadError(false);
     try {
       const params = {
         originCity: origin || undefined,
@@ -46,6 +49,7 @@ export default function TransportsPage() {
       setTransports(response.data.items || []);
     } catch (err) {
       console.error('Error loading transports:', err);
+      setLoadError(true);
     } finally {
       setLoading(false);
     }
@@ -206,6 +210,8 @@ export default function TransportsPage() {
                 <div key={n} className="bg-slate-900 border border-slate-800 rounded-[24px] h-[320px] animate-pulse" />
               ))}
             </motion.div>
+          ) : loadError ? (
+            <ErrorState key="load-error" onRetry={fetchTransports} />
           ) : transports.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 10 }}

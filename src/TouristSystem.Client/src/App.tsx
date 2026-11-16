@@ -33,6 +33,7 @@ import PassengerTransportSearchPage from './pages/PassengerTransportSearchPage';
 import { ProtectedRoute, RoleRoute } from './routes';
 import NavigationPage from './pages/NavigationPage';
 import LandingPage from './pages/LandingPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function AppContent() {
   const theme = useAuthStore((state) => state.theme);
@@ -99,6 +100,9 @@ function AppContent() {
               </Route>
             </Route>
           </Route>
+
+          {/* 404 — must stay the last route */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       {!isAdminPath && <Footer />}

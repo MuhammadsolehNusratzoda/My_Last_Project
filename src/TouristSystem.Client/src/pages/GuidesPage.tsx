@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';
+import ErrorState from '../components/common/ErrorState';
 import { useTranslation } from '../hooks/useTranslation';
 import type { IGuide } from '../types';
 import { Search, MapPin, Star, Eye, Filter, Sparkles, Languages } from 'lucide-react';
@@ -12,6 +13,7 @@ const guideLanguages = ['English', 'French', 'Russian', 'Chinese', 'Korean', 'Ma
 export default function GuidesPage() {
   const [guides, setGuides] = useState<IGuide[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [cityFilter, setCityFilter] = useState('');
   const [langFilter, setLangFilter] = useState('');
@@ -23,6 +25,7 @@ export default function GuidesPage() {
 
   const fetchGuides = async () => {
     setLoading(true);
+    setLoadError(false);
     try {
       const params = {
         searchTerm: searchTerm || undefined,
@@ -35,6 +38,7 @@ export default function GuidesPage() {
       setGuides(response.data.items || []);
     } catch (error) {
       console.error('Error fetching guides:', error);
+      setLoadError(true);
     } finally {
       setLoading(false);
     }
@@ -140,6 +144,8 @@ export default function GuidesPage() {
                 <div key={n} className="bg-slate-900 border border-slate-800 rounded-[24px] h-[400px] animate-pulse" />
               ))}
             </motion.div>
+          ) : loadError ? (
+            <ErrorState key="load-error" onRetry={fetchGuides} />
           ) : guides.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 10 }}

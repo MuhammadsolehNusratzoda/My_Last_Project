@@ -1,12 +1,12 @@
 import { useState, useRef } from 'react';
 import { useAuthStore } from '../app/store';
 import { useTranslation } from '../hooks/useTranslation';
-import { api } from '../services/api';
+import { api, API_ORIGIN } from '../services/api';
 import {
   User, Mail, Shield, Phone, Loader2, CheckCircle, Camera, Trash2, Upload, AlertCircle
 } from 'lucide-react';
 
-const API_BASE = 'http://localhost:5010';
+const API_BASE = API_ORIGIN;
 
 export default function ProfilePage() {
   const { user, token, updateUser } = useAuthStore();

@@ -178,7 +178,13 @@ export const translations = {
       unauthorizedSub: 'You must be signed in to access this page.',
       forbidden: 'Forbidden',
       forbiddenSub: 'You do not have permission to view this resource.',
-      networkError: 'Network connection failed. Please check your connectivity.'
+      networkError: 'Network connection failed. Please check your connectivity.',
+      notFoundTitle: 'Page not found',
+      backHome: 'Back to Home',
+      explorePlaces: 'Explore Places',
+      serverUnavailable: 'Server is unavailable',
+      serverUnavailableSub: 'Please check your connection and try again.',
+      tryAgain: 'Try again'
     },
     validation: {
       required: 'This field is required',
@@ -758,7 +764,13 @@ export const translations = {
       unauthorizedSub: 'Вам необходимо войти в систему для доступа к этой странице.',
       forbidden: 'Доступ запрещен',
       forbiddenSub: 'У вас нет прав для просмотра этого ресурса.',
-      networkError: 'Ошибка сети. Пожалуйста, проверьте ваше интернет-соединение.'
+      networkError: 'Ошибка сети. Пожалуйста, проверьте ваше интернет-соединение.',
+      notFoundTitle: 'Страница не найдена',
+      backHome: 'На главную',
+      explorePlaces: 'Смотреть места',
+      serverUnavailable: 'Сервер недоступен',
+      serverUnavailableSub: 'Проверьте подключение и попробуйте снова.',
+      tryAgain: 'Попробовать снова'
     },
     validation: {
       required: 'Это поле обязательно для заполнения',
@@ -1387,7 +1399,13 @@ export const translations = {
       unauthorizedSub: 'Барои дастрасӣ ба ин саҳифа шумо бояд ворид шавед.',
       forbidden: 'Маمنӯъ',
       forbiddenSub: 'Шумо барои дидани ин маълумот иҷозат надоред.',
-      networkError: 'Пайвасти шабака қатъ шуд. Лутфан, пайвасти худро санҷед.'
+      networkError: 'Пайвасти шабака қатъ шуд. Лутфан, пайвасти худро санҷед.',
+      notFoundTitle: 'Саҳифа ёфт нашуд',
+      backHome: 'Ба саҳифаи асосӣ',
+      explorePlaces: 'Дидани ҷойҳо',
+      serverUnavailable: 'Сервер дастрас нест',
+      serverUnavailableSub: 'Пайвасти худро санҷед ва бори дигар кӯшиш кунед.',
+      tryAgain: 'Бори дигар кӯшиш кунед'
     },
     validation: {
       required: 'Ин майдон ҳатмист',

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { api } from '../services/api';
+import { api, API_ORIGIN } from '../services/api';
+import ErrorState from '../components/common/ErrorState';
 import type { IPassengerProviderSearchResult } from '../types';
 import {
   Car, ShieldCheck, Star, MapPin, Phone, Check, Search, Filter, Fuel, Users,
@@ -13,6 +14,7 @@ const LANGUAGE_OPTIONS = ['Tajik', 'Russian', 'English', 'Uzbek'];
 export default function PassengerTransportSearchPage() {
   const [providers, setProviders] = useState<IPassengerProviderSearchResult[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   // Filters State
   const [currentCity, setCurrentCity] = useState('');
@@ -25,6 +27,7 @@ export default function PassengerTransportSearchPage() {
 
   const fetchProviders = async () => {
     setLoading(true);
+    setLoadError(false);
     try {
       const params = new URLSearchParams();
       if (currentCity) params.append('currentCity', currentCity);
@@ -39,6 +42,7 @@ export default function PassengerTransportSearchPage() {
       setProviders(res.data.items || []);
     } catch (err) {
       console.error(err);
+      setLoadError(true);
     } finally {
       setLoading(false);
     }
@@ -150,7 +154,13 @@ export default function PassengerTransportSearchPage() {
 
       {/* Provider Results Grid */}
       {loading ? (
-        <div className="py-20 text-center text-slate-500 text-sm">Searching passenger transportation providers...</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((n) => (
+            <div key={n} className="bg-slate-900/40 border border-slate-800/80 rounded-3xl h-[320px] animate-pulse" />
+          ))}
+        </div>
+      ) : loadError ? (
+        <ErrorState onRetry={fetchProviders} />
       ) : providers.length === 0 ? (
         <div className="py-20 text-center text-slate-500 text-sm">No passenger transport providers found matching your search filters.</div>
       ) : (
@@ -162,7 +172,7 @@ export default function PassengerTransportSearchPage() {
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="relative w-14 h-14 rounded-full overflow-hidden bg-slate-800 border-2 border-slate-700 shrink-0">
                     {p.profilePhotoUrl ? (
-                      <img src={`http://localhost:5010${p.profilePhotoUrl}`} alt={p.fullName} className="w-full h-full object-cover" />
+                      <img src={`${API_ORIGIN}${p.profilePhotoUrl}`} alt={p.fullName} className="w-full h-full object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-500"><Car className="h-6 w-6" /></div>
                     )}

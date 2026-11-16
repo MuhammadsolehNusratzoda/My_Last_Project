@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { useAuthStore } from '../app/store';
 
-const API_BASE_URL = 'http://localhost:5010/api';
+// Configured per environment in .env.development / .env.production (see .env.example)
+export const API_BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:5010/api';
+
+// Server origin without "/api" — used to build URLs of uploaded files (images, documents)
+export const API_ORIGIN = API_BASE_URL.replace(/\/api\/?$/, '');
 
 export const api = axios.create({
   baseURL: API_BASE_URL,

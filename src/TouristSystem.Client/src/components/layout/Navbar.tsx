@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { API_ORIGIN } from '../../services/api';
 
 export default function Navbar() {
   const { user, clearAuth, theme, setTheme } = useAuthStore();
@@ -141,7 +142,7 @@ export default function Navbar() {
                   >
                     {user.profileImageUrl ? (
                       <img
-                        src={`http://localhost:5010${user.profileImageUrl}`}
+                        src={`${API_ORIGIN}${user.profileImageUrl}`}
                         alt={user.fullName}
                         className="h-6 w-6 rounded-full object-cover border border-blue-200 dark:border-slate-700"
                       />
@@ -342,7 +343,7 @@ export default function Navbar() {
                     <div className="w-11 h-11 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center overflow-hidden">
                       {user.profileImageUrl ? (
                         <img
-                          src={`http://localhost:5010${user.profileImageUrl}`}
+                          src={`${API_ORIGIN}${user.profileImageUrl}`}
                           alt={user.fullName}
                           className="h-full w-full object-cover"
                         />
