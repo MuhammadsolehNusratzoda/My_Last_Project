@@ -10,6 +10,10 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Fail fast if required secrets are missing (they live in user-secrets / environment variables, not appsettings.json)
+EnsureSetting(builder.Configuration, "ConnectionStrings:DefaultConnection");
+EnsureSetting(builder.Configuration, "Jwt:SecretKey");
+
 // Initialize Serilog Logger
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -34,12 +38,13 @@ builder.Services.AddHttpClient<IAiAssistantService, AiAssistantService>(client =
 // Enable Health Checks
 builder.Services.AddHealthChecks();
 
-// Configure CORS
+// Configure CORS — only the frontend origins listed in "Cors:AllowedOrigins" may call the API
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("FrontendPolicy", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -100,7 +105,7 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAll");
+app.UseCors("FrontendPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -111,3 +116,14 @@ app.MapControllers();
 app.MapHealthChecks("/health");
 
 app.Run();
+
+static void EnsureSetting(IConfiguration configuration, string key)
+{
+    if (string.IsNullOrWhiteSpace(configuration[key]))
+    {
+        throw new InvalidOperationException(
+            $"Required setting '{key}' is missing. " +
+            $"For local development run in src/TouristSystem.WebApi: dotnet user-secrets set \"{key}\" \"<value>\". " +
+            $"In production set the environment variable '{key.Replace(":", "__")}'.");
+    }
+}

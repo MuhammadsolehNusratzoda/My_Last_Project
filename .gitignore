@@ -1,0 +1,22 @@
+# ---- .NET ----
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.rsuser
+
+# ---- Node / React (TouristSystem.Client) ----
+node_modules/
+dist/
+
+# ---- Logs ----
+src/TouristSystem.WebApi/Logs/
+
+# ---- Local secrets / env ----
+.env
+.env.local
+
+# ---- Personal helper files ----
+scratch_pdf/
+Project_TZ_txt/
