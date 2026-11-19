@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using TouristSystem.Application.Interfaces;
 using TouristSystem.Domain.Enums;
 using TouristSystem.Domain.Interfaces;
 
@@ -13,10 +14,12 @@ namespace TouristSystem.Application.Features.Bookings.Queries.GetBookingDetail;
 public class GetBookingDetailQueryHandler : IRequestHandler<GetBookingDetailQuery, BookingDetailDto?>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUserService _currentUserService;
 
-    public GetBookingDetailQueryHandler(IUnitOfWork unitOfWork)
+    public GetBookingDetailQueryHandler(IUnitOfWork unitOfWork, ICurrentUserService currentUserService)
     {
         _unitOfWork = unitOfWork;
+        _currentUserService = currentUserService;
     }
 
     public async Task<BookingDetailDto?> Handle(GetBookingDetailQuery request, CancellationToken cancellationToken)
@@ -29,6 +32,7 @@ public class GetBookingDetailQueryHandler : IRequestHandler<GetBookingDetailQuer
         }
 
         string referenceName = "Unknown";
+        Guid? partnerUserId = null; // owner of the referenced listing
 
         if (booking.BookingType == BookingType.Hotel)
         {
@@ -36,6 +40,7 @@ public class GetBookingDetailQueryHandler : IRequestHandler<GetBookingDetailQuer
             if (hotel != null)
             {
                 referenceName = hotel.Name;
+                partnerUserId = hotel.OwnerId;
             }
         }
         else if (booking.BookingType == BookingType.Transport)
@@ -44,6 +49,7 @@ public class GetBookingDetailQueryHandler : IRequestHandler<GetBookingDetailQuer
             if (transport != null)
             {
                 referenceName = transport.Name;
+                partnerUserId = transport.OwnerId;
             }
         }
         else if (booking.BookingType == BookingType.Guide)
@@ -52,6 +58,28 @@ public class GetBookingDetailQueryHandler : IRequestHandler<GetBookingDetailQuer
             if (guide != null)
             {
                 referenceName = guide.User.FullName;
+                partnerUserId = guide.UserId;
+            }
+        }
+
+        // SECURITY: only the traveler, the listing owner or an admin may see a booking.
+        // Anyone else gets "not found" (null → 404) so the booking's existence is not revealed.
+        var currentUserId = _currentUserService.UserId;
+        if (currentUserId == null)
+        {
+            return null;
+        }
+
+        bool isTraveler = booking.UserId == currentUserId.Value;
+        bool isPartner = partnerUserId == currentUserId.Value;
+        if (!isTraveler && !isPartner)
+        {
+            var currentUser = await _unitOfWork.Users.GetByIdAsync(currentUserId.Value, cancellationToken);
+            bool isAdmin = currentUser != null &&
+                           (currentUser.Role == UserRole.Admin || currentUser.Role == UserRole.SuperAdmin);
+            if (!isAdmin)
+            {
+                return null;
             }
         }
 

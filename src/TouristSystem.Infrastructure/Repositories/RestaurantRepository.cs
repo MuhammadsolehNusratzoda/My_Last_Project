@@ -69,4 +69,13 @@ public class RestaurantRepository : GenericRepository<Restaurant>, IRestaurantRe
 
         return (items, totalCount);
     }
+
+    public async Task<IReadOnlyList<Restaurant>> GetByOwnerAsync(Guid ownerId, CancellationToken cancellationToken = default)
+    {
+        return await DbSet
+            .AsNoTracking()
+            .Where(r => r.OwnerId == ownerId)
+            .OrderByDescending(r => r.CreatedAt)
+            .ToListAsync(cancellationToken);
+    }
 }

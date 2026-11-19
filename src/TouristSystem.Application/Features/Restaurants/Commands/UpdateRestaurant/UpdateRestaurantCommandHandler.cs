@@ -81,7 +81,8 @@ public class UpdateRestaurantCommandHandler : IRequestHandler<UpdateRestaurantCo
             restaurant.PriceRange = price;
         }
 
-        if (Enum.TryParse<EntityStatus>(request.Status, true, out var status))
+        // SECURITY: only admins may change moderation status — owners cannot self-approve their listings
+        if (isAdmin && Enum.TryParse<EntityStatus>(request.Status, true, out var status))
         {
             restaurant.Status = status;
         }

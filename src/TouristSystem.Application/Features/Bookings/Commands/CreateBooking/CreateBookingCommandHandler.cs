@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using TouristSystem.Application.Interfaces;
 using TouristSystem.Domain.Entities;
 using TouristSystem.Domain.Enums;
 using TouristSystem.Domain.Interfaces;
@@ -15,18 +16,24 @@ namespace TouristSystem.Application.Features.Bookings.Commands.CreateBooking;
 public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand, Guid>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUserService _currentUserService;
 
-    public CreateBookingCommandHandler(IUnitOfWork unitOfWork)
+    public CreateBookingCommandHandler(IUnitOfWork unitOfWork, ICurrentUserService currentUserService)
     {
         _unitOfWork = unitOfWork;
+        _currentUserService = currentUserService;
     }
 
     public async Task<Guid> Handle(CreateBookingCommand request, CancellationToken cancellationToken)
     {
-        var user = await _unitOfWork.Users.GetByIdAsync(request.UserId, cancellationToken);
+        // SECURITY: the traveler is always the authenticated user, never the UserId sent in the body
+        var travelerId = _currentUserService.UserId
+            ?? throw new UnauthorizedAccessException("User is not authenticated.");
+
+        var user = await _unitOfWork.Users.GetByIdAsync(travelerId, cancellationToken);
         if (user == null)
         {
-            throw new KeyNotFoundException($"User with ID '{request.UserId}' was not found.");
+            throw new KeyNotFoundException($"User with ID '{travelerId}' was not found.");
         }
 
         if (!Enum.TryParse<BookingType>(request.BookingType, true, out var type))
@@ -35,6 +42,7 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
         }
 
         decimal totalPrice = 0;
+        Guid partnerId = Guid.Empty;
 
         if (type == BookingType.Hotel)
         {
@@ -51,6 +59,7 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
 
             hotel.AvailableRooms -= request.Quantity;
             _unitOfWork.Hotels.Update(hotel);
+            partnerId = hotel.OwnerId;
 
             var days = (decimal)(request.EndDate.Date - request.StartDate.Date).TotalDays;
             if (days <= 0) days = 1;
@@ -72,6 +81,7 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
 
             transport.AvailableSeats -= request.Quantity;
             _unitOfWork.Transports.Update(transport);
+            partnerId = transport.OwnerId;
 
             totalPrice = transport.PricePerSeat * request.Quantity;
         }
@@ -88,8 +98,9 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
                 throw new InvalidOperationException("The requested Guide is not available.");
             }
 
-            guide.IsAvailable = false;
-            _unitOfWork.Guides.Update(guide);
+            // Note: the guide is NOT marked unavailable here — one booking must not block the guide
+            // for all other dates. Day-level availability comes with GuideAvailability (Phase 3).
+            partnerId = guide.UserId;
 
             var days = (decimal)(request.EndDate.Date - request.StartDate.Date).TotalDays;
             if (days <= 0) days = 1;
@@ -99,7 +110,8 @@ public class CreateBookingCommandHandler : IRequestHandler<CreateBookingCommand,
 
         var booking = new Booking
         {
-            UserId = request.UserId,
+            UserId = travelerId,
+            PartnerId = partnerId,
             BookingType = type,
             ReferenceId = request.ReferenceId,
             StartDate = DateTime.SpecifyKind(request.StartDate, DateTimeKind.Utc),

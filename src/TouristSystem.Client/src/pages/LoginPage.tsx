@@ -47,8 +47,13 @@ export default function LoginPage() {
 
       navigate('/');
     } catch (err: any) {
-      const rawMsg = err.response?.data?.message || 'auth.invalidCredentials';
-      setError(t(rawMsg));
+      // No response at all = server unreachable, not a wrong password
+      if (!err.response) {
+        setError(t('errors.serverUnavailableSub'));
+      } else {
+        const rawMsg = err.response.data?.message || 'auth.invalidCredentials';
+        setError(t(rawMsg));
+      }
     } finally {
       setLoading(false);
     }
@@ -61,9 +66,8 @@ export default function LoginPage() {
           {t('auth.welcomeBack', 'Welcome Back')}
         </h2>
         <p className="mt-2 text-center text-sm text-slate-400">
-          {t('auth.or', 'Or')}{' '}
           <Link to="/register" className="font-medium text-blue-400 hover:text-blue-300 transition-colors">
-            {t('auth.orCreateNewAccount', 'create a new account')}
+            {t('auth.orCreateNewAccount', 'Or create a new account')}
           </Link>
         </p>
       </div>

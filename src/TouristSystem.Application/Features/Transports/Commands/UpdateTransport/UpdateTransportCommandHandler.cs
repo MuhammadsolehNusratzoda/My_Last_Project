@@ -63,7 +63,8 @@ public class UpdateTransportCommandHandler : IRequestHandler<UpdateTransportComm
         transport.VehicleNumber = request.VehicleNumber;
         transport.ContactPhone = request.ContactPhone;
 
-        if (Enum.TryParse<EntityStatus>(request.Status, true, out var status))
+        // SECURITY: only admins may change moderation status — owners cannot self-approve their listings
+        if (isAdmin && Enum.TryParse<EntityStatus>(request.Status, true, out var status))
         {
             transport.Status = status;
         }

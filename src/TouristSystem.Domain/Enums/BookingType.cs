@@ -7,5 +7,6 @@ public enum BookingType
 {
     Hotel = 1,
     Transport = 2,
-    Guide = 3
+    Guide = 3,
+    Restaurant = 4
 }

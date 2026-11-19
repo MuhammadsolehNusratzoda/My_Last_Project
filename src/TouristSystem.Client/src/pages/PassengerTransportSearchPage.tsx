@@ -74,7 +74,7 @@ export default function PassengerTransportSearchPage() {
             <select
               value={currentCity}
               onChange={e => setCurrentCity(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer"
+              className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500 cursor-pointer"
             >
               <option value="">All Cities</option>
               {TAJIK_CITIES.map(c => <option key={c} value={c}>{c}</option>)}
@@ -86,7 +86,7 @@ export default function PassengerTransportSearchPage() {
             <select
               value={destinationCity}
               onChange={e => setDestinationCity(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer"
+              className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500 cursor-pointer"
             >
               <option value="">Any Destination</option>
               {TAJIK_CITIES.map(c => <option key={c} value={c}>{c}</option>)}
@@ -98,7 +98,7 @@ export default function PassengerTransportSearchPage() {
             <select
               value={serviceType}
               onChange={e => setServiceType(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer"
+              className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500 cursor-pointer"
             >
               <option value="">All Service Types</option>
               {SERVICE_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
@@ -110,7 +110,7 @@ export default function PassengerTransportSearchPage() {
             <select
               value={language}
               onChange={e => setLanguage(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer"
+              className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500 cursor-pointer"
             >
               <option value="">All Languages</option>
               {LANGUAGE_OPTIONS.map(l => <option key={l} value={l}>{l}</option>)}

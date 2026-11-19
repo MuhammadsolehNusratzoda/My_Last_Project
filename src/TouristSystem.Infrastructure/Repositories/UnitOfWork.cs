@@ -27,6 +27,7 @@ public class UnitOfWork : IUnitOfWork
         TransportCompanies = new TransportCompanyRepository(context);
         Guides = new GuideRepository(context);
         Bookings = new BookingRepository(context);
+        BookingStatusHistories = new BookingStatusHistoryRepository(context);
         Reviews = new ReviewRepository(context);
         Favorites = new FavoriteRepository(context);
         Notifications = new NotificationRepository(context);
@@ -43,6 +44,7 @@ public class UnitOfWork : IUnitOfWork
     public ITransportCompanyRepository TransportCompanies { get; }
     public IGuideRepository Guides { get; }
     public IBookingRepository Bookings { get; }
+    public IBookingStatusHistoryRepository BookingStatusHistories { get; }
     public IReviewRepository Reviews { get; }
     public IFavoriteRepository Favorites { get; }
     public INotificationRepository Notifications { get; }

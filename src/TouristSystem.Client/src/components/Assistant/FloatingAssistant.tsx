@@ -495,7 +495,7 @@ export default function FloatingAssistant() {
       {/* Floating Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-tr from-blue-600 via-sky-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/30 hover:scale-110 active:scale-95 transition-all cursor-pointer focus:outline-none border border-white/10"
+        className="fixed bottom-24 md:bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-tr from-blue-600 via-sky-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/30 hover:scale-110 active:scale-95 transition-all cursor-pointer focus:outline-none border border-white/10"
         title={labels.title}
       >
         <AnimatePresence mode="wait">

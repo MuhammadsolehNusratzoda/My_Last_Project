@@ -70,7 +70,7 @@ export default function PlacesPage() {
             <Sparkles className="h-3.5 w-3.5" />
             <span>{t('places.discoverPlaces', 'Discover places')}</span>
           </span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="text-2xl min-[480px]:text-4xl sm:text-5xl break-words font-extrabold text-white tracking-tight leading-tight">
             {t('places.title')}
           </h2>
           <p className="max-w-xl mx-auto text-sm text-slate-400 font-light">

@@ -83,7 +83,8 @@ public class UpdateHotelCommandHandler : IRequestHandler<UpdateHotelCommand>
         hotel.IsLuxury = request.IsLuxury;
         hotel.IsBudget = request.IsBudget;
 
-        if (Enum.TryParse<EntityStatus>(request.Status, true, out var status))
+        // SECURITY: only admins may change moderation status — owners cannot self-approve their listings
+        if (isAdmin && Enum.TryParse<EntityStatus>(request.Status, true, out var status))
         {
             hotel.Status = status;
         }

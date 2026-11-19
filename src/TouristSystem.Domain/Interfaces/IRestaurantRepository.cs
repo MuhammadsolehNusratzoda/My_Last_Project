@@ -19,4 +19,7 @@ public interface IRestaurantRepository : IGenericRepository<Restaurant>
         int pageNumber,
         int pageSize,
         CancellationToken cancellationToken = default);
+
+    /// <summary>All listings owned by the given user, newest first.</summary>
+    Task<IReadOnlyList<Restaurant>> GetByOwnerAsync(Guid ownerId, CancellationToken cancellationToken = default);
 }

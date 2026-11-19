@@ -22,6 +22,12 @@ public class Booking : AuditableEntity
     public DateTime? ConfirmedAt { get; set; }
     public DateTime? CancelledAt { get; set; }
 
+    /// <summary>Owner of the referenced listing (hotel/transport owner, guide user). Set by the server, never by the client.</summary>
+    public Guid PartnerId { get; set; }
+    public string? RejectionReason { get; set; }
+    public DateTime? CompletedAt { get; set; }
+    public bool IsNoShow { get; set; } = false;
+
     // Navigation properties
     public User User { get; set; } = null!;
 }

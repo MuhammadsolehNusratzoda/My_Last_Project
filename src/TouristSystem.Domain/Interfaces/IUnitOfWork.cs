@@ -19,6 +19,7 @@ public interface IUnitOfWork : IDisposable
     ITransportCompanyRepository TransportCompanies { get; }
     IGuideRepository Guides { get; }
     IBookingRepository Bookings { get; }
+    IBookingStatusHistoryRepository BookingStatusHistories { get; }
     IReviewRepository Reviews { get; }
     IFavoriteRepository Favorites { get; }
     INotificationRepository Notifications { get; }

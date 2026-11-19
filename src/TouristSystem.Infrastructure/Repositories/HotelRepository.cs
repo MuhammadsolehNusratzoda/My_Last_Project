@@ -71,4 +71,21 @@ public class HotelRepository : GenericRepository<Hotel>, IHotelRepository
 
         return (items, totalCount);
     }
+
+    public async Task<IReadOnlyList<Guid>> GetIdsByOwnerAsync(Guid ownerId, CancellationToken cancellationToken = default)
+    {
+        return await DbSet
+            .Where(h => h.OwnerId == ownerId)
+            .Select(h => h.Id)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<IReadOnlyList<Hotel>> GetByOwnerAsync(Guid ownerId, CancellationToken cancellationToken = default)
+    {
+        return await DbSet
+            .AsNoTracking()
+            .Where(h => h.OwnerId == ownerId)
+            .OrderByDescending(h => h.CreatedAt)
+            .ToListAsync(cancellationToken);
+    }
 }

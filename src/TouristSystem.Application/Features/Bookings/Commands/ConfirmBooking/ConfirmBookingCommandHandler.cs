@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using TouristSystem.Application.Features.Bookings.Common;
 using TouristSystem.Application.Interfaces;
 using TouristSystem.Domain.Enums;
 using TouristSystem.Domain.Interfaces;
@@ -78,10 +79,12 @@ public class ConfirmBookingCommandHandler : IRequestHandler<ConfirmBookingComman
             throw new UnauthorizedAccessException("You are not authorized to confirm this booking reservation.");
         }
 
-        booking.Status = BookingStatus.Confirmed;
-        booking.ConfirmedAt = DateTime.UtcNow;
+        await BookingWorkflow.ChangeStatusAsync(_unitOfWork, booking, BookingStatus.Confirmed, currentUserId.Value, null, cancellationToken);
+        await BookingWorkflow.NotifyTravelerAsync(_unitOfWork, booking,
+            "Booking confirmed",
+            $"Your booking for {booking.StartDate:yyyy-MM-dd} has been confirmed.",
+            cancellationToken);
 
-        _unitOfWork.Bookings.Update(booking);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

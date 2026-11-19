@@ -98,6 +98,10 @@ namespace TouristSystem.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("cancelled_at");
 
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("completed_at");
+
                     b.Property<DateTime?>("ConfirmedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("confirmed_at");
@@ -132,9 +136,19 @@ namespace TouristSystem.Infrastructure.Migrations
                         .HasDefaultValue(false)
                         .HasColumnName("is_deleted");
 
+                    b.Property<bool>("IsNoShow")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("is_no_show");
+
                     b.Property<string>("Notes")
                         .HasColumnType("text")
                         .HasColumnName("notes");
+
+                    b.Property<Guid>("PartnerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("partner_id");
 
                     b.Property<int>("Quantity")
                         .ValueGeneratedOnAdd()
@@ -145,6 +159,11 @@ namespace TouristSystem.Infrastructure.Migrations
                     b.Property<Guid>("ReferenceId")
                         .HasColumnType("uuid")
                         .HasColumnName("reference_id");
+
+                    b.Property<string>("RejectionReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("rejection_reason");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("timestamp with time zone")
@@ -184,6 +203,12 @@ namespace TouristSystem.Infrastructure.Migrations
                     b.HasIndex("BookingType", "ReferenceId")
                         .HasDatabaseName("idx_bookings_polymorphic");
 
+                    b.HasIndex("PartnerId", "StartDate")
+                        .HasDatabaseName("idx_bookings_partner_start");
+
+                    b.HasIndex("PartnerId", "Status")
+                        .HasDatabaseName("idx_bookings_partner_status");
+
                     b.ToTable("bookings", null, t =>
                         {
                             t.HasCheckConstraint("CK_Bookings_Dates", "end_date >= start_date");
@@ -194,6 +219,50 @@ namespace TouristSystem.Infrastructure.Migrations
 
                             t.HasCheckConstraint("CK_Bookings_TotalPrice", "total_price >= 0");
                         });
+                });
+
+            modelBuilder.Entity("TouristSystem.Domain.Entities.BookingStatusHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BookingId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("booking_id");
+
+                    b.Property<DateTime>("ChangedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("changed_at");
+
+                    b.Property<Guid?>("ChangedByUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("changed_by_user_id");
+
+                    b.Property<string>("FromStatus")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("from_status");
+
+                    b.Property<string>("Reason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("reason");
+
+                    b.Property<string>("ToStatus")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("to_status");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId", "ChangedAt")
+                        .HasDatabaseName("idx_booking_status_history_booking");
+
+                    b.ToTable("booking_status_history", (string)null);
                 });
 
             modelBuilder.Entity("TouristSystem.Domain.Entities.Favorite", b =>
@@ -603,6 +672,98 @@ namespace TouristSystem.Infrastructure.Migrations
                         .HasDatabaseName("idx_notifications_user_read");
 
                     b.ToTable("notifications", (string)null);
+                });
+
+            modelBuilder.Entity("TouristSystem.Domain.Entities.PartnerExpense", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("numeric(12,2)")
+                        .HasColumnName("amount");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("category");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<Guid?>("CreatedByUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("created_by_user_id");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<Guid?>("DeletedByUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("deleted_by_user_id");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("description");
+
+                    b.Property<DateOnly>("ExpenseDate")
+                        .HasColumnType("date")
+                        .HasColumnName("expense_date");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("is_deleted");
+
+                    b.Property<bool>("IsRecurring")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("is_recurring");
+
+                    b.Property<Guid?>("ListingId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("listing_id");
+
+                    b.Property<string>("ListingType")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("listing_type");
+
+                    b.Property<Guid>("PartnerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("partner_id");
+
+                    b.Property<string>("ReceiptUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("receipt_url");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
+
+                    b.Property<Guid?>("UpdatedByUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("updated_by_user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PartnerId", "ExpenseDate")
+                        .HasDatabaseName("idx_partner_expenses_partner_date");
+
+                    b.ToTable("partner_expenses", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_PartnerExpenses_Amount", "amount > 0");
+                        });
                 });
 
             modelBuilder.Entity("TouristSystem.Domain.Entities.Place", b =>
@@ -1990,6 +2151,17 @@ namespace TouristSystem.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TouristSystem.Domain.Entities.BookingStatusHistory", b =>
+                {
+                    b.HasOne("TouristSystem.Domain.Entities.Booking", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Booking");
+                });
+
             modelBuilder.Entity("TouristSystem.Domain.Entities.Favorite", b =>
                 {
                     b.HasOne("TouristSystem.Domain.Entities.User", "User")
@@ -2032,6 +2204,17 @@ namespace TouristSystem.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TouristSystem.Domain.Entities.PartnerExpense", b =>
+                {
+                    b.HasOne("TouristSystem.Domain.Entities.User", "Partner")
+                        .WithMany()
+                        .HasForeignKey("PartnerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Partner");
                 });
 
             modelBuilder.Entity("TouristSystem.Domain.Entities.ProviderDocument", b =>

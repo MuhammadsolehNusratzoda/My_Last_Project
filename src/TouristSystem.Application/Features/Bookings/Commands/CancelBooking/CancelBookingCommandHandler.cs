@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using TouristSystem.Application.Features.Bookings.Common;
 using TouristSystem.Application.Interfaces;
 using TouristSystem.Domain.Enums;
 using TouristSystem.Domain.Interfaces;
@@ -51,38 +52,13 @@ public class CancelBookingCommandHandler : IRequestHandler<CancelBookingCommand>
             throw new UnauthorizedAccessException("You are not authorized to cancel this booking.");
         }
 
-        if (booking.BookingType == BookingType.Hotel)
+        // Expired/Completed bookings no longer hold capacity
+        if (booking.Status == BookingStatus.Pending || booking.Status == BookingStatus.Confirmed)
         {
-            var hotel = await _unitOfWork.Hotels.GetByIdAsync(booking.ReferenceId, cancellationToken);
-            if (hotel != null)
-            {
-                hotel.AvailableRooms += booking.Quantity;
-                _unitOfWork.Hotels.Update(hotel);
-            }
-        }
-        else if (booking.BookingType == BookingType.Transport)
-        {
-            var transport = await _unitOfWork.Transports.GetByIdAsync(booking.ReferenceId, cancellationToken);
-            if (transport != null)
-            {
-                transport.AvailableSeats += booking.Quantity;
-                _unitOfWork.Transports.Update(transport);
-            }
-        }
-        else if (booking.BookingType == BookingType.Guide)
-        {
-            var guide = await _unitOfWork.Guides.GetByIdAsync(booking.ReferenceId, cancellationToken);
-            if (guide != null)
-            {
-                guide.IsAvailable = true;
-                _unitOfWork.Guides.Update(guide);
-            }
+            await BookingWorkflow.ReleaseCapacityAsync(_unitOfWork, booking, cancellationToken);
         }
 
-        booking.Status = BookingStatus.Cancelled;
-        booking.CancelledAt = DateTime.UtcNow;
-
-        _unitOfWork.Bookings.Update(booking);
+        await BookingWorkflow.ChangeStatusAsync(_unitOfWork, booking, BookingStatus.Cancelled, currentUserId.Value, "Cancelled by traveler", cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

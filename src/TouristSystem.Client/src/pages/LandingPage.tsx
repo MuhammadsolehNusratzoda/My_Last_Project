@@ -193,6 +193,7 @@ export default function LandingPage() {
               className="absolute inset-0 w-full h-full object-cover filter brightness-50"
             />
           </AnimatePresence>
+          <div className="absolute inset-0 bg-black/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
         </div>
 
@@ -207,10 +208,10 @@ export default function LandingPage() {
               <Sparkles className="h-3 w-3 animate-spin" />
               <span>{t('hero.exploreBtn', 'Explore Tajikistan with us')}</span>
             </span>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#ffffff] leading-tight">
               {t('welcome', 'Tajikistan — Where the Sky Touches the Earth')}
             </h1>
-            <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-light leading-relaxed">
+            <p className="max-w-2xl mx-auto text-base sm:text-lg text-[#e2e8f0] font-light leading-relaxed">
               {t('tagline', 'Breathtaking landscapes, a rich ancient culture, and warm heartfelt hospitality — all in one unforgettable journey.')}
             </p>
           </motion.div>
@@ -246,7 +247,7 @@ export default function LandingPage() {
           >
             <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
               <div className="relative text-left">
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 ml-3">{t('hero.cityLabel', 'Where to go')}</label>
+                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 ml-3">{t('hero.searchLabel', 'Where to go')}</label>
                 <div className="relative flex items-center">
                   <MapPin className="absolute left-3.5 h-4 w-4 text-slate-500 pointer-events-none" />
                   <input

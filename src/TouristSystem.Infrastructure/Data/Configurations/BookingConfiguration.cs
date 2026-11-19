@@ -67,6 +67,23 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
         builder.Property(b => b.CancelledAt)
             .HasColumnName("cancelled_at");
 
+        // Partner Portal fields
+        builder.Property(b => b.PartnerId)
+            .HasColumnName("partner_id")
+            .IsRequired();
+
+        builder.Property(b => b.RejectionReason)
+            .HasColumnName("rejection_reason")
+            .HasMaxLength(500);
+
+        builder.Property(b => b.CompletedAt)
+            .HasColumnName("completed_at");
+
+        builder.Property(b => b.IsNoShow)
+            .HasColumnName("is_no_show")
+            .HasDefaultValue(false)
+            .IsRequired();
+
         // Audit fields
         builder.Property(b => b.CreatedAt).HasColumnName("created_at").IsRequired();
         builder.Property(b => b.CreatedByUserId).HasColumnName("created_by_user_id");
@@ -85,6 +102,12 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
 
         builder.HasIndex(b => new { b.BookingType, b.ReferenceId })
             .HasDatabaseName("idx_bookings_polymorphic");
+
+        builder.HasIndex(b => new { b.PartnerId, b.StartDate })
+            .HasDatabaseName("idx_bookings_partner_start");
+
+        builder.HasIndex(b => new { b.PartnerId, b.Status })
+            .HasDatabaseName("idx_bookings_partner_status");
 
         // Relationships
         builder.HasOne(b => b.User)

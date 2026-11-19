@@ -49,8 +49,13 @@ export default function RegisterPage() {
 
       navigate('/');
     } catch (err: any) {
-      const rawMsg = err.response?.data?.message || 'auth.registrationFailed';
-      setError(t(rawMsg));
+      // No response at all = server unreachable
+      if (!err.response) {
+        setError(t('errors.serverUnavailableSub'));
+      } else {
+        const rawMsg = err.response.data?.message || 'auth.registrationFailed';
+        setError(t(rawMsg));
+      }
     } finally {
       setLoading(false);
     }
@@ -63,9 +68,8 @@ export default function RegisterPage() {
           {t('auth.signUp', 'Create your account')}
         </h2>
         <p className="mt-2 text-center text-sm text-slate-400">
-          {t('auth.or', 'Or')}{' '}
           <Link to="/login" className="font-medium text-blue-400 hover:text-blue-300 transition-colors">
-            {t('auth.orSignIn', 'sign in to your account')}
+            {t('auth.orSignInToAccount', 'Or sign in to your account')}
           </Link>
         </p>
       </div>

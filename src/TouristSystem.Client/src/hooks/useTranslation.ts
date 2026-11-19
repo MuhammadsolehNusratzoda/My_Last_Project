@@ -3,6 +3,9 @@ import { translations } from '../app/locale/translations';
 
 export type Language = 'en' | 'ru' | 'tj';
 
+// ISO 4217 code (USD, TJS, RUB…) from .env — prices in the database must be stored in this currency
+const CURRENCY = import.meta.env.VITE_CURRENCY || 'USD';
+
 export function useTranslation() {
   const lang = useAuthStore((state) => state.lang) as Language;
   const setLang = useAuthStore((state) => state.setLang);
@@ -74,12 +77,12 @@ export function useTranslation() {
       const locale = lang === 'tj' ? 'tg-TJ' : lang === 'ru' ? 'ru-RU' : 'en-US';
       return new Intl.NumberFormat(locale, {
         style: 'currency',
-        currency: 'USD',
+        currency: CURRENCY,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2
       }).format(amount);
     } catch (e) {
-      return `$${amount}`;
+      return `${amount} ${CURRENCY}`;
     }
   };
 

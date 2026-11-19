@@ -68,4 +68,21 @@ public class TransportRepository : GenericRepository<Transport>, ITransportRepos
 
         return (items, totalCount);
     }
+
+    public async Task<IReadOnlyList<Guid>> GetIdsByOwnerAsync(Guid ownerId, CancellationToken cancellationToken = default)
+    {
+        return await DbSet
+            .Where(t => t.OwnerId == ownerId)
+            .Select(t => t.Id)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<IReadOnlyList<Transport>> GetByOwnerAsync(Guid ownerId, CancellationToken cancellationToken = default)
+    {
+        return await DbSet
+            .AsNoTracking()
+            .Where(t => t.OwnerId == ownerId)
+            .OrderByDescending(t => t.CreatedAt)
+            .ToListAsync(cancellationToken);
+    }
 }

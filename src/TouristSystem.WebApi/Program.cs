@@ -23,7 +23,11 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+// Background job: expires stale Pending bookings, completes finished ones
+builder.Services.AddHostedService<BookingLifecycleService>();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
@@ -86,6 +90,7 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<TouristSystem.Infrastructure.Data.ApplicationDbContext>();
     TouristSystem.Infrastructure.Data.Seed.DatabaseSeeder.Seed(context);
+    TouristSystem.Infrastructure.Data.Seed.DatabaseSeeder.BackfillBookingPartners(context);
 }
 
 // Configure the HTTP request pipeline.

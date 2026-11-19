@@ -89,7 +89,7 @@ export default function AdminLayout() {
               </div>
               <div className="text-left">
                 <h1 className="text-lg font-extrabold tracking-tight leading-none">Tajikistan Travel</h1>
-                <span className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold font-sans">Partner Dashboard</span>
+                <span className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold font-sans">{t('admin.panelSubtitle', 'Admin Panel')}</span>
               </div>
             </Link>
           </div>
@@ -101,7 +101,7 @@ export default function AdminLayout() {
               className="w-full flex items-center justify-center space-x-2 bg-[#fbe7c6] hover:bg-[#fad8a0] text-[#784f18] px-4 py-3 rounded-xl text-sm font-semibold tracking-wide transition-all shadow-md active:scale-95"
             >
               <Plus className="h-4 w-4" />
-              <span>{t('admin.addNewTour', 'Add New Tour')}</span>
+              <span>{t('admin.addPlace', 'Add Place')}</span>
             </Link>
           </div>
 

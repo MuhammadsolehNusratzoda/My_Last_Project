@@ -5,7 +5,7 @@ import { useTranslation } from '../hooks/useTranslation';
 import type { IReview, IBooking } from '../types';
 import { 
   MessageSquare, BarChart2, RefreshCw, 
-  Loader2, Users, TrendingUp, TrendingDown, Calendar, 
+  Loader2, Clock, Calendar, 
   ArrowUpRight, Sparkles
 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -13,6 +13,7 @@ import { motion } from 'framer-motion';
 export default function AdminDashboardPage() {
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [bookings, setBookings] = useState<IBooking[]>([]);
+  const [bookingsTotal, setBookingsTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const { t, formatDate, formatCurrency, formatNumber, lang } = useTranslation();
   const [hoveredChartPoint, setHoveredChartPoint] = useState<number | null>(null);
@@ -26,6 +27,7 @@ export default function AdminDashboardPage() {
     try {
       const bookingsRes = await api.get('/bookings', { params: { pageSize: 100 } });
       setBookings(bookingsRes.data.items || []);
+      setBookingsTotal(bookingsRes.data.totalCount ?? (bookingsRes.data.items || []).length);
 
       const reviewsRes = await api.get('/reviews', { params: { pageSize: 100 } });
       setReviews(reviewsRes.data.items || []);
@@ -36,9 +38,14 @@ export default function AdminDashboardPage() {
     }
   };
 
+  // Real figures only — no placeholder numbers. Based on the latest 100 bookings
+  // until the dedicated stats endpoint (Phase 2) is available.
   const totalRevenue = bookings
-    .filter((b) => b.status === 'Confirmed')
+    .filter((b) => b.status === 'Confirmed' || b.status === 'Completed')
     .reduce((sum, b) => sum + b.totalPrice, 0);
+  const pendingCount = bookings.filter((b) => b.status === 'Pending').length;
+  const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+  const last30DaysCount = bookings.filter((b) => new Date(b.createdAt).getTime() >= thirtyDaysAgo).length;
 
   // Generate SVG coordinates for booking trends
   const getChartPoints = () => {
@@ -67,25 +74,13 @@ export default function AdminDashboardPage() {
       });
     }
 
-    // Check if the aggregated bookings are all empty (sparse/clean local database)
-    const hasRealBookings = points.some((p) => p.bookings > 0);
-    if (!hasRealBookings) {
-      // Mock wave shape exactly matching the second design (highs and lows)
-      const mockWave = [
-        38, 41, 44, 40, 38, 36, 35, 38, 42, 50, 60, 52, 45, 40, 48,
-        65, 78, 82, 70, 55, 45, 52, 70, 85, 95, 82, 60, 48, 52, 65
-      ];
-      points.forEach((p, idx) => {
-        p.bookings = mockWave[idx] || 35;
-      });
-    }
-
     return points;
   };
 
   const chartPoints = getChartPoints();
-  const maxVal = Math.max(...chartPoints.map((p) => p.bookings), 100);
-  const maxValRounded = Math.ceil(maxVal / 10) * 10; // Round up for chart axis bounds
+  const hasChartData = chartPoints.some((p) => p.bookings > 0);
+  const maxVal = Math.max(...chartPoints.map((p) => p.bookings), 4);
+  const maxValRounded = Math.ceil(maxVal / 4) * 4; // Divisible by 4 so the 5 axis ticks are whole numbers
 
   // Map data points to SVG grid viewBox (0 0 650 260)
   const svgW = 650;
@@ -185,11 +180,10 @@ export default function AdminDashboardPage() {
                   {t('admin.totalReservations', 'Total Bookings')}
                 </span>
                 <span className="text-3xl font-extrabold text-slate-850 dark:text-white mt-1 block">
-                  {formatNumber(bookings.length || 1248)}
+                  {formatNumber(bookingsTotal)}
                 </span>
-                <span className="flex items-center text-xs font-semibold text-emerald-500 mt-2">
-                  <TrendingUp className="h-3.5 w-3.5 mr-1" />
-                  <span>+12.5% vs last month</span>
+                <span className="flex items-center text-xs font-semibold text-slate-400 mt-2">
+                  <span>{t('admin.last30Days', 'Last 30 days')}: {formatNumber(last30DaysCount)}</span>
                 </span>
               </div>
               <div className="bg-blue-50 dark:bg-blue-950/40 p-4 rounded-2xl border border-blue-100/30 text-blue-600 dark:text-blue-400">
@@ -206,14 +200,13 @@ export default function AdminDashboardPage() {
             >
               <div>
                 <span className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
-                  {t('admin.platformRevenue', 'Revenue')}
+                  {t('admin.bookingVolume', 'Booking Volume')}
                 </span>
                 <span className="text-3xl font-extrabold text-slate-855 dark:text-white mt-1 block">
-                  {totalRevenue > 0 ? formatCurrency(totalRevenue) : '$45,820'}
+                  {formatCurrency(totalRevenue)}
                 </span>
-                <span className="flex items-center text-xs font-semibold text-emerald-500 mt-2">
-                  <TrendingUp className="h-3.5 w-3.5 mr-1" />
-                  <span>+8.2% vs last month</span>
+                <span className="flex items-center text-xs font-semibold text-slate-400 mt-2">
+                  <span>{t('admin.confirmedAndCompleted', 'Confirmed & completed bookings')}</span>
                 </span>
               </div>
               <div className="bg-amber-50 dark:bg-amber-950/40 p-4 rounded-2xl border border-amber-100/30 text-amber-600 dark:text-amber-400">
@@ -221,7 +214,7 @@ export default function AdminDashboardPage() {
               </div>
             </motion.div>
 
-            {/* Stat 3: New Users */}
+            {/* Stat 3: Pending Bookings */}
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -230,18 +223,17 @@ export default function AdminDashboardPage() {
             >
               <div>
                 <span className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
-                  {t('admin.newUsers', 'New Users')}
+                  {t('admin.pendingBookings', 'Pending Bookings')}
                 </span>
                 <span className="text-3xl font-extrabold text-slate-850 dark:text-white mt-1 block">
-                  342
+                  {formatNumber(pendingCount)}
                 </span>
-                <span className="flex items-center text-xs font-semibold text-rose-500 mt-2">
-                  <TrendingDown className="h-3.5 w-3.5 mr-1" />
-                  <span>-2.4% vs last month</span>
+                <span className="flex items-center text-xs font-semibold text-slate-400 mt-2">
+                  <span>{t('admin.awaitingPartner', 'Awaiting partner confirmation')}</span>
                 </span>
               </div>
               <div className="bg-emerald-50 dark:bg-emerald-950/40 p-4 rounded-2xl border border-emerald-100/30 text-emerald-600 dark:text-emerald-400">
-                <Users className="h-6 w-6" />
+                <Clock className="h-6 w-6" />
               </div>
             </motion.div>
 
@@ -270,8 +262,8 @@ export default function AdminDashboardPage() {
                   </defs>
 
                   {/* Horizontal gridlines */}
-                  {[0, 25, 50, 75, 100].map((tick) => {
-                    const y = padT + chartH - (tick / 100) * chartH;
+                  {[0, 0.25, 0.5, 0.75, 1].map((f) => Math.round(f * maxValRounded)).map((tick) => {
+                    const y = padT + chartH - (tick / maxValRounded) * chartH;
                     return (
                       <g key={tick} className="opacity-30 dark:opacity-20">
                         <text x={padL - 10} y={y + 4} textAnchor="end" className="text-[10px] font-semibold fill-slate-400 dark:fill-slate-500 font-sans">
@@ -381,6 +373,11 @@ export default function AdminDashboardPage() {
                     </g>
                   )}
                 </svg>
+                {!hasChartData && (
+                  <p className="text-center text-xs text-slate-400 mt-2">
+                    {t('admin.noBookingsLast30', 'No bookings in the last 30 days yet.')}
+                  </p>
+                )}
               </div>
             </div>
 

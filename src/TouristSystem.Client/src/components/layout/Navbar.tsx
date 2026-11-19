@@ -57,7 +57,7 @@ export default function Navbar() {
               </span>
             </Link>
             
-            <div className="hidden md:flex ml-10 space-x-1 relative">
+            <div className="hidden xl:flex ml-10 space-x-1 relative">
               {navItems.map((item) => {
                 const isActive = location.pathname.startsWith(item.path);
                 return (
@@ -80,7 +80,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden xl:flex items-center space-x-4">
             {/* Language Selector */}
             <div className="relative">
               <button
@@ -242,7 +242,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <div className="flex items-center md:hidden">
+          <div className="flex items-center xl:hidden">
             <button
               onClick={() => setIsOpen(true)}
               className="text-gray-500 hover:text-gray-700 dark:text-slate-400 dark:hover:text-slate-200 focus:outline-none cursor-pointer p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-900 transition-colors"
@@ -261,7 +261,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-            className="fixed inset-0 z-50 md:hidden bg-slate-950/95 backdrop-blur-2xl flex flex-col justify-between p-6 overflow-y-auto"
+            className="fixed inset-0 z-50 xl:hidden bg-slate-950/95 backdrop-blur-2xl flex flex-col justify-between p-6 overflow-y-auto"
           >
             {/* Drawer Header */}
             <div className="flex justify-between items-center pb-6 border-b border-slate-900/60">
