@@ -186,21 +186,21 @@ export default function Navbar() {
                         </>
                       )}
 
-                      {(user.role === 'HotelOwner' || user.role === 'RestaurantOwner' || user.role === 'TransportOwner') && (
+                      {(user.role === 'HotelOwner' || user.role === 'RestaurantOwner' || user.role === 'TransportOwner' || user.role === 'Guide') && (
                         <>
                           <Link
-                            to="/owner/dashboard"
+                            to="/partner/dashboard"
+                            onClick={() => setShowDropdown(false)}
+                            className="block px-4 py-2.5 text-sm text-blue-600 dark:text-sky-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 font-medium"
+                          >
+                            {t('partner.myPanel', 'My Partner Panel')}
+                          </Link>
+                          <Link
+                            to="/partner/bookings"
                             onClick={() => setShowDropdown(false)}
                             className="block px-4 py-2.5 text-sm text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800/50"
                           >
-                            {t('navbar.ownerDashboard')}
-                          </Link>
-                          <Link
-                            to="/owner/services"
-                            onClick={() => setShowDropdown(false)}
-                            className="block px-4 py-2.5 text-sm text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800/50 font-medium"
-                          >
-                            {t('navbar.manageServices')}
+                            {t('partner.menu.bookings', 'Bookings')}
                           </Link>
                         </>
                       )}
@@ -381,13 +381,13 @@ export default function Navbar() {
                   {/* Owner and Admin Dashboard shortcut links in mobile drawer */}
                   {user.role !== 'Tourist' && (
                     <div className="space-y-2">
-                      {(user.role === 'HotelOwner' || user.role === 'RestaurantOwner' || user.role === 'TransportOwner') && (
+                      {(user.role === 'HotelOwner' || user.role === 'RestaurantOwner' || user.role === 'TransportOwner' || user.role === 'Guide') && (
                         <Link
-                          to="/owner/dashboard"
+                          to="/partner/dashboard"
                           onClick={() => setIsOpen(false)}
                           className="w-full flex items-center justify-center py-3 bg-slate-900 border border-slate-800 rounded-xl text-xs font-semibold text-slate-300"
                         >
-                          {t('navbar.ownerDashboard')}
+                          {t('partner.myPanel', 'My Partner Panel')}
                         </Link>
                       )}
                       {(user.role === 'Admin' || user.role === 'SuperAdmin') && (

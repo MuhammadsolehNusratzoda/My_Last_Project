@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from './app/store';
 import AdminLayout from './components/layout/AdminLayout';
+import PartnerLayout from './components/layout/PartnerLayout';
 import { Providers } from './app/providers';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -24,8 +25,9 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 import AdminPlacesPage from './pages/AdminPlacesPage';
 import AdminAuditLogsPage from './pages/AdminAuditLogsPage';
-import OwnerDashboardPage from './pages/OwnerDashboardPage';
-import OwnerServicesPage from './pages/OwnerServicesPage';
+import PartnerDashboardPage from './pages/partner/PartnerDashboardPage';
+import PartnerBookingsPage from './pages/partner/PartnerBookingsPage';
+import PartnerListingsPage from './pages/partner/PartnerListingsPage';
 import ProfilePage from './pages/ProfilePage';
 import ProviderRegistrationWizardPage from './pages/ProviderRegistrationWizardPage';
 import AdminProviderApplicationsPage from './pages/AdminProviderApplicationsPage';
@@ -38,7 +40,8 @@ import NotFoundPage from './pages/NotFoundPage';
 function AppContent() {
   const theme = useAuthStore((state) => state.theme);
   const location = useLocation();
-  const isAdminPath = location.pathname.startsWith('/admin');
+  // Admin and Partner portals have their own layout (sidebar), so the public Navbar/Footer are hidden there
+  const isAdminPath = location.pathname.startsWith('/admin') || location.pathname.startsWith('/partner');
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -83,10 +86,17 @@ function AppContent() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/register-provider" element={<ProviderRegistrationWizardPage />} />
 
-            {/* Owner Guarded Route */}
-            <Route element={<RoleRoute allowedRoles={['HotelOwner', 'RestaurantOwner', 'TransportOwner', 'Admin', 'SuperAdmin']} />}>
-              <Route path="/owner/dashboard" element={<OwnerDashboardPage />} />
-              <Route path="/owner/services" element={<OwnerServicesPage />} />
+            {/* Partner Portal (hotel / restaurant / transport owners and guides) */}
+            <Route element={<RoleRoute allowedRoles={['HotelOwner', 'RestaurantOwner', 'TransportOwner', 'Guide', 'Admin', 'SuperAdmin']} />}>
+              <Route element={<PartnerLayout />}>
+                <Route path="/partner" element={<Navigate to="/partner/dashboard" replace />} />
+                <Route path="/partner/dashboard" element={<PartnerDashboardPage />} />
+                <Route path="/partner/bookings" element={<PartnerBookingsPage />} />
+                <Route path="/partner/listings" element={<PartnerListingsPage />} />
+              </Route>
+              {/* Old owner pages now live in the Partner Portal */}
+              <Route path="/owner/dashboard" element={<Navigate to="/partner/dashboard" replace />} />
+              <Route path="/owner/services" element={<Navigate to="/partner/listings" replace />} />
             </Route>
 
             {/* Admin Guarded Route */}
